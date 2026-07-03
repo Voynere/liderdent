@@ -8,7 +8,9 @@ Thumbs.db
 # Environment-specific files
 wp-config.php
 .htaccess
+.htaccess.bk
 error_log
+info.php
 
 # Runtime logs / archives
 logs/
@@ -18,22 +20,41 @@ logs/
 *.zip
 
 # WordPress runtime and generated content
+cgi-bin/
 wp-content/uploads/
+wp-content/uploads-old/
 wp-content/cache/
 wp-content/upgrade/
+wp-content/upgrade-temp-backup/
+wp-content/upgrade-temp-backup-old/
 wp-content/ai1wm-backups/
 wp-content/updraft/
+wp-content/wflogs/
 wp-content/debug.log
+wp-content/litespeed/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/popup_debug.log
+wp-content/index.php-old
+wp-content/index.php-old-old
+wp-content/plugins-old/
+wp-content/themes-old/
+wp-content/languages/
+wp-content/languages-old/
 
 # Generated site outputs
 llms.txt
 llms-full.txt
 
-# Plugins: ignore all by default (none managed in this repo yet)
+# Plugins: ignore all (vendor plugins, not maintained in-house)
 wp-content/plugins/*
 !wp-content/plugins/index.php
 
-# WordPress core (protection against accidental commit)
+# Themes: only dental is custom
+wp-content/themes/*
+!wp-content/themes/dental/
+
+# WordPress core (local copy only; not in GitHub)
 /index.php
 /wp-admin/
 /wp-includes/
@@ -41,3 +62,13 @@ wp-content/plugins/*
 /xmlrpc.php
 /readme.html
 /license.txt
+/yandex_*.html
+
+# Root static assets served from document root (managed on server)
+/android-chrome-*.png
+/apple-touch-icon.png
+/favicon*
+/site.webmanifest
+
+# Agent RAG index (rebuilt locally)
+.cursor/rag/store.sqlite

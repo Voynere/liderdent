@@ -1,31 +1,24 @@
-# Liderdent Custom Code
+# Liderdent (liderdent24.ru)
 
-Репозиторий кастомного кода для [liderdent24.ru](https://liderdent24.ru) — только то, что поддерживается вручную.
+Локально — полная копия WordPress-сайта. В GitHub уходит только кастомный код (через `.gitignore`), как у ferma-dv и других WP-проектов.
 
-## Что входит в репозиторий
+## Что в git
 
 - `wp-content/themes/dental/`
+- `.github/workflows/` — деплой на сервер
+- `scripts/`, `docs/`
 
-## Что не входит
+## Что только локально / на сервере
 
-- Ядро WordPress (`wp-admin/`, `wp-includes/`, корневые `wp-*.php`)
-- Сторонние плагины (ACF, AIOSEO, Contact Form 7 и др.)
+- Ядро WordPress
+- Сторонние плагины
 - `wp-config.php`, `.htaccess`
-- uploads, cache, backups, logs
-- сгенерированные файлы (`llms.txt` и т.п.)
+- uploads, cache, backups
 
-## Модель деплоя
+## Деплой
 
-GitHub Actions загружает только кастомные пути и синхронизирует их в живое дерево WordPress на сервере. Сервер хранит ядро WP, плагины, медиа и кэш вне git.
+Push в `main` → GitHub Actions rsync темы `dental` на прод.
 
-Секреты GitHub:
+Секреты: `SERVER_HOST`, `SERVER_USER`, `SERVER_PORT`, `SERVER_SSH_KEY`, `SERVER_PATH`.
 
-- `SERVER_HOST`
-- `SERVER_USER`
-- `SERVER_PORT`
-- `SERVER_SSH_KEY`
-- `SERVER_PATH`
-
-## Локальная полная копия
-
-Полный сайт (для разработки и отладки) лежит отдельно в `~/Projects/liderdent/` и не пушится в этот репозиторий.
+Прод: `/var/www/liderdent/data/www/liderdent24.ru` на `37.46.132.136` (`ssh mrtlider`).

@@ -1,24 +1,22 @@
 # Custom code scope
 
-## Included by default
+## Included in git
 
 - `wp-content/themes/dental/`
 
-## Manual review paths
+## Local-only (ignored by .gitignore)
 
-These files live outside the theme directory and are **not** included unless verified:
-
-- `wp-content/themes/home.php` — legacy file at themes root (33 KB), differs from `dental/home.php`
-- `wp-content/themes/index.php` — stub at themes root
-
-## Explicitly excluded
-
-- WordPress core
-- third-party plugins (ACF, AIOSEO, CF7, cyr2lat, updraftplus, wp-mail-smtp, wp-super-cache, etc.)
+- WordPress core (`wp-admin/`, `wp-includes/`, root `wp-*.php`)
+- All plugins under `wp-content/plugins/`
 - `wp-config.php`, `.htaccess`
-- uploads, caches, backups, logs
-- `llms.txt`
+- uploads, cache, backups, logs
+- `llms.txt`, root favicons
 
-## Notes
+## Manual review
 
-If custom plugins are added later, include the full plugin directory and extend the deploy workflow.
+- `wp-content/themes/home.php` — legacy file outside `dental/`
+- `wp-content/themes/index.php` — stub outside `dental/`
+
+## Adding custom plugins later
+
+Un-ignore the plugin in `.gitignore` and extend `.github/workflows/deploy.yml`.
