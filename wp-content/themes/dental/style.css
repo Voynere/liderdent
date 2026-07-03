@@ -1,0 +1,137 @@
+/* 
+Theme Name: dental
+*/
+/* Стили для рубрики блога */
+.blog-category {
+    padding: 40px 0;
+}
+
+.blog-category__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.blog-category__title {
+    margin-bottom: 40px;
+    color: #1A3A5C;
+}
+
+.blog-category__posts {
+    display: grid;
+    gap: 30px;
+}
+
+.blog-category__post {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+    padding: 25px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.blog-category__post:hover {
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.blog-category__post-thumbnail img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.blog-category__post-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-category__post-title {
+    margin: 0 0 15px 0;
+    font-size: 1.5em;
+}
+
+.blog-category__post-title a {
+    color: #1A3A5C;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-category__post-title a:hover {
+    color: #1E5791;
+}
+
+.blog-category__post-meta {
+    margin-bottom: 15px;
+    color: #6684a2;
+    font-size: 0.9em;
+}
+
+.blog-category__post-excerpt {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.blog-category__post-readmore {
+    align-self: flex-start;
+    padding: 8px 20px;
+    background: #1E5791;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.blog-category__post-readmore:hover {
+    background: #0a2f4d;
+}
+
+.blog-category__pagination {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.blog-category__pagination .page-numbers {
+    display: inline-block;
+    padding: 8px 13px;
+    margin: 0 3px;
+    background: #f5f9ff;
+    color: #1A3A5C;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.blog-category__pagination .page-numbers.current {
+    background: #1E5791;
+    color: white;
+}
+
+.blog-category__pagination .page-numbers:hover:not(.current) {
+    background: #d4e3ff;
+}
+
+.blog-category__no-posts {
+    padding: 50px;
+    text-align: center;
+    background: #f9f9f9;
+    border-radius: 8px;
+    color: #666;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+    .blog-category__post {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .blog-category__post-thumbnail img {
+        height: 250px;
+    }
+}

@@ -1,0 +1,43 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.tmp_*
+
+# Environment-specific files
+wp-config.php
+.htaccess
+error_log
+
+# Runtime logs / archives
+logs/
+*.log
+*.sql
+*.gz
+*.zip
+
+# WordPress runtime and generated content
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/ai1wm-backups/
+wp-content/updraft/
+wp-content/debug.log
+
+# Generated site outputs
+llms.txt
+llms-full.txt
+
+# Plugins: ignore all by default (none managed in this repo yet)
+wp-content/plugins/*
+!wp-content/plugins/index.php
+
+# WordPress core (protection against accidental commit)
+/index.php
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/xmlrpc.php
+/readme.html
+/license.txt

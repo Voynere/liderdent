@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Raleway";
+    font-weight: 400;
+    font-style: normal;
+    src: local("Raleway-Regular"),
+    url('#{$theme-path}/assets/fonts/Raleway-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Raleway";
+    font-weight: 500;
+    font-style: normal;
+    src: local("Raleway-Medium"),
+    url('#{$theme-path}/assets/fonts/Raleway-Medium.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Raleway";
+    font-weight: 600;
+    font-style: normal;
+    src: local("Raleway-SemiBold"),
+    url('#{$theme-path}/assets/fonts/Raleway-SemiBold.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Raleway";
+    font-weight: 700;
+    font-style: normal;
+    src: local("Raleway-Bold"),
+    url('#{$theme-path}/assets/fonts/Raleway-Bold.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Raleway";
+    font-weight: 800;
+    font-style: normal;
+    src: local("Raleway-ExtraBold"),
+    url('#{$theme-path}/assets/fonts/Raleway-ExtraBold.woff2') format('woff2');
+    font-display: swap;
+}
+
+/* Ysabeau */
+@font-face {
+    font-family: "Ysabeau";
+    font-weight: 400;
+    font-style: normal;
+    src: local("Ysabeau-Regular"),
+    url('#{$theme-path}/assets/fonts/Ysabeau-Regular.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ysabeau";
+    font-weight: 500;
+    font-style: normal;
+    src: local("Ysabeau-Medium"),
+    url('#{$theme-path}/assets/fonts/Ysabeau-Medium.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ysabeau";
+    font-weight: 600;
+    font-style: normal;
+    src: local("Ysabeau-SemiBold"),
+    url('#{$theme-path}/assets/fonts/Ysabeau-SemiBold.woff2') format('woff2');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Ysabeau";
+    font-weight: 700;
+    font-style: normal;
+    src: local("Ysabeau-Bold"),
+    url('#{$theme-path}/assets/fonts/Ysabeau-Bold.woff2') format('woff2');
+    font-display: swap;
+}
