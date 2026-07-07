@@ -1,0 +1,34 @@
+---
+description: RAG-память проекта — ищи контекст перед задачами, сохраняй решения после
+alwaysApply: true
+---
+
+# Agent Memory (RAG)
+
+Локальная память: `.cursor/memory/`, `.cursor/knowledge/`, `docs/`.
+
+## Перед задачей
+
+```bash
+python3 .cursor/rag/rag.py query "ваш вопрос"
+```
+
+При необходимости читай найденные файлы целиком (`docs/AGENT_ACCESS.md`, `seov/plan.md`).
+
+## После решения
+
+```bash
+python3 .cursor/rag/rag.py remember "Краткая формулировка" --tag decision
+```
+
+Теги: `fact`, `decision`, `deploy`, `bugfix`, `theme`, `note`.
+
+## Индекс
+
+После правок в memory/knowledge/docs:
+
+```bash
+python3 .cursor/rag/rag.py index
+```
+
+Статус: `python3 .cursor/rag/rag.py status`

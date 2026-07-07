@@ -1,0 +1,25 @@
+---
+description: При новом чате — быстро подхватить контекст liderdent24.ru
+alwaysApply: true
+---
+
+# Новый чат: контекст перед работой
+
+Перед первой задачей в сессии — прочитай релевантное (обычно ≤3 файла):
+
+1. `python3 .cursor/rag/rag.py query "<тема задачи>"` — RAG-память
+2. `seov/plan.md` — план работ (локально, не в git)
+3. `docs/AGENT_ACCESS.md` — SSH, deploy, CI
+4. `.cursor/rules/dev-commit-push-ci.mdc` — commit → push → green deploy
+
+## Карта кода
+
+- Тема: `wp-content/themes/dental/`
+- Карта шаблонов: `.cursor/knowledge/theme.md`
+- CPT врачей: `specialist` в `functions.php`
+- Формы: `popup-form.js` + AJAX `send_popup_form`
+
+## Прод
+
+- SSH: `ssh -o BatchMode=yes mrtlider "..."`
+- WP root: `/var/www/liderdent/data/www/liderdent24.ru`

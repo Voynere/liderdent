@@ -72,3 +72,6 @@ wp-content/themes/*
 
 # Agent RAG index (rebuilt locally)
 .cursor/rag/store.sqlite
+
+# Локальная SEO-база, планы, отчёты (не в GitHub)
+seov/

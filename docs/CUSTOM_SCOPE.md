@@ -3,6 +3,8 @@
 ## Included in git
 
 - `wp-content/themes/dental/`
+- `.cursor/` (rules, knowledge, RAG script; `store.sqlite` — локально)
+- `docs/AGENT_ACCESS.md`
 
 ## Local-only (ignored by .gitignore)
 
@@ -11,6 +13,7 @@
 - `wp-config.php`, `.htaccess`
 - uploads, cache, backups, logs
 - `llms.txt`, root favicons
+- `seov/` — планы, отчёты, RAG контента сайта
 
 ## Manual review
 

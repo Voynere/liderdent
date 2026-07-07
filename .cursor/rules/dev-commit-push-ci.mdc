@@ -1,0 +1,31 @@
+---
+description: После фичи — сразу commit, push в main, проверка GitHub deploy.yml до зелёного.
+alwaysApply: true
+---
+
+# Dev workflow: commit → push → CI
+
+Применяется к **liderdent** (origin = GitHub `Voynere/liderdent`). Дополняет `docs/AGENT_ACCESS.md`.
+
+## После завершения фичи (или логически законченного куска работы)
+
+1. **Сразу коммить** — не оставляй готовые правки незакоммиченными до конца сессии.
+   - `git status` / `git diff` — stage **только** файлы текущей задачи.
+   - Сообщение коммита — по стилю репозитория (кратко, на русском).
+
+2. **Push в `main`** — `git push origin main`.
+   - **Не** force-push, **не** amend без явной просьбы пользователя.
+
+3. **Проверь CI (GitHub Actions `deploy.yml`)** — задача **не выполнена**, пока head не зелёный:
+   - `gh run list --workflow=deploy.yml --limit 3 --repo Voynere/liderdent`
+   - При failure: `gh run view <id> --log-failed --repo Voynere/liderdent`
+   - Зафиксируй в ответе: ветка, SHA, run ID, **зелёный / красный / в процессе**.
+
+4. **Если CI красный** — сам чини, commit + push, цикл до зелёного.
+
+5. **Prod smoke** после зелёного deploy:
+   - `curl -sS -o /dev/null -w "%{http_code}\n" https://liderdent24.ru/` → **200**
+
+## Когда не пушить
+
+- Пользователь явно просил не пушить / только локальный draft.
