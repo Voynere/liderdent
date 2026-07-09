@@ -104,6 +104,23 @@
     max-width: 100%;
 }
 
+/* Таблица цен на страницах услуг: отступ между названием и ценой */
+.page-price__line {
+    column-gap: 40px;
+}
+
+@media (max-width: 867px) {
+    .page-price__line {
+        column-gap: 28px;
+    }
+}
+
+@media (max-width: 640px) {
+    .page-price__line {
+        column-gap: 20px;
+    }
+}
+
 .promotion-page__hero {
     margin-bottom: 32px;
 }
