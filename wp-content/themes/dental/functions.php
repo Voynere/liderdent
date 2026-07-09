@@ -32,7 +32,7 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_script( 'fancybox-js', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js', array(), null, true );
 	wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true );
 	wp_enqueue_script( 'about', get_template_directory_uri() . '/assets/js/about.js', array('jquery'), 'null', true );
-	wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/js/home.js', array('jquery'), '1.8.3', true );
+	wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/js/home.js', array('jquery'), '1.8.4', true );
 	// wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), 'null', true );
 
     // подключение specialist.js только для страниц специалистов
@@ -73,6 +73,14 @@ add_action( 'wp_enqueue_scripts', function () {
         );
     }
 }, 20 );
+
+add_action( 'wp_head', function () {
+    if ( ! is_front_page() ) {
+        return;
+    }
+    $webm = get_template_directory_uri() . '/assets/img/compressed_mobile.webm';
+    echo '<link rel="preload" as="video" href="' . esc_url( $webm ) . '" type="video/webm">' . "\n";
+}, 5 );
 
 add_action( 'wp_footer', function () {
     get_template_part( 'template-parts/messenger-widget' );

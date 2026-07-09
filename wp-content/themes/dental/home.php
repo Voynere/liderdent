@@ -9,28 +9,19 @@ Template Name: home
 
 <main class="main">
     <section class="hero">
-    <?php if (wp_is_mobile()) : ?>
-        <!-- Мобильная версия с видео -->
-        <div class="hero__video-container">
-            <div class="hero__poster" style="background-image: url('https://liderdent24.ru/wp-content/themes/dental/assets/img/fondesctop.jpg');"></div>
-            <video class="hero__video" 
-                   autoplay 
-                   muted 
-                   loop 
-                   playsinline 
-                   preload="auto" 
-                   poster="https://liderdent24.ru/wp-content/themes/dental/assets/img/fondesctop.jpg">
-                <!-- Мобильные - WebM формат (лучшее сжатие) -->
-                <source src="<?php echo get_template_directory_uri(); ?>/assets/img/compressed_mobile.webm" type="video/webm">
-                <!-- Fallback на MP4 если WebM не поддерживается -->
-                <source src="<?php echo get_template_directory_uri(); ?>/assets/img/Обрезанное%20видео%20(2).mp4" type="video/mp4">
-                <!-- Ваш браузер не поддерживает видео. -->
+        <div class="hero__video-container hero__media hero__media--video">
+            <div class="hero__poster" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>');"></div>
+            <video class="hero__video"
+                   muted
+                   loop
+                   playsinline
+                   preload="metadata"
+                   poster="<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>">
+                <source src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.webm' ); ?>" type="video/webm">
+                <source src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.mp4' ); ?>" type="video/mp4">
             </video>
         </div>
-    <?php else : ?>
-        <!-- Десктоп версия с картинкой -->
-        <div class="hero__image-container" style="background-image: url('https://liderdent24.ru/wp-content/themes/dental/assets/img/fondesctop.jpg');"></div>
-    <?php endif; ?>
+        <div class="hero__image-container hero__media hero__media--image" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>');"></div>
     
     <div class="container">
         <div class="hero__inner">
@@ -49,6 +40,25 @@ Template Name: home
     width: 100%;
     height: 100vh;
     overflow: hidden;
+}
+
+/* Десктоп — картинка, мобильные — видео (один HTML для кэша) */
+.hero__media--video {
+    display: none;
+}
+
+.hero__media--image {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .hero__media--video {
+        display: block;
+    }
+
+    .hero__media--image {
+        display: none;
+    }
 }
 
 /* Десктоп версия - картинка */
@@ -85,7 +95,7 @@ Template Name: home
     background-position: center;
     background-repeat: no-repeat;
     z-index: 2;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.3s ease;
 }
 
@@ -101,12 +111,13 @@ Template Name: home
     transition: opacity 0.5s ease;
 }
 
-.hero__video.ready {
+.hero__video.is-ready {
     opacity: 1;
 }
 
-.hero__video.loading + .hero__poster {
-    opacity: 1;
+.hero__video-container.is-ready .hero__poster {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* Контейнер для текста - фиксируем позиционирование */
@@ -217,83 +228,6 @@ Template Name: home
     }
 }
 </style>
-
-<!-- Скрипт для управления видео на мобильных -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Проверяем, что мы на мобильном устройстве
-    if (window.innerWidth <= 768) {
-        const video = document.querySelector('.hero__video');
-        const poster = document.querySelector('.hero__poster');
-        
-        if (video) {
-            video.classList.add('loading');
-            
-            // Проверяем поддержку WebM
-            const canPlayWebM = video.canPlayType('video/webm');
-            
-            video.addEventListener('canplay', function() {
-                video.classList.remove('loading');
-                video.classList.add('ready');
-                
-                // Пробуем воспроизвести
-                let playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(function(error) {
-                        console.log('Автовоспроизведение не удалось:', error);
-                        if (poster) poster.style.opacity = '1';
-                        
-                        // Пробуем воспроизвести по клику
-                        document.addEventListener('touchstart', function() {
-                            video.play();
-                        }, { once: true });
-                    });
-                }
-            });
-            
-            if (video.readyState >= 3) {
-                video.classList.remove('loading');
-                video.classList.add('ready');
-            }
-            
-            video.addEventListener('error', function(e) {
-                console.log('Ошибка загрузки видео:', e);
-                if (poster) poster.style.opacity = '1';
-                
-                // Если WebM не поддерживается, пробуем MP4
-                if (e.target.error && e.target.error.code === 4) {
-                    const sources = video.querySelectorAll('source');
-                    for (let source of sources) {
-                        if (source.type === 'video/webm') {
-                            source.remove(); // Удаляем неподдерживаемый WebM
-                            video.load(); // Перезагружаем с MP4
-                            break;
-                        }
-                    }
-                }
-            });
-        }
-    }
-});
-
-// Дополнительная проверка после полной загрузки страницы
-window.addEventListener('load', function() {
-    if (window.innerWidth <= 768) {
-        const video = document.querySelector('.hero__video');
-        if (video && video.paused) {
-            video.play().catch(function() {
-                // Игнорируем ошибки, если видео уже не может запуститься
-            });
-        }
-    }
-});
-</script>
-
-<!-- Preload для быстрой загрузки видео -->
-<?php if (wp_is_mobile()) : ?>
-<link rel="preload" as="video" href="<?php echo get_template_directory_uri(); ?>/assets/img/compressed_mobile.webm" type="video/webm">
-<?php endif; ?>
 
     <!-- <section class="hello">
         <div class="container">

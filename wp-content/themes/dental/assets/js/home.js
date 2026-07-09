@@ -7,28 +7,138 @@
 //     loop: true,
 // });
 
-var swiper = new Swiper(".serviceSlider", {
-    slidesPerView: 1,
-    spaceBetween: 12,
-    navigation: {
-        nextEl: '.our-centre__slider-arrow.next',
-        prevEl: '.our-centre__slider-arrow.prev',
-    }
-});
+(function initHomePage() {
+    const MOBILE_HERO_MQ = window.matchMedia('(max-width: 768px)');
 
-var swiper = new Swiper(".promotionSlider", {
-    slidesPerView: 1,
-    spaceBetween: 12,
-    navigation: {
-        nextEl: '.promotion__slider-arrow.next',
-        prevEl: '.promotion__slider-arrow.prev',
+    function repositionOurCentreSlider() {
+        const slider = document.querySelector('.our-centre__slider');
+        const content = document.querySelector('.our-centre__content');
+        const title = document.querySelector('.our-centre__title');
+        const info = document.querySelector('.our-centre__info');
+        const inner = document.querySelector('.our-centre__inner');
+
+        if (!slider || !content || !title || !info || !inner) return;
+
+        const mediaQuery = window.matchMedia('(max-width: 578px)');
+
+        if (mediaQuery.matches) {
+            title.insertAdjacentElement('afterend', slider);
+        } else if (!inner.contains(slider)) {
+            inner.appendChild(slider);
+        }
     }
-});
-// Слайдер о нас
-var swiper = new Swiper(".aboutSlider", {
-    slidesPerView: 1,
-    spaceBetween: 12,
-});
+
+    function initHeroVideo() {
+        const video = document.querySelector('.hero__video');
+        const container = document.querySelector('.hero__video-container');
+        if (!video || !container) return;
+
+        const markReady = () => {
+            video.classList.add('is-ready');
+            container.classList.add('is-ready');
+        };
+
+        const tryPlay = () => {
+            if (!MOBILE_HERO_MQ.matches) {
+                video.pause();
+                return;
+            }
+
+            markReady();
+            if (!video.paused) {
+                return;
+            }
+
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(function () {
+                    container.classList.remove('is-ready');
+                    video.classList.remove('is-ready');
+                    document.addEventListener('touchstart', function () {
+                        video.play().then(markReady).catch(function () {});
+                    }, { once: true, passive: true });
+                });
+            }
+        };
+
+        const onMediaChange = () => {
+            if (MOBILE_HERO_MQ.matches) {
+                if (video.readyState >= 2) {
+                    tryPlay();
+                } else {
+                    video.load();
+                }
+            } else {
+                video.pause();
+                video.classList.remove('is-ready');
+                container.classList.remove('is-ready');
+            }
+        };
+
+        video.addEventListener('loadeddata', tryPlay, { once: true });
+        video.addEventListener('canplay', tryPlay, { once: true });
+        video.addEventListener('error', function () {
+            const webm = video.querySelector('source[type="video/webm"]');
+            if (webm) {
+                webm.remove();
+                video.load();
+            }
+        });
+
+        if (typeof MOBILE_HERO_MQ.addEventListener === 'function') {
+            MOBILE_HERO_MQ.addEventListener('change', onMediaChange);
+        } else if (typeof MOBILE_HERO_MQ.addListener === 'function') {
+            MOBILE_HERO_MQ.addListener(onMediaChange);
+        }
+
+        onMediaChange();
+    }
+
+    function initSwipers() {
+        if (typeof Swiper === 'undefined') return;
+
+        new Swiper('.serviceSlider', {
+            slidesPerView: 1,
+            spaceBetween: 12,
+            navigation: {
+                nextEl: '.our-centre__slider-arrow.next',
+                prevEl: '.our-centre__slider-arrow.prev',
+            },
+        });
+
+        new Swiper('.promotionSlider', {
+            slidesPerView: 1,
+            spaceBetween: 12,
+            navigation: {
+                nextEl: '.promotion__slider-arrow.next',
+                prevEl: '.promotion__slider-arrow.prev',
+            },
+        });
+
+        new Swiper('.aboutSlider', {
+            slidesPerView: 1,
+            spaceBetween: 12,
+        });
+    }
+
+    function boot() {
+        repositionOurCentreSlider();
+        initHeroVideo();
+        initSwipers();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
+    }
+
+    window.addEventListener('resize', debounce(function () {
+        repositionOurCentreSlider();
+    }, 150));
+})();
+
+var swiper = null; // legacy: слайдеры инициализируются в boot()
 // Перемещение блока слайдера на странице "о нас"
 (function () {
     const BREAKPOINT = 680;
@@ -409,33 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ----------- Конец моб слайдера до/после -----------
 
 
-function moveSliderOnMobile() {
-    const slider = document.querySelector('.our-centre__slider');
-    const content = document.querySelector('.our-centre__content');
-    const title = document.querySelector('.our-centre__title');
-    const info = document.querySelector('.our-centre__info');
-    
-    if (!slider || !content || !title || !info) return;
-
-    const mediaQuery = window.matchMedia('(max-width: 578px)');
-    
-    function handleMobileChange(e) {
-        if (e.matches) {
-            // Mobile - перемещаем после заголовка
-            title.insertAdjacentElement('afterend', slider);
-        } else {
-            // Desktop - возвращаем на исходное место
-            const inner = document.querySelector('.our-centre__inner');
-            if (inner) {
-                inner.appendChild(slider);
-            }
-        }
-    }
-
-    mediaQuery.addListener(handleMobileChange);
-    handleMobileChange(mediaQuery);
-}
-document.addEventListener('DOMContentLoaded', moveSliderOnMobile);
+// our-centre slider layout: initHomePage()
 
 
 // ---------- Контакты в мобильной версии ----------
