@@ -21,6 +21,7 @@
 
                         $post_id = get_the_ID();
                         $title   = get_the_title( $post_id );
+                        $profile = liderdent_get_doctor_profile( $title );
 
                         // Изображение: миниатюра или заглушка
                         $placeholder_img = get_template_directory_uri() . '/assets/img/doctor_2.png';
@@ -138,6 +139,14 @@
                             $educations = array_slice( $educations, 0, 7 );
                         }
 
+                        if ( $profile && ! empty( $profile['education'] ) ) {
+                            $educations = $profile['education'];
+                        }
+
+                        if ( $profile && ! empty( $profile['specialization'] ) ) {
+                            $doctor_spec = $profile['specialization'];
+                        }
+
                         // ----- Сбор сертификатов -----
                         $certs = array();
 
@@ -203,6 +212,9 @@
                                 </div>
 
                                 <div class="single-specialist__info-item">
+                                    <?php if ( $profile ) :
+                                        liderdent_render_prodoctorov_widget( $profile, $title );
+                                    else : ?>
                                     <p class="single-specialist__info-text">Рейтинг:</p>
                                     <div class="single-specialist__info-raiting" aria-hidden="true">
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/star.svg" alt="Рейтинг">
@@ -211,7 +223,14 @@
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/star.svg" alt="Рейтинг">
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/star.svg" alt="Рейтинг">
                                     </div>
+                                    <?php endif; ?>
                                 </div>
+
+                                <?php if ( $profile && ! empty( $profile['bio'] ) ) : ?>
+                                <div class="single-specialist__info-item">
+                                    <p class="single-specialist__info-text single-specialist__bio"><?php echo esc_html( $profile['bio'] ); ?></p>
+                                </div>
+                                <?php endif; ?>
 
                                 <div class="single-specialist__info-item education">
                                     <h4 class="single-specialist__info-text bold">Образование</h4>
@@ -270,6 +289,23 @@
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                        $case_images = ( $profile && ! empty( $profile['cases_gallery'] ) ) ? liderdent_get_safarov_case_images() : [];
+                        if ( ! empty( $case_images ) ) : ?>
+                        <div class="single-specialist__certificate">
+                            <div class="certificate">
+                                <h2 class="certificate__title page-title">РАБОТЫ ДО / ПОСЛЕ</h2>
+                                <div class="before-after-grid">
+                                    <?php foreach ( $case_images as $case_url ) : ?>
+                                        <div class="before-after-grid__item">
+                                            <img src="<?php echo esc_url( $case_url ); ?>" alt="<?php echo esc_attr( $title . ' — работы' ); ?>">
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?>
 
 
                     <?php

@@ -335,7 +335,6 @@ window.addEventListener('load', function() {
                             <p class="service__item-price">ОТ 8.000 РУБ.</p>
                         </div>
                         <div class="service__item-bottom">
-                            <p class="service__item-important">Действует рассрочка 0%</p>
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
                             </svg>
@@ -347,7 +346,6 @@ window.addEventListener('load', function() {
                             <p class="service__item-price">ОТ 8.000 РУБ.</p>
                         </div>
                         <div class="service__item-bottom">
-                            <p class="service__item-important">Без боли</p>
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
                             </svg>
@@ -359,7 +357,6 @@ window.addEventListener('load', function() {
                             <p class="service__item-price">ОТ 6.500 РУБ.</p>
                         </div>
                         <div class="service__item-bottom">
-                            <p class="service__item-important">Гарантия 5 лет</p>
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
                             </svg>
@@ -762,29 +759,30 @@ window.addEventListener('load', function() {
         <div class="container">
             <div class="promotion__inner">
                 <h2 class="page-title promotion__title">АКЦИИ</h2>
+                <?php $sales_url = liderdent_get_sales_page_url(); ?>
                 <div class="promotion__content">
-                    <a href="#" class="promotion__item odd">
+                    <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item odd">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="">
                         </div>
                         <div class="promotion__item-inner">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
                             </svg>
                             <div class="promotion__item-info">
-                                <h3 class="promotion__item-title">Ослепительная улыбка по выгодной цене</h3>
-                                <p class="promotion__item-text">КОМПЛЕКС</p>
+                                <h3 class="promotion__item-title">Улыбка без комплексов</h3>
+                                <p class="promotion__item-text">Брекеты «под ключ» 200 000 ₽</p>
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="promotion__item even">
+                    <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="">
                         </div>
                         <div class="promotion__item-inner">
                             <div class="promotion__item-info">
                                 <h3 class="promotion__item-title">Имплантация от 35 000 рублей</h3>
-                                <p class="promotion__item-text">снимок БЕСПЛАТНО</p>
+                                <p class="promotion__item-text">Osstem, Inno «под ключ»</p>
                             </div>
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
@@ -792,34 +790,37 @@ window.addEventListener('load', function() {
                         </div>
                     </a>
                 </div>
+                <p class="promotion-page__all-link">
+                    <a href="<?php echo esc_url( $sales_url ); ?>" class="btn-gold">Все акции и условия</a>
+                </p>
                 <div class="promotion__slider">
                     <div class="swiper promotionSlider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a href="#" class="promotion__item odd">
+                                <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item odd">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
                                         </svg>
                                         <div class="promotion__item-info">
-                                            <h3 class="promotion__item-title">Ослепительная улыбка по выгодной цене</h3>
-                                            <p class="promotion__item-text">КОМПЛЕКС</p>
+                                            <h3 class="promotion__item-title">Улыбка без комплексов</h3>
+                                            <p class="promotion__item-text">Брекеты 200 000 ₽</p>
                                         </div>
                                     </div>
                                 </a>
                             </div>
                             <div class="swiper-slide">
-                                <a href="#" class="promotion__item even">
+                                <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <div class="promotion__item-info">
-                                            <h3 class="promotion__item-title">Имплантация за 25 000 рублей</h3>
-                                            <p class="promotion__item-text">снимок БЕСПЛАТНО</p>
+                                            <h3 class="promotion__item-title">Имплантация от 35 000 ₽</h3>
+                                            <p class="promotion__item-text">КТ в подарок</p>
                                         </div>
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>

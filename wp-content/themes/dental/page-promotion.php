@@ -1,59 +1,63 @@
 <?php
-/* 
+/*
     Template Name: sales
 */
 ?>
 
 <?php get_header(); ?>
 
-<main class="main">
-    <section class="promotion">
+<main class="main page-promotion">
+
+    <?php do_action('theme_breadcrumbs'); ?>
+
+    <section class="promotion promotion-page">
         <div class="container">
             <div class="promotion__inner">
-                <div class="promotion__item">
-                    <div class="promotion__content">
-                        <h3 class="promotion__text">ПЕРВИЧНАЯ КОНСУЛЬТАЦИЯ БЕСПЛАТНО!</h3>
-                        <div class="promotion__callback">
-                            <a class="open_callback">Заказать звонок</a>
+                <h1 class="page-title promotion-page__hero">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</h1>
+
+                <?php foreach ( liderdent_get_promotions() as $promo ) :
+                    $card_class = 'promotion-page__card';
+                    if ( ! empty( $promo['featured'] ) ) {
+                        $card_class .= ' promotion-page__card--featured';
+                    }
+                    $img = get_template_directory_uri() . '/assets/img/' . ( $promo['image'] ?? 'promotion_1.png' );
+                    ?>
+                    <article class="<?php echo esc_attr( $card_class ); ?>">
+                        <div class="promotion-page__content">
+                            <?php if ( ! empty( $promo['badge'] ) ) : ?>
+                                <span class="promotion-page__badge"><?php echo esc_html( $promo['badge'] ); ?></span>
+                            <?php endif; ?>
+                            <h2 class="promotion__text"><?php echo esc_html( $promo['title'] ); ?></h2>
+                            <?php if ( ! empty( $promo['subtitle'] ) ) : ?>
+                                <p class="promotion-page__subtitle"><?php echo esc_html( $promo['subtitle'] ); ?></p>
+                            <?php endif; ?>
+                            <p><?php echo esc_html( $promo['text'] ); ?></p>
+                            <?php if ( ! empty( $promo['phones'] ) ) : ?>
+                                <p class="promotion-page__phones">
+                                    <?php echo esc_html( implode( ' · ', $promo['phones'] ) ); ?>
+                                </p>
+                            <?php endif; ?>
+                            <?php if ( ! empty( $promo['note'] ) ) : ?>
+                                <p class="promotion-page__note"><?php echo esc_html( $promo['note'] ); ?></p>
+                            <?php endif; ?>
+                            <div class="promotion__callback">
+                                <a class="open_callback btn-gold" href="#">Записаться / заказать звонок</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="promotion__img">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/page_promotion_1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="promotion__item">
-                    <div class="promotion__content">
-                        <h3 class="promotion__text">Ослепительная улыбка по выгодной цене! КОМПЛЕКС</h3>
-                        <div class="promotion__callback">
-                            <a class="open_callback">Заказать звонок</a>
+                        <div class="promotion-page__image">
+                            <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $promo['title'] ); ?>">
                         </div>
-                    </div>
-                    <div class="promotion__img">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/page_promotion_10.jpg" alt="">
-                    </div>
-                </div>
-                <div class="promotion__item">
-                    <div class="promotion__content">
-                        <h3 class="promotion__text">УСТАНОВКА ИМПЛАНТА  Osstem 25500 РУБЛЕЙ </h3>
-                        <div class="promotion__callback">
-                            <a class="open_callback">Заказать звонок</a>
-                        </div>
-                    </div>
-                    <div class="promotion__img">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/page_promotion_3.jpg" alt="">
-                    </div>
-                </div>
+                    </article>
+                <?php endforeach; ?>
             </div>
         </div>
     </section>
-    
-       
-  <section class="contacts">
+
+    <section class="contacts">
         <div class="container">
             <div class="contacts__inner">
                 <div class="contacts__map">
                  <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A322407f99216699ee1c4b28399f978668771f1ffb0f1d511c66384534417acd8&amp;width=1233&amp;height=596&amp;lang=ru_RU&amp;scroll=true"></script>
-
                 </div>
                 <div class="contacts__content">
                     <div class="contacts__title">
@@ -80,8 +84,6 @@
             </div>
         </div>
     </section>
-
-
 
 </main>
 

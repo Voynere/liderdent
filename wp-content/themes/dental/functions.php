@@ -1,5 +1,9 @@
 <?php
 
+require get_template_directory() . '/inc/short-prices.php';
+require get_template_directory() . '/inc/doctors-profiles.php';
+require get_template_directory() . '/inc/promotions-data.php';
+
 add_action( 'wp_enqueue_scripts', function () {
 	wp_enqueue_style( 'fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css' );
 	wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' );
@@ -7,6 +11,16 @@ add_action( 'wp_enqueue_scripts', function () {
 	$style_uri  = get_template_directory_uri() . '/assets/css/style.min.css';
 	$version    = file_exists($style_path) ? filemtime($style_path) : null;
 	wp_enqueue_style( 'style', $style_uri, [], $version );
+
+	$updates_css = get_template_directory() . '/assets/css/site-updates.css';
+	if ( file_exists( $updates_css ) ) {
+		wp_enqueue_style(
+			'liderdent-site-updates',
+			get_template_directory_uri() . '/assets/css/site-updates.css',
+			[ 'style' ],
+			filemtime( $updates_css )
+		);
+	}
 
     wp_deregister_script( 'jquery' );
 	wp_register_script( 'jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js');
@@ -47,6 +61,22 @@ add_action( 'wp_enqueue_scripts', function () {
         'nonce'    => wp_create_nonce('popup_form_nonce')
     ]);
 });
+
+add_action( 'wp_enqueue_scripts', function () {
+    if ( is_singular( 'specialist' ) ) {
+        wp_enqueue_script(
+            'prodoctorov-widget',
+            'https://prodoctorov.ru/static/js/widget_footer.js',
+            [],
+            'v06',
+            true
+        );
+    }
+}, 20 );
+
+add_action( 'wp_footer', function () {
+    get_template_part( 'template-parts/messenger-widget' );
+}, 5 );
 
 
 function custom_add_woocommerce_support() {

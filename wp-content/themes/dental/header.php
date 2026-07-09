@@ -82,7 +82,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo get_home_url(); ?>/service/">Цены</a>
+                                    <a href="<?php echo esc_url( liderdent_get_sales_page_url() ); ?>">Акции</a>
+                                    <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>
@@ -110,7 +111,8 @@
                                     </a>
                                     <ul class="header__follow-short-menu">
                                         <li>
-                                            <a href="<?php echo get_home_url(); ?>/service/">Цены</a>
+                                            <a href="<?php echo esc_url( liderdent_get_sales_page_url() ); ?>">Акции</a>
+                                    <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
                                         </li>
                                         <li>
                                             <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>
@@ -173,7 +175,8 @@
                                                 </a>
                                             </li>
                                             <li class="follow-menu-hidden">
-                                                <a href="<?php echo get_home_url(); ?>/service/">Цены</a>
+                                                <a href="<?php echo esc_url( liderdent_get_sales_page_url() ); ?>">Акции</a>
+                                    <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
                                             </li>
                                             <li class="follow-menu-hidden">
                                                 <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>
@@ -272,7 +275,8 @@
                                         <a href="<?php echo get_home_url(); ?>/pravovaya-i-yuridicheskaya-informaciya/">Юридическая информация</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo get_home_url(); ?>/service/">Цены</a>
+                                        <a href="<?php echo esc_url( liderdent_get_sales_page_url() ); ?>">Акции</a>
+                                    <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
                                     </li>
                                     <li>
                                         <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>

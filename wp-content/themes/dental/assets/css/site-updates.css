@@ -1,0 +1,226 @@
+/* Site updates — редакция июль 2026 */
+
+.messenger-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 9999;
+    font-family: inherit;
+}
+
+.messenger-widget__toggle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: #2f6f4f;
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+}
+
+.messenger-widget__panel {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: 68px;
+    min-width: 220px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+}
+
+.messenger-widget.is-open .messenger-widget__panel {
+    display: block;
+}
+
+.messenger-widget__title {
+    margin: 0 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #222;
+}
+
+.messenger-widget__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    color: #222;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.messenger-widget__link:hover {
+    background: #ececec;
+}
+
+.short-prices {
+    margin-top: 48px;
+}
+
+.short-prices__title {
+    margin-bottom: 24px;
+}
+
+.short-prices__section {
+    margin-bottom: 24px;
+}
+
+.short-prices__section-title {
+    margin: 0 0 10px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.short-prices__list {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.short-prices__item {
+    margin-bottom: 6px;
+    line-height: 1.45;
+}
+
+.short-prices__note {
+    margin-top: 16px;
+    font-size: 14px;
+    color: #666;
+}
+
+.page-prices .about__content {
+    align-items: flex-start;
+}
+
+.page-prices .about__left {
+    max-width: 100%;
+}
+
+.promotion-page__hero {
+    margin-bottom: 32px;
+}
+
+.promotion-page__card {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    margin-bottom: 24px;
+    padding: 24px;
+    border: 1px solid #e8e8e8;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.promotion-page__card--featured {
+    border-color: #c8a96a;
+    background: #fffdf8;
+}
+
+.promotion-page__badge {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #2f6f4f;
+    color: #fff;
+    font-size: 12px;
+}
+
+.promotion-page__subtitle {
+    margin: 8px 0 12px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #2f6f4f;
+}
+
+.promotion-page__phones {
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+.promotion-page__note {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #666;
+}
+
+.promotion-page__image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.promotion-page__all-link {
+    display: inline-flex;
+    margin-top: 16px;
+}
+
+.single-specialist__bio {
+    margin-top: 12px;
+    line-height: 1.55;
+}
+
+.single-specialist__prodoctorov {
+    margin-top: 24px;
+}
+
+.clinic-gallery {
+    margin-top: 40px;
+}
+
+.clinic-gallery__title {
+    margin-bottom: 20px;
+}
+
+.clinic-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.clinic-gallery__item {
+    overflow: hidden;
+    border-radius: 10px;
+    background: #f3f3f3;
+}
+
+.clinic-gallery__item img,
+.clinic-gallery__item video {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.before-after-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.before-after-grid__item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .promotion-page__card {
+        grid-template-columns: 1fr;
+    }
+
+    .messenger-widget {
+        right: 12px;
+        bottom: 12px;
+    }
+}

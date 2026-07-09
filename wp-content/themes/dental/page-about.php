@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
     Template Name: about
 */
 ?>
@@ -44,65 +44,43 @@
                         </div>
                     </div>
                 </div>
+
+                <?php
+                $gallery_items = liderdent_get_clinic_gallery_items();
+                if ( ! empty( $gallery_items ) ) : ?>
+                    <div class="clinic-gallery">
+                        <h2 class="page-title clinic-gallery__title">КЛИНИКА И АТМОСФЕРА</h2>
+                        <div class="clinic-gallery__grid">
+                            <?php foreach ( $gallery_items as $item ) : ?>
+                                <div class="clinic-gallery__item">
+                                    <?php if ( $item['type'] === 'video' ) : ?>
+                                        <video controls playsinline preload="metadata" src="<?php echo esc_url( $item['url'] ); ?>"></video>
+                                    <?php else : ?>
+                                        <img src="<?php echo esc_url( $item['url'] ); ?>" alt="Клиника ЛидерДент">
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php else : ?>
                 <div class="page-about__slider">
                     <div class="swiper aboutSlider">
                         <div class="swiper-wrapper">
+                            <?php for ( $i = 1; $i <= 10; $i++ ) : ?>
                             <div class="swiper-slide">
                                 <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_1.webp">
+                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_<?php echo (int) $i; ?>.webp" alt="">
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_2.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_3.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_4.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_5.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_6.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_7.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_8.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_9.webp">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="page-about__slider-item">
-                                    <img src="<?php bloginfo('template_url') ?>/assets/img/our_centre/our_centre_10.webp">
-                                </div>
-                            </div>
+                            <?php endfor; ?>
                         </div>
                     </div>
                 </div>
+                <?php endif; ?>
+
                 <div class="page-about__important">
                     <div class="page-about__important-content">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/important_service.svg">
+                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/important_service.svg" alt="">
                         <p>
                             Выбирая нашу клинику, вы всегда можете рассчитывать на профессиональное качественное лечение
                             независимо от сложности проблемы, с которой обратились.
@@ -112,21 +90,21 @@
             </div>
         </div>
     </section>
-    
+
     <section class="request">
-        <img class="request__background" src="<?php bloginfo('template_url') ?>/assets/img/request_background.png">
+        <img class="request__background" src="<?php bloginfo('template_url') ?>/assets/img/request_background.png" alt="">
         <div class="container">
             <div class="request__inner">
                 <form action="" class="request__form">
                     <h3 class="request__title">ОСТАВЬТЕ ОНЛАЙН-ЗАЯВКУ НА ПРИЁМ</h3>
                     <div class="request__info">
                         <p class="request__info-text">Запишитесь на первичную консультацию имплантолога, где вы получите:</p>
-                        <p class="request__info-text">— Подберем импланты специально для вас.</p>
+                        <p class="request__info-text">— Подберём импланты специально для вас.</p>
                         <p class="request__info-text">— Рассчитаем 3 варианта лечения с подробной сметой.</p>
                     </div>
                     <div class="request__content">
                         <input type="tel" class="request__phone" placeholder="+7 (___)___ __ __">
-                        <button class="request__submit btn-gold">
+                        <button class="request__submit btn-gold" type="submit">
                             Заказать звонок
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
@@ -147,14 +125,11 @@
     <section class="tour">
         <div class="container">
             <div class="tour__inner">
-                <iframe src="https://www.3dtur24.ru/panorama/liderdent/main.html" width=100% height="550" frameborder="0"  style="border:0" allowfullscreen></iframe>
+                <iframe src="https://www.3dtur24.ru/panorama/liderdent/main.html" width="100%" height="550" frameborder="0" style="border:0" allowfullscreen title="3D тур клиники"></iframe>
             </div>
         </div>
     </section>
 
-</main>
-
-<?php get_footer(); ?>
 </main>
 
 <?php get_footer(); ?>
