@@ -96,6 +96,14 @@
     color: #666;
 }
 
+.page-service-category-prices {
+    padding: 0 0 48px;
+}
+
+.page-service-category-prices .short-prices {
+    margin-top: 0;
+}
+
 .page-prices .about__content {
     align-items: flex-start;
 }

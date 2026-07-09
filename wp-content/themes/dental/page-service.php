@@ -82,14 +82,6 @@
         </div>
     </section>
 
-    <section class="about page-service-prices">
-        <div class="container">
-            <div class="about__inner">
-                <?php liderdent_render_short_prices( 'service' ); ?>
-            </div>
-        </div>
-    </section>
-
     <!-- <section class="before-after">
         <div class="container">
             <div class="before-after__inner">

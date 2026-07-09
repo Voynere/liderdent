@@ -258,6 +258,16 @@
     </div>
 </section>
 
+        <?php if ( $current->parent === $services->term_id ) : ?>
+        <section class="about page-service-category-prices">
+            <div class="container">
+                <div class="about__inner">
+                    <?php liderdent_render_short_prices_for_category( $current->slug ); ?>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+
     <?php 
         // ЕСЛИ ЭТО ЛЮБАЯ ДРУГАЯ РУБРИКА (НАПРИМЕР, "БЛОГ")
         else : 
