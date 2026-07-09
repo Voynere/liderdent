@@ -290,23 +290,7 @@
                             </div>
                         </div>
 
-                        <?php
-                        $case_images = ( $profile && ! empty( $profile['cases_gallery'] ) ) ? liderdent_get_safarov_case_images() : [];
-                        if ( ! empty( $case_images ) ) : ?>
-                        <div class="single-specialist__certificate">
-                            <div class="certificate">
-                                <h2 class="certificate__title page-title">РАБОТЫ ДО / ПОСЛЕ</h2>
-                                <div class="before-after-grid">
-                                    <?php foreach ( $case_images as $case_url ) : ?>
-                                        <div class="before-after-grid__item">
-                                            <img src="<?php echo esc_url( $case_url ); ?>" alt="<?php echo esc_attr( $title . ' — работы' ); ?>">
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                        <?php endif; ?>
-
+                        <?php liderdent_render_doctor_cases( $title ); ?>
 
                     <?php
                     endwhile; // end loop

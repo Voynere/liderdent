@@ -214,6 +214,80 @@
     border-radius: 8px;
 }
 
+/* Doctor cases — до/после на странице врача */
+.specialist-cases {
+    margin-top: 48px;
+    padding: 0;
+}
+
+.specialist-cases__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 900px) {
+    .specialist-cases__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.specialist-cases__card {
+    height: 100%;
+}
+
+.specialist-cases__photo {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.specialist-cases__photo:focus-visible {
+    outline: 2px solid #c8a96a;
+    outline-offset: 2px;
+}
+
+.specialist-cases__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(64, 64, 64, 0.82);
+}
+
+.specialist-cases__badge--after {
+    background: rgba(47, 111, 79, 0.92);
+}
+
+.specialist-cases__caption {
+    font-weight: 500;
+    line-height: 1.45;
+}
+
+.specialist-cases__slider {
+    display: none;
+}
+
+@media (max-width: 899px) {
+    .specialist-cases__grid {
+        display: none;
+    }
+
+    .specialist-cases__slider {
+        display: block;
+    }
+
+    .specialist-cases__slider .before-after__slider-arrows {
+        display: flex;
+    }
+}
+
 @media (max-width: 768px) {
     .promotion-page__card {
         grid-template-columns: 1fr;

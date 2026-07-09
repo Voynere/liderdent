@@ -151,6 +151,115 @@ function liderdent_get_clinic_gallery_items(): array {
     return $items;
 }
 
+function liderdent_get_doctor_cases( string $title ): array {
+    $profile = liderdent_get_doctor_profile( $title );
+    if ( empty( $profile['cases_gallery'] ) ) {
+        return [];
+    }
+
+    $base = get_template_directory_uri() . '/assets/img/safarov-cases/';
+
+    return [
+        [
+            'title'  => 'Временная коронка с пластикой десны',
+            'before' => $base . 'case-01.jpg',
+            'after'  => $base . 'case-02.jpg',
+        ],
+        [
+            'title'  => 'Имплантация и восстановление зубного ряда',
+            'before' => $base . 'case-03.jpg',
+            'after'  => $base . 'case-04.jpg',
+        ],
+        [
+            'title'  => 'Протезирование на имплантах',
+            'before' => $base . 'case-06.jpg',
+            'after'  => $base . 'case-05.jpg',
+        ],
+    ];
+}
+
+function liderdent_render_doctor_cases( string $title ): void {
+    $cases = liderdent_get_doctor_cases( $title );
+    if ( empty( $cases ) ) {
+        return;
+    }
+    ?>
+    <section class="before-after specialist-cases">
+        <h2 class="page-title before-after__title">РАБОТЫ ДО / ПОСЛЕ</h2>
+
+        <div class="before-after__content specialist-cases__grid">
+            <?php foreach ( $cases as $index => $case ) : ?>
+                <article class="before-after__item specialist-cases__card">
+                    <div class="before-after__images">
+                        <a class="before-after__images-item specialist-cases__photo"
+                           href="<?php echo esc_url( $case['before'] ); ?>"
+                           data-fancybox="doctor-cases-<?php echo (int) $index; ?>"
+                           data-caption="До — <?php echo esc_attr( $case['title'] ); ?>">
+                            <span class="specialist-cases__badge specialist-cases__badge--before">До</span>
+                            <img src="<?php echo esc_url( $case['before'] ); ?>"
+                                 alt="<?php echo esc_attr( 'До — ' . $case['title'] ); ?>"
+                                 loading="lazy">
+                        </a>
+                        <a class="before-after__images-item specialist-cases__photo"
+                           href="<?php echo esc_url( $case['after'] ); ?>"
+                           data-fancybox="doctor-cases-<?php echo (int) $index; ?>"
+                           data-caption="После — <?php echo esc_attr( $case['title'] ); ?>">
+                            <span class="specialist-cases__badge specialist-cases__badge--after">После</span>
+                            <img src="<?php echo esc_url( $case['after'] ); ?>"
+                                 alt="<?php echo esc_attr( 'После — ' . $case['title'] ); ?>"
+                                 loading="lazy">
+                        </a>
+                    </div>
+                    <p class="before-after__item-text specialist-cases__caption"><?php echo esc_html( $case['title'] ); ?></p>
+                </article>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="before-after__slider specialist-cases__slider">
+            <div class="swiper specialistCasesSlider">
+                <div class="swiper-wrapper">
+                    <?php foreach ( $cases as $index => $case ) : ?>
+                        <div class="swiper-slide">
+                            <article class="before-after__item specialist-cases__card">
+                                <div class="before-after__images">
+                                    <a class="before-after__images-item specialist-cases__photo"
+                                       href="<?php echo esc_url( $case['before'] ); ?>"
+                                       data-fancybox="doctor-cases-mobile-<?php echo (int) $index; ?>"
+                                       data-caption="До — <?php echo esc_attr( $case['title'] ); ?>">
+                                        <span class="specialist-cases__badge specialist-cases__badge--before">До</span>
+                                        <img src="<?php echo esc_url( $case['before'] ); ?>"
+                                             alt="<?php echo esc_attr( 'До — ' . $case['title'] ); ?>"
+                                             loading="lazy">
+                                    </a>
+                                    <a class="before-after__images-item specialist-cases__photo"
+                                       href="<?php echo esc_url( $case['after'] ); ?>"
+                                       data-fancybox="doctor-cases-mobile-<?php echo (int) $index; ?>"
+                                       data-caption="После — <?php echo esc_attr( $case['title'] ); ?>">
+                                        <span class="specialist-cases__badge specialist-cases__badge--after">После</span>
+                                        <img src="<?php echo esc_url( $case['after'] ); ?>"
+                                             alt="<?php echo esc_attr( 'После — ' . $case['title'] ); ?>"
+                                             loading="lazy">
+                                    </a>
+                                </div>
+                                <p class="before-after__item-text specialist-cases__caption"><?php echo esc_html( $case['title'] ); ?></p>
+                            </article>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div class="before-after__slider-arrows specialist-cases__arrows">
+                <button class="before-after__slider-arrow prev specialist-cases__arrow prev" type="button" aria-label="Предыдущий кейс">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/icons/arrow_left_slider_gold.svg' ); ?>" alt="">
+                </button>
+                <button class="before-after__slider-arrow next specialist-cases__arrow next" type="button" aria-label="Следующий кейс">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/icons/arrow_right_slider_gold.svg' ); ?>" alt="">
+                </button>
+            </div>
+        </div>
+    </section>
+    <?php
+}
+
 function liderdent_get_safarov_case_images(): array {
     $dir = get_template_directory() . '/assets/img/safarov-cases';
     if ( ! is_dir( $dir ) ) {

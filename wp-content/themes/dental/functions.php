@@ -45,7 +45,7 @@ add_action( 'wp_enqueue_scripts', function () {
         || is_category( 'specialist' )
         || ( is_single() && in_category( 'specialist' ) )
     ) {
-        wp_enqueue_script( 'specialist', $specialist_js_uri, array( 'jquery' ), $specialist_ver, true );
+        wp_enqueue_script( 'specialist', $specialist_js_uri, array( 'jquery', 'swiper-js' ), $specialist_ver, true );
     }
 
     wp_enqueue_script(
