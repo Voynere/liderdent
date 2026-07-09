@@ -1,12 +1,11 @@
 <?php
 /**
  * Краткий прайс-лист (редакция сайта, июль 2026).
- * Обновление: правка массива в теме + deploy.
+ * Только страница /prices/ — на подкатегориях услуг используется таблица из WP.
  */
 function liderdent_get_short_prices(): array {
     return [
         [
-            'id'    => 'diagnostika',
             'title' => 'ДИАГНОСТИКА',
             'items' => [
                 '3D компьютерная томография 2 челюсти (без описания) — 3 900 руб.',
@@ -25,7 +24,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'terapiya',
             'title' => 'ТЕРАПИЯ',
             'items' => [
                 'Консультация стоматолога-терапевта — 1 800 руб.',
@@ -36,7 +34,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'detskaya-terapiya',
             'title' => 'ДЕТСКАЯ ТЕРАПИЯ',
             'items' => [
                 'Консультация стоматолога-терапевта детского — 1 800 руб.',
@@ -46,7 +43,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'hirurgiya',
             'title' => 'ХИРУРГИЯ',
             'items' => [
                 'Консультация стоматолога-хирурга — 1 800 ₽',
@@ -62,7 +58,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'gigiena',
             'title' => 'ПРОФЕССИОНАЛЬНАЯ ГИГИЕНА ПОЛОСТИ РТА',
             'items' => [
                 'Чистка Air Flow (2 челюсти) — от 10 000 руб.',
@@ -71,7 +66,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'parodontologiya',
             'title' => 'ПАРОДОНТОЛОГИЯ',
             'items' => [
                 'Консультация стоматолога-пародонтолога — 2 350 руб.',
@@ -80,7 +74,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'ortodontiya',
             'title' => 'ОРТОДОНТИЯ',
             'items' => [
                 'Консультация стоматолога-ортодонта — 1 800 ₽',
@@ -91,7 +84,6 @@ function liderdent_get_short_prices(): array {
             ],
         ],
         [
-            'id'    => 'ortopediya',
             'title' => 'ОРТОПЕДИЯ',
             'items' => [
                 'Консультация стоматолога-ортопеда — 1 800 ₽',
@@ -106,58 +98,16 @@ function liderdent_get_short_prices(): array {
     ];
 }
 
-/**
- * Соответствие slug подкатегории услуг → блоки краткого прайса.
- */
-function liderdent_get_category_short_price_map(): array {
-    return [
-        'rentgenologicheskoe-obsledovanie' => [ 'diagnostika' ],
-        'czifrovaya-stomatologiya'         => [ 'diagnostika' ],
-        'lechenie'                         => [ 'terapiya', 'detskaya-terapiya' ],
-        'esteticheskaya-stomatologiya'     => [ 'terapiya' ],
-        'hirurgiya'                        => [ 'hirurgiya' ],
-        'implantaciya'                     => [ 'hirurgiya', 'ortopediya' ],
-        'gigiena'                          => [ 'gigiena' ],
-        'ortodontiya'                      => [ 'ortodontiya' ],
-        'protezirovanie'                   => [ 'ortopediya' ],
-    ];
-}
-
-function liderdent_filter_short_price_sections( ?array $section_ids ): array {
+function liderdent_render_short_prices( string $modifier = '' ): void {
     $sections = liderdent_get_short_prices();
-
-    if ( $section_ids === null ) {
-        return $sections;
-    }
-
-    $allowed = array_flip( $section_ids );
-
-    return array_values(
-        array_filter(
-            $sections,
-            static fn( array $section ): bool => isset( $allowed[ $section['id'] ] )
-        )
-    );
-}
-
-function liderdent_render_short_prices( string $modifier = '', ?array $section_ids = null ): void {
-    $sections = liderdent_filter_short_price_sections( $section_ids );
-
-    if ( empty( $sections ) ) {
-        return;
-    }
-
-    $class           = 'short-prices' . ( $modifier ? ' short-prices--' . esc_attr( $modifier ) : '' );
-    $single_section  = count( $sections ) === 1;
+    $class    = 'short-prices' . ( $modifier ? ' short-prices--' . esc_attr( $modifier ) : '' );
 
     echo '<div class="' . esc_attr( $class ) . '">';
     echo '<h2 class="short-prices__title page-title">ЦЕНЫ КРАТКО</h2>';
 
     foreach ( $sections as $section ) {
         echo '<div class="short-prices__section">';
-        if ( ! $single_section ) {
-            echo '<h3 class="short-prices__section-title">' . esc_html( $section['title'] ) . '</h3>';
-        }
+        echo '<h3 class="short-prices__section-title">' . esc_html( $section['title'] ) . '</h3>';
         echo '<ul class="short-prices__list">';
         foreach ( $section['items'] as $item ) {
             echo '<li class="short-prices__item">' . esc_html( $item ) . '</li>';
@@ -167,14 +117,4 @@ function liderdent_render_short_prices( string $modifier = '', ?array $section_i
 
     echo '<p class="short-prices__note">Актуальный полный прайс уточняйте у администратора.</p>';
     echo '</div>';
-}
-
-function liderdent_render_short_prices_for_category( string $category_slug, string $modifier = 'category' ): void {
-    $map = liderdent_get_category_short_price_map();
-
-    if ( empty( $map[ $category_slug ] ) ) {
-        return;
-    }
-
-    liderdent_render_short_prices( $modifier, $map[ $category_slug ] );
 }
