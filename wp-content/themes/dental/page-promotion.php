@@ -41,7 +41,12 @@
                                 <p class="promotion-page__note"><?php echo esc_html( $promo['note'] ); ?></p>
                             <?php endif; ?>
                             <div class="promotion__callback">
-                                <a class="open_callback btn-gold" href="#">Записаться / заказать звонок</a>
+                                <button type="button" class="promotion-page__btn btn-gold open-popup-callback">
+                                    Записаться / заказать звонок
+                                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                         <div class="promotion-page__image">

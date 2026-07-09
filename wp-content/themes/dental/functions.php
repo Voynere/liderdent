@@ -129,6 +129,26 @@ add_filter('wp_mime_type_icon', 'svg_mime_type_icon', 10, 3);
 
 
 // Хлебные крошки
+function liderdent_get_page_breadcrumb_title( $post = null ): string {
+    if ( ! $post ) {
+        global $post;
+    }
+
+    $slug_titles = [
+        'sales'   => 'Акции',
+        'prices'  => 'Цены',
+        'service' => 'Услуги',
+        'doctors' => 'Наши врачи',
+        'about'   => 'О нас',
+    ];
+
+    if ( $post && isset( $slug_titles[ $post->post_name ] ) ) {
+        return $slug_titles[ $post->post_name ];
+    }
+
+    return $post ? get_the_title( $post ) : '';
+}
+
 function theme_breadcrumbs() {
     if ( is_front_page() ) return;
 
@@ -163,7 +183,7 @@ function theme_breadcrumbs() {
                 echo $sep;
                 echo '<li class="breadcrumbs__item category">
                         <a href="' . esc_url(get_permalink($parent_id)) . '" class="breadcrumbs__link category">'
-                            . esc_html( get_the_title($parent_id) ) .
+                            . esc_html( liderdent_get_page_breadcrumb_title( get_post( $parent_id ) ) ) .
                         '</a>
                       </li>';
             }
@@ -171,7 +191,7 @@ function theme_breadcrumbs() {
 
         echo $sep;
         echo '<li>
-                <p class="breadcrumbs__link open">' . esc_html( get_the_title() ) . '</p>
+                <p class="breadcrumbs__link open">' . esc_html( liderdent_get_page_breadcrumb_title() ) . '</p>
               </li>';
     }
     
