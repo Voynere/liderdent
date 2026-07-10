@@ -9,20 +9,19 @@ Template Name: home
 
 <main class="main">
     <section class="hero">
-        <div class="hero__video-container hero__media hero__media--video">
+        <div class="hero__video-container">
             <div class="hero__poster" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>');"></div>
             <video class="hero__video"
                    muted
                    loop
                    playsinline
-                   preload="metadata"
+                   preload="none"
                    poster="<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>">
                 <source src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.webm' ); ?>" type="video/webm">
                 <source src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.mp4' ); ?>" type="video/mp4">
             </video>
         </div>
-        <div class="hero__image-container hero__media hero__media--image" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>');"></div>
-    
+
     <div class="container">
         <div class="hero__inner">
             <p class="hero__title-top">МЫ РАДЫ ПРИВЕТСТВОВАТЬ ВАС</p>
@@ -32,202 +31,6 @@ Template Name: home
         </div>
     </div>
 </section>
-
-<!-- Стили для правильного позиционирования -->
-<style>
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-}
-
-/* Десктоп — картинка, мобильные — видео (один HTML для кэша) */
-.hero__media--video {
-    display: none;
-}
-
-.hero__media--image {
-    display: block;
-}
-
-@media (max-width: 768px) {
-    .hero__media--video {
-        display: block;
-    }
-
-    .hero__media--image {
-        display: none;
-    }
-}
-
-/* Десктоп версия - картинка */
-.hero__image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 1;
-}
-
-/* Мобильная версия - видео */
-.hero__video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: #000;
-}
-
-.hero__poster {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 2;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.hero__video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 3;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.hero__video.is-ready {
-    opacity: 1;
-}
-
-.hero__video-container.is-ready .hero__poster {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Контейнер для текста - фиксируем позиционирование */
-/* .container {
-    position: relative;
-    z-index: 10;
-    height: 100%;
-    display: flex;
-    align-items: center;
-} */
-
-/* .hero__inner {
-    position: relative;
-    z-index: 10;
-    color: white;
-    text-align: left;
-    width: 100%;
-    padding: 20px 0;
-    transform: translateY(0);
-}
-
-.hero__title-top {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: rgba(255,255,255,0.9);
-}
-
-.hero__title-bottom {
-    font-size: 48px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    line-height: 1.2;
-} */
-
-.hero__info {
-    font-size: 18px;
-    max-width: 600px;
-    line-height: 1.6;
-    color: rgba(255,255,255,0.9);
-}
-
-.hero__info-mobile {
-    display: none;
-    font-size: 16px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.9);
-}
-
-/* Мобильные стили */
-@media (max-width: 768px) {
-    .hero {
-        height: 150vh;
-    }
-    
-    .hero__title-top {
-        font-size: 14px;
-    }
-    
-    .hero__title-bottom {
-        font-size: 32px;
-    }
-    
-    .hero__info {
-        display: none;
-    }
-    
-    .hero__info-mobile {
-        display: block;
-        max-width: 100%;
-    }
-    
-    .container {
-        align-items: center;
-    }
-    
-    .hero__inner {
-        padding: 20px;
-        margin-top: 0;
-    }
-}
-
-/* Планшеты */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hero__title-bottom {
-        font-size: 42px;
-    }
-}
-
-/* Маленькие десктопы */
-@media (min-width: 1025px) and (max-width: 1366px) {
-    .hero__title-bottom {
-        font-size: 44px;
-    }
-}
-
-/* Очень маленькие мобильные */
-@media (max-width: 480px) {
-    .hero {
-        height: 90vh;
-    }
-    
-    .hero__title-bottom {
-        font-size: 28px;
-    }
-    
-    .hero__inner {
-        padding: 15px;
-    }
-}
-</style>
 
     <!-- <section class="hello">
         <div class="container">
@@ -346,34 +149,34 @@ Template Name: home
                     <div class="swiper serviceSlider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_1.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_1.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_2.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_2.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_3.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_3.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_4.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_4.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_5.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_5.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_6.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_6.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <!-- <div class="swiper-slide our-centre__slider-item">
                                 <img src="<?php // bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_7.jpg">
                             </div> -->
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_8.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_8.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_9.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_9.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_10.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_10.jpg" alt="" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
@@ -463,7 +266,7 @@ Template Name: home
                                         <div class="doctors__item-stars"></div>
                                     </div>
                                     <div class="doctors__item-img">
-                                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+                                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $title ); ?>" fetchpriority="high">
                                     </div>
                                 </a>
                             <?php endif; ?>
@@ -486,7 +289,7 @@ Template Name: home
                                         <?php if ( $exp ) : ?><p class="doctors__item-text exp">Стаж: <?php echo esc_html( $exp ); ?></p><?php endif; ?>
                                     </div>
                                     <div class="doctors__item-img">
-                                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+                                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $title ); ?>" loading="lazy" decoding="async">
                                     </div>
                                 </a>
                             <?php endfor; ?>
@@ -512,7 +315,7 @@ Template Name: home
                                         <?php if ( $exp ) : ?><p class="doctors__item-text exp">Стаж: <?php echo esc_html( $exp ); ?></p><?php endif; ?>
                                     </div>
                                     <div class="doctors__item-img">
-                                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+                                        <img src="<?php echo esc_url( $img ); ?>" alt="<?php echo esc_attr( $title ); ?>" loading="lazy" decoding="async">
                                     </div>
                                 </a>
                             <?php endfor; ?>
@@ -642,7 +445,7 @@ Template Name: home
         <div class="container">
             <div class="credit__inner">
                 <div class="credit__background">
-                    <img src="<?php bloginfo('template_url') ?>/assets/img/credit.png">
+                    <img src="<?php bloginfo('template_url') ?>/assets/img/credit.png" alt="" loading="lazy" decoding="async">
                 </div>
                 <div class="credit__info">
                     <h3 class="credit__info-title">ЛЕЧИСЬ СЕЙЧАС, <br>ПЛАТИ ПОТОМ</h3>
@@ -697,7 +500,7 @@ Template Name: home
                 <div class="promotion__content">
                     <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item odd">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="promotion__item-inner">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -711,7 +514,7 @@ Template Name: home
                     </a>
                     <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="" loading="lazy" decoding="async">
                         </div>
                         <div class="promotion__item-inner">
                             <div class="promotion__item-info">
@@ -733,7 +536,7 @@ Template Name: home
                             <div class="swiper-slide">
                                 <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item odd">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -749,7 +552,7 @@ Template Name: home
                             <div class="swiper-slide">
                                 <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="" loading="lazy" decoding="async">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <div class="promotion__item-info">
@@ -778,7 +581,7 @@ Template Name: home
     </section>
 
     <section class="request">
-        <img class="request__background" src="<?php bloginfo('template_url') ?>/assets/img/request_background.png">
+        <img class="request__background" src="<?php bloginfo('template_url') ?>/assets/img/request_background.png" alt="" loading="lazy" decoding="async">
         <div class="container">
             <div class="request__inner">
                 <form action="" class="request__form">
@@ -811,7 +614,7 @@ Template Name: home
     <section class="tour">
         <div class="container">
             <div class="tour__inner">
-                <iframe src="https://www.3dtur24.ru/panorama/liderdent/main.html" width=100% height="550" frameborder="0"  style="border:0" allowfullscreen></iframe>
+                <iframe src="https://www.3dtur24.ru/panorama/liderdent/main.html" width="100%" height="550" frameborder="0" style="border:0" allowfullscreen loading="lazy"></iframe>
             </div>
         </div>
     </section>

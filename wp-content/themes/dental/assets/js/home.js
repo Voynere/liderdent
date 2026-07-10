@@ -8,8 +8,6 @@
 // });
 
 (function initHomePage() {
-    const MOBILE_HERO_MQ = window.matchMedia('(max-width: 768px)');
-
     function repositionOurCentreSlider() {
         const slider = document.querySelector('.our-centre__slider');
         const content = document.querySelector('.our-centre__content');
@@ -38,40 +36,25 @@
             container.classList.add('is-ready');
         };
 
-        const tryPlay = () => {
-            if (!MOBILE_HERO_MQ.matches) {
-                video.pause();
-                return;
-            }
+        const resumeOnGesture = () => {
+            video.play().then(markReady).catch(function () {});
+        };
 
-            markReady();
+        const tryPlay = () => {
             if (!video.paused) {
                 return;
             }
 
             const playPromise = video.play();
-            if (playPromise && typeof playPromise.catch === 'function') {
-                playPromise.catch(function () {
+            if (playPromise && typeof playPromise.then === 'function') {
+                playPromise.then(markReady).catch(function () {
                     container.classList.remove('is-ready');
                     video.classList.remove('is-ready');
-                    document.addEventListener('touchstart', function () {
-                        video.play().then(markReady).catch(function () {});
-                    }, { once: true, passive: true });
+                    document.addEventListener('touchstart', resumeOnGesture, { once: true, passive: true });
+                    document.addEventListener('click', resumeOnGesture, { once: true });
                 });
-            }
-        };
-
-        const onMediaChange = () => {
-            if (MOBILE_HERO_MQ.matches) {
-                if (video.readyState >= 2) {
-                    tryPlay();
-                } else {
-                    video.load();
-                }
             } else {
-                video.pause();
-                video.classList.remove('is-ready');
-                container.classList.remove('is-ready');
+                markReady();
             }
         };
 
@@ -85,40 +68,37 @@
             }
         });
 
-        if (typeof MOBILE_HERO_MQ.addEventListener === 'function') {
-            MOBILE_HERO_MQ.addEventListener('change', onMediaChange);
-        } else if (typeof MOBILE_HERO_MQ.addListener === 'function') {
-            MOBILE_HERO_MQ.addListener(onMediaChange);
+        if (video.readyState >= 2) {
+            tryPlay();
+        } else {
+            video.load();
         }
-
-        onMediaChange();
     }
 
     function initSwipers() {
         if (typeof Swiper === 'undefined') return;
 
-        new Swiper('.serviceSlider', {
-            slidesPerView: 1,
-            spaceBetween: 12,
-            navigation: {
-                nextEl: '.our-centre__slider-arrow.next',
-                prevEl: '.our-centre__slider-arrow.prev',
-            },
-        });
+        if (document.querySelector('.serviceSlider')) {
+            new Swiper('.serviceSlider', {
+                slidesPerView: 1,
+                spaceBetween: 12,
+                navigation: {
+                    nextEl: '.our-centre__slider-arrow.next',
+                    prevEl: '.our-centre__slider-arrow.prev',
+                },
+            });
+        }
 
-        new Swiper('.promotionSlider', {
-            slidesPerView: 1,
-            spaceBetween: 12,
-            navigation: {
-                nextEl: '.promotion__slider-arrow.next',
-                prevEl: '.promotion__slider-arrow.prev',
-            },
-        });
-
-        new Swiper('.aboutSlider', {
-            slidesPerView: 1,
-            spaceBetween: 12,
-        });
+        if (document.querySelector('.promotionSlider')) {
+            new Swiper('.promotionSlider', {
+                slidesPerView: 1,
+                spaceBetween: 12,
+                navigation: {
+                    nextEl: '.promotion__slider-arrow.next',
+                    prevEl: '.promotion__slider-arrow.prev',
+                },
+            });
+        }
     }
 
     function boot() {
@@ -466,7 +446,7 @@ function handleBeforeAfterLayout() {
         }
 
         // Инициализация Swiper если ещё не создан
-        if (!beforeAfterSwiper) {
+        if (!beforeAfterSwiper && typeof Swiper !== 'undefined') {
             beforeAfterSwiper = new Swiper('.beforeAfterSlider', {
                 slidesPerView: 1,
                 spaceBetween: 12,

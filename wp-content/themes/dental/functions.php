@@ -4,9 +4,32 @@ require get_template_directory() . '/inc/short-prices.php';
 require get_template_directory() . '/inc/doctors-profiles.php';
 require get_template_directory() . '/inc/promotions-data.php';
 
+function liderdent_needs_swiper(): bool {
+	if ( is_front_page() || is_singular( 'specialist' ) ) {
+		return true;
+	}
+
+	$template = is_page() ? get_page_template_slug() : '';
+	return in_array( $template, [
+		'page-about.php',
+		'page-doctors.php',
+		'page-service.php',
+	], true );
+}
+
+function liderdent_needs_fancybox(): bool {
+	return is_singular( 'specialist' ) || is_page_template( 'page-legal-info.php' );
+}
+
 add_action( 'wp_enqueue_scripts', function () {
-	wp_enqueue_style( 'fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css' );
-	wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' );
+	if ( liderdent_needs_fancybox() ) {
+		wp_enqueue_style( 'fancybox', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css' );
+	}
+
+	if ( liderdent_needs_swiper() ) {
+		wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css' );
+	}
+
 	$style_path = get_template_directory() . '/assets/css/style.min.css';
 	$style_uri  = get_template_directory_uri() . '/assets/css/style.min.css';
 	$version    = file_exists($style_path) ? filemtime($style_path) : null;
@@ -26,13 +49,29 @@ add_action( 'wp_enqueue_scripts', function () {
 	wp_register_script( 'jquery', 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js');
 	wp_enqueue_script( 'jquery' );
 
-	wp_enqueue_script( 'icon', 'https://code.iconify.design/iconify-icon/2.0.0/iconify-icon.min.js', array('jquery'), 'null', true );
-	wp_enqueue_script( 'ionicons-esm', 'https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.esm.js', array('jquery'), 'null', true );
-	wp_enqueue_script( 'ionicons', 'https://cdn.jsdelivr.net/npm/ionicons@latest/dist/ionicons/ionicons.js', array('jquery'), 'null', true );
-	wp_enqueue_script( 'fancybox-js', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js', array(), null, true );
-	wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true );
-	wp_enqueue_script( 'about', get_template_directory_uri() . '/assets/js/about.js', array('jquery'), 'null', true );
-	wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/js/home.js', array('jquery'), '1.8.4', true );
+	if ( liderdent_needs_fancybox() ) {
+		wp_enqueue_script( 'fancybox-js', 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js', array(), null, true );
+	}
+
+	if ( liderdent_needs_swiper() ) {
+		wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js', array(), null, true );
+	}
+
+	$home_js_path = get_template_directory() . '/assets/js/home.js';
+	$home_js_ver  = file_exists( $home_js_path ) ? filemtime( $home_js_path ) : '1.8.5';
+	wp_enqueue_script( 'home', get_template_directory_uri() . '/assets/js/home.js', array(), $home_js_ver, true );
+
+	if ( is_page_template( 'page-about.php' ) ) {
+		$about_js_path = get_template_directory() . '/assets/js/about.js';
+		$about_js_ver  = file_exists( $about_js_path ) ? filemtime( $about_js_path ) : null;
+		wp_enqueue_script(
+			'about',
+			get_template_directory_uri() . '/assets/js/about.js',
+			liderdent_needs_swiper() ? array( 'swiper-js' ) : array(),
+			$about_js_ver,
+			true
+		);
+	}
 	// wp_enqueue_script( 'main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), 'null', true );
 
     // подключение specialist.js только для страниц специалистов
@@ -45,7 +84,8 @@ add_action( 'wp_enqueue_scripts', function () {
         || is_category( 'specialist' )
         || ( is_single() && in_category( 'specialist' ) )
     ) {
-        wp_enqueue_script( 'specialist', $specialist_js_uri, array( 'jquery', 'swiper-js' ), $specialist_ver, true );
+        $deps = liderdent_needs_swiper() ? array( 'swiper-js' ) : array();
+        wp_enqueue_script( 'specialist', $specialist_js_uri, $deps, $specialist_ver, true );
     }
 
     wp_enqueue_script(
@@ -78,8 +118,8 @@ add_action( 'wp_head', function () {
     if ( ! is_front_page() ) {
         return;
     }
-    $webm = get_template_directory_uri() . '/assets/img/compressed_mobile.webm';
-    echo '<link rel="preload" as="video" href="' . esc_url( $webm ) . '" type="video/webm">' . "\n";
+    $poster = get_template_directory_uri() . '/assets/img/fondesctop.jpg';
+    echo '<link rel="preload" as="image" href="' . esc_url( $poster ) . '">' . "\n";
 }, 5 );
 
 add_action( 'wp_footer', function () {
