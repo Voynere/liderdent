@@ -140,7 +140,13 @@ function liderdent_get_clinic_gallery_items(): array {
             continue;
         }
         $ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
-        $type = in_array( $ext, [ 'mp4', 'webm', 'mov' ], true ) ? 'video' : 'image';
+        if ( in_array( $ext, [ 'mp4', 'webm' ], true ) ) {
+            $type = 'video';
+        } elseif ( in_array( $ext, [ 'webp', 'jpg', 'jpeg', 'png' ], true ) ) {
+            $type = 'image';
+        } else {
+            continue;
+        }
         $items[] = [
             'url'  => get_template_directory_uri() . '/assets/img/clinic-gallery/' . rawurlencode( $file ),
             'type' => $type,

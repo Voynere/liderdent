@@ -54,7 +54,9 @@
                             <?php foreach ( $gallery_items as $item ) : ?>
                                 <div class="clinic-gallery__item">
                                     <?php if ( $item['type'] === 'video' ) : ?>
-                                        <video controls playsinline preload="metadata" src="<?php echo esc_url( $item['url'] ); ?>"></video>
+                                        <video controls playsinline preload="metadata">
+                                            <source src="<?php echo esc_url( $item['url'] ); ?>" type="video/<?php echo esc_attr( pathinfo( $item['file'], PATHINFO_EXTENSION ) ); ?>">
+                                        </video>
                                     <?php else : ?>
                                         <img src="<?php echo esc_url( $item['url'] ); ?>" alt="Клиника ЛидерДент">
                                     <?php endif; ?>
