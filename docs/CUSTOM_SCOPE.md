@@ -3,8 +3,8 @@
 ## Included in git
 
 - `wp-content/themes/dental/`
-- `.cursor/` (rules, knowledge, RAG script; `store.sqlite` — локально)
-- `docs/AGENT_ACCESS.md`
+- `.cursor/` (rules, knowledge, memory, RAG script; `store.sqlite` — локально)
+- `docs/AGENT_ACCESS.md`, `docs/CUSTOM_SCOPE.md`
 
 ## Local-only (ignored by .gitignore)
 

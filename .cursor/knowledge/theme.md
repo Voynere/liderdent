@@ -18,6 +18,14 @@
 | `header.php` / `header-home.php` | Шапка |
 | `footer.php` | Подвал |
 | `template-parts/content-article.php` | Карточка статьи |
+| `template-parts/messenger-widget.php` | Плавающий виджет TG / MAX / звонок |
+
+## Виджет мессенджеров
+
+- Файлы: `template-parts/messenger-widget.php`, стили в `assets/css/site-updates.css`
+- Позиция: `right: max(12px, calc((100% - 1340px) / 2 - 100px))` — привязка к `.container` (1340px)
+- Интерактив: пульс, float, бейдж, подсказка (hover + раз за сессию через 4с), плавная панель
+- Подключается в `functions.php` через `wp_footer`
 
 ## Логика в `functions.php`
 
