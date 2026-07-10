@@ -2,7 +2,7 @@
 
 .messenger-widget {
     position: fixed;
-    right: max(12px, calc((100% - 1340px) / 2));
+    right: max(12px, calc((100% - 1340px) / 2 - 100px));
     bottom: 20px;
     z-index: 9999;
     font-family: inherit;
