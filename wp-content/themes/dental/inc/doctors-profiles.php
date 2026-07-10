@@ -140,6 +140,9 @@ function liderdent_get_clinic_gallery_items(): array {
             continue;
         }
         $ext = strtolower( pathinfo( $file, PATHINFO_EXTENSION ) );
+        if ( str_contains( $file, '-poster.' ) ) {
+            continue;
+        }
         if ( in_array( $ext, [ 'mp4', 'webm' ], true ) ) {
             $type = 'video';
         } elseif ( in_array( $ext, [ 'webp', 'jpg', 'jpeg', 'png' ], true ) ) {
@@ -147,11 +150,19 @@ function liderdent_get_clinic_gallery_items(): array {
         } else {
             continue;
         }
-        $items[] = [
+        $base = pathinfo( $file, PATHINFO_FILENAME );
+        $item = [
             'url'  => get_template_directory_uri() . '/assets/img/clinic-gallery/' . rawurlencode( $file ),
             'type' => $type,
             'file' => $file,
         ];
+        if ( $type === 'video' ) {
+            $poster = $dir . '/' . $base . '-poster.jpg';
+            if ( is_file( $poster ) ) {
+                $item['poster'] = get_template_directory_uri() . '/assets/img/clinic-gallery/' . rawurlencode( $base . '-poster.jpg' );
+            }
+        }
+        $items[] = $item;
     }
     usort( $items, static fn( $a, $b ) => strcmp( $a['file'], $b['file'] ) );
     return $items;
