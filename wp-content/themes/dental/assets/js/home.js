@@ -31,102 +31,57 @@
         const container = document.querySelector('.hero__video-container');
         if (!video || !container) return;
 
-        const DESKTOP_MQ = window.matchMedia('(min-width: 769px)');
-        let activeMode = null;
+        let playRequested = false;
 
-        const markReady = () => {
+        const showVideo = () => {
+            if (!video.videoWidth) {
+                return;
+            }
             video.classList.add('is-ready');
             container.classList.add('is-ready');
         };
 
-        const resetReady = () => {
+        const hideVideo = () => {
             video.classList.remove('is-ready');
             container.classList.remove('is-ready');
         };
 
-        const resumeOnGesture = () => {
-            video.play().then(markReady).catch(function () {});
-        };
-
-        const tryPlay = () => {
-            if (!video.paused) {
+        const requestPlay = () => {
+            if (playRequested || video.readyState < 2) {
                 return;
             }
 
+            playRequested = true;
             const playPromise = video.play();
-            if (playPromise && typeof playPromise.then === 'function') {
-                playPromise.then(markReady).catch(function () {
-                    resetReady();
-                    document.addEventListener('touchstart', resumeOnGesture, { once: true, passive: true });
-                    document.addEventListener('click', resumeOnGesture, { once: true });
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(function () {
+                    playRequested = false;
+                    hideVideo();
+                    const resume = () => video.play().then(showVideo).catch(function () {});
+                    document.addEventListener('touchstart', resume, { once: true, passive: true });
+                    document.addEventListener('click', resume, { once: true });
                 });
-            } else {
-                markReady();
             }
         };
 
-        const appendSource = (src, type) => {
-            const source = document.createElement('source');
-            source.src = src;
-            source.type = type;
-            video.appendChild(source);
-            return source;
-        };
-
-        const applySources = (reload) => {
-            const mode = DESKTOP_MQ.matches ? 'desktop' : 'mobile';
-            if (mode === activeMode && !reload) {
-                return;
-            }
-
-            activeMode = mode;
-            resetReady();
-            video.pause();
-            video.removeAttribute('src');
-            while (video.firstChild) {
-                video.removeChild(video.firstChild);
-            }
-
-            if (mode === 'desktop') {
-                appendSource(video.dataset.desktopMp4, 'video/mp4');
-            } else {
-                appendSource(video.dataset.mobileWebm, 'video/webm');
-                appendSource(video.dataset.mobileMp4, 'video/mp4');
-            }
-
-            video.load();
-        };
-
-        const onVideoError = () => {
+        video.addEventListener('loadeddata', requestPlay);
+        video.addEventListener('canplay', requestPlay);
+        video.addEventListener('playing', showVideo);
+        video.addEventListener('error', function () {
+            playRequested = false;
+            hideVideo();
             const webm = video.querySelector('source[type="video/webm"]');
             if (webm) {
                 webm.remove();
                 video.load();
-                return;
             }
+        });
 
-            const mp4 = video.querySelector('source[type="video/mp4"]');
-            if (mp4 && !video.getAttribute('src')) {
-                video.src = mp4.src;
-                video.load();
-            }
-        };
-
-        const onMediaChange = () => {
-            applySources(true);
-        };
-
-        video.addEventListener('loadeddata', tryPlay);
-        video.addEventListener('canplay', tryPlay);
-        video.addEventListener('error', onVideoError);
-
-        if (typeof DESKTOP_MQ.addEventListener === 'function') {
-            DESKTOP_MQ.addEventListener('change', onMediaChange);
-        } else if (typeof DESKTOP_MQ.addListener === 'function') {
-            DESKTOP_MQ.addListener(onMediaChange);
+        if (video.readyState >= 2) {
+            requestPlay();
+        } else {
+            video.load();
         }
-
-        applySources(false);
     }
 
     function initSwipers() {
