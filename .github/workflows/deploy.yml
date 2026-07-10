@@ -81,8 +81,10 @@ jobs:
             echo "::endgroup::"
 
             echo "::group::Cache flush"
+            cd "$TARGET"
             wp --allow-root cache flush --quiet 2>/dev/null || true
-            wp --allow-root super-cache flush --quiet 2>/dev/null || true
+            rm -rf "$TARGET/wp-content/cache/supercache/"* 2>/dev/null || true
+            echo "WP Super Cache cleared"
             echo "::endgroup::"
 
             rm -rf "$STAGING"
