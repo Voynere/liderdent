@@ -16,9 +16,10 @@ Template Name: home
                    loop
                    playsinline
                    preload="none"
-                   poster="<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>">
-                <source src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.webm' ); ?>" type="video/webm">
-                <source src="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.mp4' ); ?>" type="video/mp4">
+                   poster="<?php echo esc_url( get_template_directory_uri() . '/assets/img/fondesctop.jpg' ); ?>"
+                   data-desktop-mp4="<?php echo esc_url( get_template_directory_uri() . '/assets/img/start_hd_middle.mp4' ); ?>"
+                   data-mobile-webm="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.webm' ); ?>"
+                   data-mobile-mp4="<?php echo esc_url( get_template_directory_uri() . '/assets/img/compressed_mobile.mp4' ); ?>">
             </video>
         </div>
 
