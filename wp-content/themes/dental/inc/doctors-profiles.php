@@ -47,6 +47,7 @@ function liderdent_get_doctors_profiles(): array {
             'bio' => 'Мариам Араратовна — стоматолог-терапевт, ценимая за внимательность, доброжелательность и умение работать как со взрослыми, так и с детьми. Отличается подробными консультациями, аккуратным лечением и способностью снизить страх перед стоматологическим приёмом.',
             'prodoctorov_id' => '961942',
             'prodoctorov_slug' => '961942-asryan',
+            'cases_gallery' => 'asryan',
         ],
         'умраев тимур ахмаевич' => [
             'specialization' => 'Стоматолог-хирург, имплантолог',
@@ -67,7 +68,7 @@ function liderdent_get_doctors_profiles(): array {
             'bio' => 'Рамил Набиевич — стоматолог-ортопед, отличающийся компетентностью, честным подходом и внимательным отношением к пациентам. Подбирает оптимальные варианты лечения, подробно объясняет все этапы и обеспечивает качественное протезирование с естественным результатом.',
             'prodoctorov_id' => '1337450',
             'prodoctorov_slug' => '1337450-safarov',
-            'cases_gallery' => true,
+            'cases_gallery' => 'safarov',
         ],
         'хмыз светлана сергеевна' => [
             'specialization' => 'Стоматолог, пародонтолог',
@@ -168,31 +169,109 @@ function liderdent_get_clinic_gallery_items(): array {
     return $items;
 }
 
+function liderdent_get_doctor_cases_catalog(): array {
+    $uri = get_template_directory_uri() . '/assets/img/';
+
+    return [
+        'safarov' => [
+            [
+                'title'  => 'Временная коронка с пластикой десны',
+                'before' => $uri . 'safarov-cases/case-01.jpg',
+                'after'  => $uri . 'safarov-cases/case-02.jpg',
+            ],
+            [
+                'title'  => 'Имплантация и восстановление зубного ряда',
+                'before' => $uri . 'safarov-cases/case-03.jpg',
+                'after'  => $uri . 'safarov-cases/case-04.jpg',
+            ],
+            [
+                'title'  => 'Протезирование на имплантах',
+                'before' => $uri . 'safarov-cases/case-06.jpg',
+                'after'  => $uri . 'safarov-cases/case-05.jpg',
+            ],
+        ],
+        'asryan' => [
+            [
+                'title'  => 'Эстетическая реставрация жевательных зубов',
+                'before' => $uri . 'asryan-cases/case-01-before.jpg',
+                'after'  => $uri . 'asryan-cases/case-01-after.jpg',
+            ],
+            [
+                'title'  => 'Анатомическая реставрация композитом',
+                'before' => $uri . 'asryan-cases/case-02-before.jpg',
+                'after'  => $uri . 'asryan-cases/case-02-after.jpg',
+            ],
+        ],
+    ];
+}
+
 function liderdent_get_doctor_cases( string $title ): array {
     $profile = liderdent_get_doctor_profile( $title );
     if ( empty( $profile['cases_gallery'] ) ) {
         return [];
     }
 
-    $base = get_template_directory_uri() . '/assets/img/safarov-cases/';
+    $key      = is_string( $profile['cases_gallery'] ) ? $profile['cases_gallery'] : '';
+    $catalog  = liderdent_get_doctor_cases_catalog();
 
-    return [
-        [
-            'title'  => 'Временная коронка с пластикой десны',
-            'before' => $base . 'case-01.jpg',
-            'after'  => $base . 'case-02.jpg',
-        ],
-        [
-            'title'  => 'Имплантация и восстановление зубного ряда',
-            'before' => $base . 'case-03.jpg',
-            'after'  => $base . 'case-04.jpg',
-        ],
-        [
-            'title'  => 'Протезирование на имплантах',
-            'before' => $base . 'case-06.jpg',
-            'after'  => $base . 'case-05.jpg',
-        ],
-    ];
+    return $catalog[ $key ] ?? [];
+}
+
+function liderdent_render_doctor_case_card( array $case, int $index, string $fancybox_prefix ): void {
+    $title  = $case['title'];
+    $before = $case['before'];
+    $after  = $case['after'];
+    $group  = $fancybox_prefix . '-' . $index;
+    ?>
+    <article class="before-after__item specialist-cases__card">
+        <div class="ba-compare" data-ba-compare style="--ba-pos: 52%;">
+            <img class="ba-compare__img ba-compare__img--after"
+                 src="<?php echo esc_url( $after ); ?>"
+                 alt="<?php echo esc_attr( 'После — ' . $title ); ?>"
+                 loading="lazy"
+                 draggable="false">
+            <div class="ba-compare__before">
+                <img class="ba-compare__img ba-compare__img--before"
+                     src="<?php echo esc_url( $before ); ?>"
+                     alt="<?php echo esc_attr( 'До — ' . $title ); ?>"
+                     loading="lazy"
+                     draggable="false">
+            </div>
+            <div class="ba-compare__handle" aria-hidden="true">
+                <span class="ba-compare__knob">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                        <path d="M6 4L2 9l4 5M12 4l4 5-4 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+            </div>
+            <span class="ba-compare__label ba-compare__label--before">До</span>
+            <span class="ba-compare__label ba-compare__label--after">После</span>
+            <input class="ba-compare__range"
+                   type="range"
+                   min="0"
+                   max="100"
+                   value="52"
+                   aria-label="Сравнение до и после: <?php echo esc_attr( $title ); ?>">
+            <a class="ba-compare__zoom"
+               href="<?php echo esc_url( $after ); ?>"
+               data-fancybox="<?php echo esc_attr( $group ); ?>"
+               data-caption="После — <?php echo esc_attr( $title ); ?>"
+               aria-label="Открыть фото после">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.7"/>
+                    <path d="M16 16l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                </svg>
+            </a>
+            <a class="ba-compare__fancy-before"
+               href="<?php echo esc_url( $before ); ?>"
+               data-fancybox="<?php echo esc_attr( $group ); ?>"
+               data-caption="До — <?php echo esc_attr( $title ); ?>"
+               tabindex="-1"
+               aria-hidden="true"></a>
+        </div>
+        <p class="before-after__item-text specialist-cases__caption"><?php echo esc_html( $title ); ?></p>
+    </article>
+    <?php
 }
 
 function liderdent_render_doctor_cases( string $title ): void {
@@ -200,36 +279,16 @@ function liderdent_render_doctor_cases( string $title ): void {
     if ( empty( $cases ) ) {
         return;
     }
+    $count = count( $cases );
     ?>
-    <section class="before-after specialist-cases">
+    <section class="before-after specialist-cases" data-cases-count="<?php echo (int) $count; ?>">
         <h2 class="page-title before-after__title">РАБОТЫ ДО / ПОСЛЕ</h2>
+        <p class="specialist-cases__hint">Потяните ползунок, чтобы сравнить результат</p>
 
         <div class="before-after__content specialist-cases__grid">
-            <?php foreach ( $cases as $index => $case ) : ?>
-                <article class="before-after__item specialist-cases__card">
-                    <div class="before-after__images">
-                        <a class="before-after__images-item specialist-cases__photo"
-                           href="<?php echo esc_url( $case['before'] ); ?>"
-                           data-fancybox="doctor-cases-<?php echo (int) $index; ?>"
-                           data-caption="До — <?php echo esc_attr( $case['title'] ); ?>">
-                            <span class="specialist-cases__badge specialist-cases__badge--before">До</span>
-                            <img src="<?php echo esc_url( $case['before'] ); ?>"
-                                 alt="<?php echo esc_attr( 'До — ' . $case['title'] ); ?>"
-                                 loading="lazy">
-                        </a>
-                        <a class="before-after__images-item specialist-cases__photo"
-                           href="<?php echo esc_url( $case['after'] ); ?>"
-                           data-fancybox="doctor-cases-<?php echo (int) $index; ?>"
-                           data-caption="После — <?php echo esc_attr( $case['title'] ); ?>">
-                            <span class="specialist-cases__badge specialist-cases__badge--after">После</span>
-                            <img src="<?php echo esc_url( $case['after'] ); ?>"
-                                 alt="<?php echo esc_attr( 'После — ' . $case['title'] ); ?>"
-                                 loading="lazy">
-                        </a>
-                    </div>
-                    <p class="before-after__item-text specialist-cases__caption"><?php echo esc_html( $case['title'] ); ?></p>
-                </article>
-            <?php endforeach; ?>
+            <?php foreach ( $cases as $index => $case ) :
+                liderdent_render_doctor_case_card( $case, (int) $index, 'doctor-cases' );
+            endforeach; ?>
         </div>
 
         <div class="before-after__slider specialist-cases__slider">
@@ -237,29 +296,7 @@ function liderdent_render_doctor_cases( string $title ): void {
                 <div class="swiper-wrapper">
                     <?php foreach ( $cases as $index => $case ) : ?>
                         <div class="swiper-slide">
-                            <article class="before-after__item specialist-cases__card">
-                                <div class="before-after__images">
-                                    <a class="before-after__images-item specialist-cases__photo"
-                                       href="<?php echo esc_url( $case['before'] ); ?>"
-                                       data-fancybox="doctor-cases-mobile-<?php echo (int) $index; ?>"
-                                       data-caption="До — <?php echo esc_attr( $case['title'] ); ?>">
-                                        <span class="specialist-cases__badge specialist-cases__badge--before">До</span>
-                                        <img src="<?php echo esc_url( $case['before'] ); ?>"
-                                             alt="<?php echo esc_attr( 'До — ' . $case['title'] ); ?>"
-                                             loading="lazy">
-                                    </a>
-                                    <a class="before-after__images-item specialist-cases__photo"
-                                       href="<?php echo esc_url( $case['after'] ); ?>"
-                                       data-fancybox="doctor-cases-mobile-<?php echo (int) $index; ?>"
-                                       data-caption="После — <?php echo esc_attr( $case['title'] ); ?>">
-                                        <span class="specialist-cases__badge specialist-cases__badge--after">После</span>
-                                        <img src="<?php echo esc_url( $case['after'] ); ?>"
-                                             alt="<?php echo esc_attr( 'После — ' . $case['title'] ); ?>"
-                                             loading="lazy">
-                                    </a>
-                                </div>
-                                <p class="before-after__item-text specialist-cases__caption"><?php echo esc_html( $case['title'] ); ?></p>
-                            </article>
+                            <?php liderdent_render_doctor_case_card( $case, (int) $index, 'doctor-cases-mobile' ); ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
