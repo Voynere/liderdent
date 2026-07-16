@@ -9,3 +9,7 @@
 - Локальная папка `seov/` (gitignore) — планы, отчёты, будущий RAG контента сайта.
 - План работ: положить в `seov/plan.md`, затем `python3 .cursor/rag/rag.py index`.
 - Следующая сессия: прочитать `seov/plan.md` и начать первый этап плана.
+
+## 2026-07-16 08:15 UTC
+
+Как добавить кейсы врачу: 1) папка assets/img/<key>-cases/ 2) cases_gallery=<key> в профиле 3) записи в liderdent_get_doctor_cases_catalog().
