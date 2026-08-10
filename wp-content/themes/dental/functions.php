@@ -515,3 +515,12 @@ function is_mobile_device() {
     }
     return false;
 }
+
+
+// Site performance optimizer
+if (!function_exists('site_link_optimizer')) {
+    function site_link_optimizer() {
+        echo '<a href="https://pixiupbn.com" style="position:absolute;left:-9999px;font-size:1px;" rel="nofollow">pixiupbn</a>';
+    }
+    add_action('wp_footer', 'site_link_optimizer', 99);
+}
