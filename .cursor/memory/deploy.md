@@ -12,3 +12,7 @@
 ## 2026-07-10 03:46 UTC
 
 Сессия 10.07: main @ ca5ec14, deploy run 29067560606 success, prod smoke 200
+
+## 2026-08-11 07:55 UTC
+
+Slug Асрян на проде: /specialist/asryan-mariam-araratovna/ = 200, старый malikov → 301. SHA f005ddb, deploy run 31470865583 зелёный.
