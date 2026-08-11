@@ -272,6 +272,9 @@
                                         <a href="<?php echo get_home_url(); ?>/pravovaya-i-yuridicheskaya-informaciya/">Юридическая информация</a>
                                     </li>
                                     <li>
+                                        <a href="<?php echo esc_url( liderdent_get_sales_page_url() ); ?>">Акции</a>
+                                    </li>
+                                    <li>
                                         <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
                                     </li>
                                     <li>
