@@ -47,7 +47,7 @@
 - Медиа:
   - Сафаров: `assets/img/safarov-cases/`
   - Асрян: `assets/img/asryan-cases/` (case-0N-before/after.jpg)
-- Прод Асрян (slug устаревший): `/specialist/malikov-aleksej-georgievich/` — title «Асрян Мариам Араратовна»
+- Асрян: `/specialist/asryan-mariam-araratovna/` (миграция из `malikov-aleksej-georgievich`, 301 в `inc/slug-migrations.php`)
 
 ## Ассеты
 

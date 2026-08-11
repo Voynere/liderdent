@@ -3,6 +3,7 @@
 require get_template_directory() . '/inc/short-prices.php';
 require get_template_directory() . '/inc/doctors-profiles.php';
 require get_template_directory() . '/inc/promotions-data.php';
+require get_template_directory() . '/inc/slug-migrations.php';
 
 function liderdent_needs_swiper(): bool {
 	if ( is_front_page() || is_singular( 'specialist' ) ) {

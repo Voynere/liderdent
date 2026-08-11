@@ -16,3 +16,7 @@ Hero-видео на всех экранах; preload постера вмест�
 ## 2026-07-16 08:15 UTC
 
 Сессия 16.07.2026 закрыта: ДО/ПОСЛЕ Асрян на проде (385fc56). Каталог cases: safarov|asryan в doctors-profiles.php; UI ba-compare. Продолжить: ПроДокторов smoke, баннеры акций, фото врачей, опц. slug Асрян.
+
+## 2026-08-11 07:53 UTC
+
+Slug Асрян: миграция в теме inc/slug-migrations.php — malikov-aleksej-georgievich → asryan-mariam-araratovna + 301. Срабатывает на init после деплоя (опция liderdent_specialist_slug_migrations_v1). SSH alias mrtlider на этой машине отсутствует.
