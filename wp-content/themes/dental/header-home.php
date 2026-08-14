@@ -57,25 +57,25 @@
                         <nav class="header-menu-pc">
                             <ul>
                                 <li>
-                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/implantaciya/">
+                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/implantaciya/">
                                         Имплантация зубов
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/protezirovanie/">
+                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/protezirovanie/">
                                         Протезирование
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/lechenie/">
+                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/lechenie/">
                                         Лечение зубов
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/hirurgiya/">
+                                    <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/hirurgiya/">
                                         Хирургия
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
@@ -147,25 +147,25 @@
                                     <nav class="header-menu-follow">
                                         <ul class="header-menu-follow__list">
                                             <li>
-                                                <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/implantaciya/">
+                                                <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/implantaciya/">
                                                     Имплантация зубов
                                                     <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/protezirovanie/">
+                                                <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/protezirovanie/">
                                                     Протезирование
                                                     <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/lechenie/">
+                                                <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/lechenie/">
                                                     Лечение зубов
                                                     <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="<?php echo get_home_url(); ?>/category/services/hirurgiya/" class="to-open-menu">
+                                                <a href="<?php echo get_home_url(); ?>/services/hirurgiya/" class="to-open-menu">
                                                     Хирургия
                                                     <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                                 </a>
@@ -242,25 +242,25 @@
                             <nav class="mobile-menu__nav">
                                 <ul class="mobile-menu__nav-list">
                                     <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/implantaciya/">
+                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/implantaciya/">
                                             <span>Имплантация зубов</span>
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/protezirovanie/">
+                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/protezirovanie/">
                                             <span>Протезирование</span>
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/lechenie/">
+                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/lechenie/">
                                             <span>Лечение зубов</span>
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/category/services/hirurgiya/">
+                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/hirurgiya/">
                                             <span>Хирургия</span>
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>

@@ -8,19 +8,19 @@
                         <nav class="footer__nav">
                             <ul class="footer__nav-list">
                                 <!-- <li class="footer__nav-item">
-                                    <a href="<?php // echo get_home_url(); ?>/category/services/implantaciya/" class="footer__nav-btn">
+                                    <a href="<?php // echo get_home_url(); ?>/services/implantaciya/" class="footer__nav-btn">
                                         Имплантация зубов
                                         <img src="<?php // bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="<?php // echo get_home_url(); ?>/category/services/protezirovanie/" class="footer__nav-btn">
+                                    <a href="<?php // echo get_home_url(); ?>/services/protezirovanie/" class="footer__nav-btn">
                                         Протезирование
                                         <img src="<?php // bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="<?php // echo get_home_url(); ?>/category/services/hirurgiya/" class="footer__nav-btn">
+                                    <a href="<?php // echo get_home_url(); ?>/services/hirurgiya/" class="footer__nav-btn">
                                         Хирургия
                                         <img src="<?php // bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
@@ -80,7 +80,7 @@
                                     </button>
                                 </li>
                                 <li class="footer__nav-item">
-                                    <a href="<?php echo get_home_url(); ?>/category/services/hirurgiya/" class="footer__nav-btn">
+                                    <a href="<?php echo get_home_url(); ?>/services/hirurgiya/" class="footer__nav-btn">
                                         Хирургия
                                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                     </a>
@@ -123,19 +123,19 @@
                             <nav class="footer__nav">
                                 <ul class="footer__nav-list">
                                     <!-- <li class="footer__nav-item">
-                                        <a href="<?php // echo get_home_url(); ?>/category/services/implantaciya/" class="footer__nav-btn">
+                                        <a href="<?php // echo get_home_url(); ?>/services/implantaciya/" class="footer__nav-btn">
                                             Имплантация зубов
                                             <img src="<?php // bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>
                                     </li>
                                     <li class="footer__nav-item">
-                                        <a href="<?php // echo get_home_url(); ?>/category/services/protezirovanie/" class="footer__nav-btn">
+                                        <a href="<?php // echo get_home_url(); ?>/services/protezirovanie/" class="footer__nav-btn">
                                             Протезирование
                                             <img src="<?php // bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>
                                     </li>
                                     <li class="footer__nav-item">
-                                        <a href="<?php // echo get_home_url(); ?>/category/services/hirurgiya/" class="footer__nav-btn">
+                                        <a href="<?php // echo get_home_url(); ?>/services/hirurgiya/" class="footer__nav-btn">
                                             Хирургия
                                             <img src="<?php // bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
                                         </a>

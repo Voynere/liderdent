@@ -36,8 +36,12 @@
                         if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) :
                             foreach ( $terms as $term ) :
 
-                                // ссылка и название рубрики
-                                $term_link = get_term_link( $term );
+                                // ссылка: посадочная /services/{slug}/ если есть в реестре
+                                if ( function_exists( 'liderdent_get_service_content' ) && liderdent_get_service_content( $term->slug ) ) {
+                                    $term_link = liderdent_service_landing_url( $term->slug );
+                                } else {
+                                    $term_link = get_term_link( $term );
+                                }
                                 $term_name = $term->name;
 
                                 // изображение рубрики: тема → Categories Images → заглушка

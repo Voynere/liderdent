@@ -31,6 +31,23 @@ function liderdent_seo_clinic_nap(): array {
  * @return array{title?:string,description?:string}|null
  */
 function liderdent_seo_page_meta(): ?array {
+	$landing_slug = '';
+	if ( function_exists( 'liderdent_current_service_landing_slug' ) ) {
+		$landing_slug = liderdent_current_service_landing_slug();
+	}
+	if ( $landing_slug === '' && get_query_var( 'liderdent_service_landing' ) ) {
+		$landing_slug = sanitize_title( (string) get_query_var( 'liderdent_service_landing' ) );
+	}
+	if ( $landing_slug && function_exists( 'liderdent_get_service_content' ) ) {
+		$svc = liderdent_get_service_content( $landing_slug );
+		if ( $svc ) {
+			return [
+				'title'       => (string) ( $svc['seo_title'] ?? ( $svc['h1'] ?? '' ) ),
+				'description' => (string) ( $svc['seo_description'] ?? '' ),
+			];
+		}
+	}
+
 	if ( is_front_page() ) {
 		return [
 			'title'       => 'Стоматология в Красноярске — лечение зубов, имплантация, ортодонтия | ЛидерДент',

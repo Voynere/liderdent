@@ -62,10 +62,11 @@
 
 ## URL-структура (прод)
 
-- Услуги: `/service/` + категории `/category/services/...`
+- Услуги: `/service/` (хаб) + посадочные `/services/{slug}/` (реестр `inc/services-content.php`, роутинг `inc/service-landings.php`)
+- Старые `/category/services/{slug}/` → 301 на `/services/{slug}/`
 - Врачи: `/doctors/` + CPT `/specialist/...`
 - Цены: `/prices/`
-- Имплантация: `/category/services/implantaciya/`
+- Имплантация: `/services/implantaciya/`
 
 ## Плагины (локально, не в git)
 

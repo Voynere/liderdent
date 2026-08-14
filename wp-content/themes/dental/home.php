@@ -58,7 +58,7 @@ Template Name: home
             <div class="service__inner">
                 <h2 class="page-title service__title">НАШИ УСЛУГИ</h2>
                 <div class="service__content">
-                    <a href="<?php echo get_home_url(); ?>/category/services/implantaciya/" class="service__item first">
+                    <a href="<?php echo get_home_url(); ?>/services/implantaciya/" class="service__item first">
                         <div class="service__item-top">
                             <h3 class="service__item-title">ИМПЛАНТАЦИЯ ЗУБОВ</h3>
                             <p class="service__item-price">ОТ 35.000 РУБ</p>
@@ -76,7 +76,7 @@ Template Name: home
                         </div>
                     </a>
 
-                    <a href="<?php echo get_home_url(); ?>/category/services/protezirovanie/" class="service__item">
+                    <a href="<?php echo get_home_url(); ?>/services/protezirovanie/" class="service__item">
                         <div class="service__item-top">
                             <h3 class="service__item-title">ПРОТЕЗИРОВАНИЕ</h3>
                             <p class="service__item-price">ОТ 8.000 РУБ.</p>
@@ -87,7 +87,7 @@ Template Name: home
                             </svg>
                         </div>
                     </a>
-                    <a href="<?php echo get_home_url(); ?>/category/services/lechenie/" class="service__item">
+                    <a href="<?php echo get_home_url(); ?>/services/lechenie/" class="service__item">
                         <div class="service__item-top">
                             <h3 class="service__item-title">ЛЕЧЕНИЕ ЗУБОВ</h3>
                             <p class="service__item-price">ОТ 8.000 РУБ.</p>
@@ -98,7 +98,7 @@ Template Name: home
                             </svg>
                         </div>
                     </a>
-                    <a href="<?php echo get_home_url(); ?>/category/services/gigiena/" class="service__item">
+                    <a href="<?php echo get_home_url(); ?>/services/gigiena/" class="service__item">
                         <div class="service__item-top">
                             <h3 class="service__item-title">ГИГИЕНА ЗУБОВ</h3>
                             <p class="service__item-price">ОТ 6.500 РУБ.</p>
