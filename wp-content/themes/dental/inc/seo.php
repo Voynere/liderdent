@@ -169,8 +169,10 @@ add_action( 'wp_head', function () {
 	echo '<meta property="og:image" content="' . esc_url( $image ) . '" />' . "\n";
 	echo '<meta name="twitter:image" content="' . esc_url( $image ) . '" />' . "\n";
 
-	// Categories / CPT often miss OG in AIOSEO — fill title/desc/url.
-	if ( is_category() || is_singular( 'specialist' ) ) {
+	// Categories / CPT / virtual landings often miss OG in AIOSEO — fill title/desc/url.
+	$is_landing = ( function_exists( 'liderdent_current_service_landing_slug' ) && liderdent_current_service_landing_slug() )
+		|| (bool) get_query_var( 'liderdent_service_landing' );
+	if ( is_category() || is_singular( 'specialist' ) || $is_landing ) {
 		if ( $meta && ! empty( $meta['title'] ) ) {
 			echo '<meta property="og:title" content="' . esc_attr( $meta['title'] ) . '" />' . "\n";
 		}
