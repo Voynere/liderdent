@@ -159,3 +159,78 @@ function liderdent_run_content_seed(): void {
 	}
 }
 add_action( 'init', 'liderdent_run_content_seed', 40 );
+
+/**
+ * Featured image map for all blog posts (theme assets → post thumbnails).
+ *
+ * @return array<string, string> slug => relative theme image path
+ */
+function liderdent_blog_thumbnail_map(): array {
+	return [
+		'odnomomentnaya-implantaciya-v-krasnoyarske-liderdent' => 'assets/img/blog/blog-implant-stages.jpg',
+		'parodontit-i-professionalnaya-gigiena-v-liderdent' => 'assets/img/blog/blog-hygiene-gums.jpg',
+		'brekety-pod-klyuch-200000-chto-vhodit-v-programmu' => 'assets/img/blog/blog-braces-program.jpg',
+		'brekety-ili-elajnery-chto-vybrat-dlya-ispravleniya-prikusa-v-krasnoyarske' => 'assets/img/blog/blog-braces-vs-aligners.jpg',
+		'professionalnaya-chistka-zubov-zachem-nuzhna-i-kak-pomogaet-predotvratit-karies-i-vospalenie-dyosen' => 'assets/img/blog/blog-professional-cleaning.jpg',
+		'esteticheskaya-stomatologiya-v-krasnoyarske-ispravlenie-prikusa-dlya-krasivoj-ulybki-brekety-i-elajnery' => 'assets/img/blog/blog-aesthetic-smile.jpg',
+		'professionalnaya-gigiena-v-krasnoyarske-chto-vhodit-kak-chasto-delat-i-kak-sohranit-implanty-koronki' => 'assets/img/blog/blog-hygiene-implants.jpg',
+		'kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu' => 'assets/img/blog/blog-ct-3d.jpg',
+		'lechenie-zubov-pod-mikroskopom-v-krasnoyarske-tochnost-prognoz-pokazaniya' => 'assets/img/blog/blog-microscope.jpg',
+		'detskaya-stomatologiya-v-krasnoyarske-lechenie-molochnyh-zubov-profilaktika-i-spokojnyj-pervyj-vizit' => 'assets/img/blog/blog-pediatric.jpg',
+		'lechenie-kanalov-zuba-v-krasnoyarske-etapy-sroki-perelechivanie-i-vosstanovlenie-zuba' => 'assets/img/blog/blog-root-canal.jpg',
+		'vector-terapiya-v-krasnoyarske-lechenie-desen-pri-krovotochivosti-i-parodontite' => 'assets/img/blog/blog-vector-therapy.jpg',
+		'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost' => 'assets/img/blog/blog-implant-turnkey.jpg',
+		'czena-stomatologii-v-krasnoyarske-iz-chego-skladyvaetsya-stoimost-lecheniya-i-kak-sravnivat-kliniki' => 'assets/img/blog/blog-pricing.jpg',
+		'implantacziya-zubov-v-krasnoyarske-nadezhno-estetichno-nadolgo' => 'assets/img/blog/blog-implant-krasnoyarsk.jpg',
+	];
+}
+
+/**
+ * One-time: attach missing featured images to existing blog posts.
+ */
+function liderdent_run_blog_thumbnails_seed(): void {
+	if ( get_option( 'liderdent_blog_thumbs_seed_v1' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'wp_insert_post' ) ) {
+		return;
+	}
+
+	if ( ! function_exists( 'wp_get_current_user' ) || ! current_user_can( 'upload_files' ) ) {
+		wp_set_current_user( 1 );
+	}
+
+	$pending = false;
+	foreach ( liderdent_blog_thumbnail_map() as $slug => $image ) {
+		$existing = get_posts(
+			[
+				'name'           => $slug,
+				'post_type'      => 'post',
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			]
+		);
+		if ( ! $existing ) {
+			continue;
+		}
+		$post_id = (int) $existing[0];
+		if ( has_post_thumbnail( $post_id ) ) {
+			continue;
+		}
+		$att = liderdent_sideload_theme_attachment( $image, get_the_title( $post_id ) );
+		if ( $att ) {
+			set_post_thumbnail( $post_id, $att );
+		} else {
+			$pending = true;
+		}
+	}
+
+	if ( ! $pending ) {
+		update_option( 'liderdent_blog_thumbs_seed_v1', 1, false );
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
+		}
+	}
+}
+add_action( 'init', 'liderdent_run_blog_thumbnails_seed', 41 );
