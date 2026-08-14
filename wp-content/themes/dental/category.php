@@ -207,9 +207,13 @@
             </h1>
 
             <!-- ВЫВОД ОПИСАНИЯ РУБРИКИ -->
-            <?php 
-            $category_description = category_description();
-            if ( ! empty( $category_description ) ) : 
+            <?php
+            $theme_service_html = '';
+            if ( $current && ! empty( $current->slug ) && function_exists( 'liderdent_service_description_html' ) ) {
+                $theme_service_html = liderdent_service_description_html( (string) $current->slug );
+            }
+            $category_description = $theme_service_html !== '' ? $theme_service_html : category_description();
+            if ( ! empty( $category_description ) ) :
             ?>
                 <div class="category-description">
                     <?php echo apply_filters( 'the_content', $category_description ); ?>

@@ -5,6 +5,8 @@ require get_template_directory() . '/inc/doctors-profiles.php';
 require get_template_directory() . '/inc/promotions-data.php';
 require get_template_directory() . '/inc/slug-migrations.php';
 require get_template_directory() . '/inc/seo.php';
+require get_template_directory() . '/inc/services-content.php';
+require get_template_directory() . '/inc/content-seed.php';
 
 function liderdent_needs_swiper(): bool {
 	if ( is_front_page() || is_singular( 'specialist' ) ) {

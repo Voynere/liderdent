@@ -510,7 +510,7 @@ Template Name: home
                 <div class="promotion__content">
                     <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item odd">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="" loading="lazy" decoding="async">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-braces.jpg" alt="Акция: брекеты под ключ" loading="lazy" decoding="async">
                         </div>
                         <div class="promotion__item-inner">
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -524,7 +524,7 @@ Template Name: home
                     </a>
                     <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="" loading="lazy" decoding="async">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-implant.jpg" alt="Акция: имплантация от 35 000 рублей" loading="lazy" decoding="async">
                         </div>
                         <div class="promotion__item-inner">
                             <div class="promotion__item-info">
@@ -546,7 +546,7 @@ Template Name: home
                             <div class="swiper-slide">
                                 <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item odd">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_1.png" alt="" loading="lazy" decoding="async">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-braces.jpg" alt="Акция: брекеты под ключ" loading="lazy" decoding="async">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -562,7 +562,7 @@ Template Name: home
                             <div class="swiper-slide">
                                 <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promotion_2.png" alt="" loading="lazy" decoding="async">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-implant.jpg" alt="Акция: имплантация от 35 000 рублей" loading="lazy" decoding="async">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <div class="promotion__item-info">

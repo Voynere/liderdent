@@ -40,8 +40,12 @@
                                 $term_link = get_term_link( $term );
                                 $term_name = $term->name;
 
-                                // изображение рубрики через Categories Images
-                                if ( function_exists( 'z_taxonomy_image_url' ) ) {
+                                // изображение рубрики: тема → Categories Images → заглушка
+                                $img_url = '';
+                                if ( function_exists( 'liderdent_service_image_url' ) ) {
+                                    $img_url = liderdent_service_image_url( $term->slug );
+                                }
+                                if ( empty( $img_url ) && function_exists( 'z_taxonomy_image_url' ) ) {
                                     $img_url = z_taxonomy_image_url( $term->term_id );
                                 }
 
