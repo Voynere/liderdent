@@ -28,3 +28,27 @@ Slug Асрян: миграция в теме inc/slug-migrations.php — maliko
 ## 2026-08-14 01:43 UTC
 
 2026-08-14: Внедрён SEO/UI пакет — inc/seo.php (title/desc, og:image, Dentist JSON-LD, FAQ имплантации, 301 /blog/, robots). H1 на home/doctors, hero CTA, цена импланта 35к, logo не H3, aria-labels.
+
+## 2026-08-14 01:51 UTC
+
+2026-08-14: ПроДокторов OK в браузере. Slug v2: karpova→voytova, mironova→markova +301 (18f5c4a). /privacy/→правовая страница. NAP контактов OK.
+
+## 2026-08-14 02:36 UTC
+
+2026-08-14: посадочные /services/{slug}/ как МРТ Лидер — service-landings.php + page-service-landing.php, 8 услуг, 301 с category. Deploy b4d302d smoke 27/27.
+
+## 2026-08-14 02:55 UTC
+
+5 оффер-лендингов прайса: implantaciya-osstem-inno, konsultaciya-hirurga, koronka-dioksid-cirkoniya, implantat-dentium, implantat-nobel-straumann; featured_price блок на всех /services/*
+
+## 2026-08-14 03:12 UTC
+
+Блог: 15/15 статей с featured image; 12 новых JPEG в assets/img/blog + seed liderdent_blog_thumbs_seed_v1 (5f410bf)
+
+## 2026-08-14 08:04 UTC
+
+Блог: article-post CSS без inline; mid-article seed 6 постов (liderdent_blog_inline_seed_v1). CPT врачей: архивировать нечего. Deploy 0cf361c
+
+## 2026-08-14 08:06 UTC
+
+Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сделано: hero, /services/+офферы, блог 15 thumbs+6 inline, mobile-menu, messenger. Бэклог: category blog cards, more inline imgs, mobile QA.

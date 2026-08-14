@@ -20,3 +20,11 @@ Slug Асрян на проде: /specialist/asryan-mariam-araratovna/ = 200, с
 ## 2026-08-14 01:46 UTC
 
 Deploy c058236 SEO/UI зелёный run 31761548369. Smoke: H1 home/doctors, sales title без slug, implant FAQ+title, Dentist/og:image, /blog/ 301, цена 35к.
+
+## 2026-08-14 01:51 UTC
+
+Deploy 18f5c4a slug Войтова/Маркова + privacy 301, run 31761853166, smoke 11/11.
+
+## 2026-08-14 02:15 UTC
+
+2026-08-14 a356185: сгенерированы баннеры акций + обложки услуг/блога; уникальные тексты 6 категорий; seed 3 статей блога. Фото врачей не трогали (уже на проде). CI 31763077192 smoke 16/16.

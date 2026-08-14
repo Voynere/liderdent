@@ -16,3 +16,11 @@
 ## 2026-08-11 08:19 UTC
 
 Мобильное выезжающее меню на главной (header-home.php): добавлен пункт Акции → /sales/. В header.php уже был. Deploy f451209 run 31472602978 зелёный.
+
+## 2026-08-14 02:50 UTC
+
+Hero главной: тёмная подложка rgba(20,20,20,0.62), белый текст с тенью, CTA hero__cta-btn как шапка (#404040)
+
+## 2026-08-14 07:46 UTC
+
+UX: общий mobile-menu partial (Услуги/Блог/Контакты, close/Escape), messenger SVG+safe-area+2K. Deploy 6b8bd1b

@@ -9,65 +9,77 @@
 | `page-contacts.php` | Контакты |
 | `page-doctors.php` | Врачи |
 | `page-prices.php` | Цены |
-| `page-service.php` | Услуги (лендинг) |
+| `page-service.php` | Хаб услуг `/service/` |
+| `page-service-landing.php` | Виртуальный лендинг `/services/{slug}/` |
 | `page-promotion.php` | Акции |
 | `page-legal-info.php` | Правовая информация |
-| `single.php` | Запись блога |
+| `single.php` | Запись блога → `content-article` |
 | `single-specialist.php` | Карточка врача (CPT) |
-| `category.php` | Архив категории |
-| `header.php` / `header-home.php` | Шапка |
+| `category.php` | Архив категории (услуги-цены / блог) |
+| `header.php` / `header-home.php` | Шапка (+ partial мобильного меню) |
 | `footer.php` | Подвал |
-| `template-parts/content-article.php` | Карточка статьи |
+| `template-parts/content-article.php` | Статья блога (`article-post`) |
+| `template-parts/mobile-menu.php` | Общий drawer мобильного меню |
 | `template-parts/messenger-widget.php` | Плавающий виджет TG / MAX / звонок |
 
 ## Виджет мессенджеров
 
 - Файлы: `template-parts/messenger-widget.php`, стили в `assets/css/site-updates.css`
-- Позиция: `right: max(12px, calc((100% - 1340px) / 2 - 100px))` — привязка к `.container` (1340px)
-- Интерактив: пульс, float, бейдж, подсказка (hover + раз за сессию через 4с), плавная панель
+- Позиция: safe-area + привязка к контенту 1340px; на mobile подсказка сверху
+- SVG-иконка (не emoji); пульс / бейдж / hint / панель
 - Подключается в `functions.php` через `wp_footer`
+
+## Мобильное меню
+
+- Partial: `template-parts/mobile-menu.php` (подключается из обоих header)
+- Пункты: Все услуги, 4 направления, Акции, Цены, Врачи, Статьи, О нас, Контакты, Юр.инфо
+- JS в `home.js`: open/close, Escape, overlay, `aria-expanded`, lock scroll (`html.mobile-menu-open`)
 
 ## Логика в `functions.php`
 
 - Подключение стилей/скриптов: jQuery CDN, Swiper, Fancybox, `home.js`, `about.js`, `popup-form.js`
-- `specialist.js` — только на страницах CPT `specialist` (сертификаты Swiper + `ba-compare`)
-- CPT `specialist` + ACF-поля в REST API (`doctor_exp`, `doctor_spec`, `doctor_schedule`, `doctor_service`)
-- AJAX `send_popup_form` → `wp_mail` на `aliderdent@mail.ru` (типы: callback, credit, service, doctor, popup)
-- `theme_breadcrumbs()` — хлебные крошки с особой логикой для категории `services` → страница `/service/`
-- SEO: `inc/seo.php` — title/desc overrides, og:image, Dentist JSON-LD, FAQ имплантации, 301 `/blog/` → `/category/blog/`, правка robots.txt
-- SVG upload support
-- WooCommerce theme support (включён, но магазин может не использоваться)
+- `specialist.js` — только на страницах CPT `specialist`
+- CPT `specialist` + ACF в REST
+- AJAX `send_popup_form` → `wp_mail` на `aliderdent@mail.ru`
+- SEO: `inc/seo.php`
+- Лендинги: `inc/service-landings.php` + реестр `inc/services-content.php`
+- Seeds: `inc/content-seed.php`
+- Slug-миграции: `inc/slug-migrations.php`
 
-## Врачи: профили и ДО/ПОСЛЕ
+## Услуги / посадочные
 
-- Тексты / ПроДокторов / кейсы: `inc/doctors-profiles.php`
-- Сопоставление по ФИО заголовка CPT (`liderdent_normalize_doctor_key`)
-- Галерея кейсов: в профиле `cases_gallery` → ключ каталога (`safarov` | `asryan`)
-- Рендер: `liderdent_render_doctor_cases()` из `single-specialist.php`
-- UI: интерактивный слайдер `.ba-compare` (clip-path + range), стили в `site-updates.css`, логика в `specialist.js`
-- Медиа:
-  - Сафаров: `assets/img/safarov-cases/`
-  - Асрян: `assets/img/asryan-cases/` (case-0N-before/after.jpg)
-- Асрян: `/specialist/asryan-mariam-araratovna/` (миграция из `malikov-aleksej-georgievich`, 301 в `inc/slug-migrations.php`)
-- Войтова: `/specialist/voytova-polina-nikolaevna/` (миграция из `karpova-elena-mihajlovna`)
-- Маркова: `/specialist/markova-kristina-pavlovna/` (миграция из `mironova-olga-viktorovna`)
-- Миграции slug: option `liderdent_specialist_slug_migrations_v2`
+- Хаб: `/service/`
+- Лендинги: `/services/{slug}/` — `featured_price` офферы + категории
+- 301: `/category/services/{slug}/` → лендинг
+- Цены на лендинге: `liderdent_featured_service_price_rows()` + WP-посты категории (dedupe)
+- Офферы: `implantaciya-osstem-inno`, `konsultaciya-hirurga`, `koronka-dioksid-cirkoniya`, `implantat-dentium`, `implantat-nobel-straumann` (`in_nav => false`)
+
+## Блог
+
+- Архив: `/category/blog/` (301 с `/blog/`)
+- Обложки: `assets/img/blog/*` + seed `liderdent_blog_thumbs_seed_v1`
+- Mid-article: `blog-inline-*.jpg` + seed `liderdent_blog_inline_seed_v1` (маркер `article-figure--seed`)
+- Шаблон: `article-post__*` в `site-updates.css`
+
+## Врачи
+
+- 6 CPT на проде: Хмыз, Сафаров, Умраев, Асрян, Войтова, Маркова
+- Миграции: Асрян; Карпова→Войтова; Миронова→Маркова (`liderdent_specialist_slug_migrations_v2`)
+- Кейсы ДО/ПОСЛЕ: `inc/doctors-profiles.php` + `ba-compare`
 
 ## Ассеты
 
-- SCSS: `assets/scss/style.scss` → CSS: `assets/css/style.css` (в enqueue — `style.min.css`, проверить сборку)
-- Доп. CSS правок: `assets/css/site-updates.css` (`liderdent-site-updates`)
-- JS: `assets/js/` — `home.js`, `about.js`, `specialist.js`, `popup-form.js`, `main.js`
-- Шрифт: Raleway
+- CSS: `assets/css/style.css` + `assets/css/site-updates.css`
+- JS: `home.js`, `about.js`, `specialist.js`, `popup-form.js`
+- Промо/услуги/блог: `assets/img/{promos,services,blog}/`
 
 ## URL-структура (прод)
 
-- Услуги: `/service/` (хаб) + посадочные `/services/{slug}/` (реестр `inc/services-content.php`, роутинг `inc/service-landings.php`)
-- Старые `/category/services/{slug}/` → 301 на `/services/{slug}/`
-- Врачи: `/doctors/` + CPT `/specialist/...`
-- Цены: `/prices/`
-- Имплантация: `/services/implantaciya/`
+- Услуги: `/service/` + `/services/{slug}/`
+- Врачи: `/doctors/` + `/specialist/...`
+- Цены: `/prices/` · Акции: `/sales/` · Блог: `/category/blog/`
+- Privacy: `/privacy/` → правовая страница
 
-## Плагины (локально, не в git)
+## Handoff
 
-- ACF, All in One SEO, WP Super Cache, UpdraftPlus, Cyr2Lat и др. — см. `wp-content/plugins/`
+См. `docs/HANDOFF_2026-08-14.md`
