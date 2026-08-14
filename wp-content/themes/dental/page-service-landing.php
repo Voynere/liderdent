@@ -52,7 +52,12 @@ get_header();
 					<p class="svc-landing__intro"><?php echo esc_html( $intro ); ?></p>
 				<?php endif; ?>
 				<div class="svc-landing__cta">
-					<button type="button" class="btn-gold open-popup-callback">Записаться на приём</button>
+					<button type="button" class="svc-landing__btn open-popup-callback">
+						Записаться на приём
+						<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+							<path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="currentColor"/>
+						</svg>
+					</button>
 					<a class="svc-landing__phone" href="<?php echo esc_url( $phone_href ); ?>"><?php echo esc_html( $phone_disp ); ?></a>
 				</div>
 			</div>
@@ -187,7 +192,12 @@ get_header();
 				<h2 class="svc-landing__h2">Запишитесь на консультацию</h2>
 				<p>Подберём план лечения и озвучим смету до начала работ.</p>
 			</div>
-			<button type="button" class="btn-gold open-popup-callback">Заказать звонок</button>
+			<button type="button" class="svc-landing__btn svc-landing__btn--light open-popup-callback">
+				Заказать звонок
+				<svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+					<path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="currentColor"/>
+				</svg>
+			</button>
 		</section>
 	</div>
 
