@@ -234,3 +234,132 @@ function liderdent_run_blog_thumbnails_seed(): void {
 	}
 }
 add_action( 'init', 'liderdent_run_blog_thumbnails_seed', 41 );
+
+/**
+ * Mid-article illustrations for key blog posts.
+ *
+ * @return array<string, array{image:string,alt:string,caption:string}>
+ */
+function liderdent_blog_inline_image_map(): array {
+	return [
+		'odnomomentnaya-implantaciya-v-krasnoyarske-liderdent' => [
+			'image'   => 'assets/img/blog/blog-inline-implant.jpg',
+			'alt'     => 'Одномоментная имплантация в клинике ЛидерДент',
+			'caption' => 'Одномоментный протокол: удаление и установка имплантата в один этап при подходящих условиях.',
+		],
+		'parodontit-i-professionalnaya-gigiena-v-liderdent' => [
+			'image'   => 'assets/img/blog/blog-inline-hygiene.jpg',
+			'alt'     => 'Профессиональная гигиена при пародонтите',
+			'caption' => 'AirFlow и ультразвук снижают бактериальную нагрузку и помогают сохранить зубы.',
+		],
+		'brekety-pod-klyuch-200000-chto-vhodit-v-programmu' => [
+			'image'   => 'assets/img/blog/blog-inline-braces.jpg',
+			'alt'     => 'Консультация по брекетам «под ключ»',
+			'caption' => 'На консультации ортодонт разбирает план, сроки и состав программы «под ключ».',
+		],
+		'esteticheskaya-stomatologiya-v-krasnoyarske-ispravlenie-prikusa-dlya-krasivoj-ulybki-brekety-i-elajnery' => [
+			'image'   => 'assets/img/blog/blog-inline-aesthetic.jpg',
+			'alt'     => 'Эстетическая стоматология и красивая улыбка',
+			'caption' => 'Эстетический результат после ортодонтии — естественная линия улыбки.',
+		],
+		'czena-stomatologii-v-krasnoyarske-iz-chego-skladyvaetsya-stoimost-lecheniya-i-kak-sravnivat-kliniki' => [
+			'image'   => 'assets/img/blog/blog-inline-pricing.jpg',
+			'alt'     => 'Из чего складывается стоимость лечения',
+			'caption' => 'Прозрачная смета помогает сравнивать клиники по составу работ, а не только по «цене от».',
+		],
+		'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost' => [
+			'image'   => 'assets/img/blog/blog-inline-implant-plan.jpg',
+			'alt'     => 'Планирование имплантации под ключ',
+			'caption' => '3D-планирование и понятный состав пакета «под ключ» до старта лечения.',
+		],
+	];
+}
+
+/**
+ * Insert figure HTML after the first H2 (or at end if no H2).
+ */
+function liderdent_insert_figure_after_first_h2( string $content, string $figure_html ): string {
+	if ( str_contains( $content, 'article-figure--seed' ) ) {
+		return $content;
+	}
+	if ( preg_match( '/<\/h2>/i', $content ) ) {
+		return preg_replace( '/<\/h2>/i', '</h2>' . "\n" . $figure_html, $content, 1 ) ?? ( $content . $figure_html );
+	}
+	return $content . "\n" . $figure_html;
+}
+
+/**
+ * One-time: sideload mid-article images and inject into post content.
+ */
+function liderdent_run_blog_inline_images_seed(): void {
+	if ( get_option( 'liderdent_blog_inline_seed_v1' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'wp_update_post' ) ) {
+		return;
+	}
+
+	if ( ! function_exists( 'wp_get_current_user' ) || ! current_user_can( 'upload_files' ) ) {
+		wp_set_current_user( 1 );
+	}
+
+	$pending = false;
+	foreach ( liderdent_blog_inline_image_map() as $slug => $item ) {
+		$existing = get_posts(
+			[
+				'name'           => $slug,
+				'post_type'      => 'post',
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			]
+		);
+		if ( ! $existing ) {
+			continue;
+		}
+		$post_id = (int) $existing[0];
+		$content = (string) get_post_field( 'post_content', $post_id );
+		if ( str_contains( $content, 'article-figure--seed' ) ) {
+			continue;
+		}
+
+		$att = liderdent_sideload_theme_attachment( $item['image'], $item['alt'] );
+		if ( ! $att ) {
+			$pending = true;
+			continue;
+		}
+
+		$url = wp_get_attachment_image_url( $att, 'large' );
+		if ( ! $url ) {
+			$pending = true;
+			continue;
+		}
+
+		$figure = sprintf(
+			'<figure class="article-figure article-figure--seed"><img src="%s" alt="%s" loading="lazy" decoding="async" /><figcaption class="article-figure__caption">%s</figcaption></figure>',
+			esc_url( $url ),
+			esc_attr( $item['alt'] ),
+			esc_html( $item['caption'] )
+		);
+
+		$new_content = liderdent_insert_figure_after_first_h2( $content, $figure );
+		$updated     = wp_update_post(
+			[
+				'ID'           => $post_id,
+				'post_content' => $new_content,
+			],
+			true
+		);
+		if ( is_wp_error( $updated ) ) {
+			$pending = true;
+		}
+	}
+
+	if ( ! $pending ) {
+		update_option( 'liderdent_blog_inline_seed_v1', 1, false );
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
+		}
+	}
+}
+add_action( 'init', 'liderdent_run_blog_inline_images_seed', 42 );
