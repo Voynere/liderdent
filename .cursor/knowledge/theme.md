@@ -49,6 +49,9 @@
   - Сафаров: `assets/img/safarov-cases/`
   - Асрян: `assets/img/asryan-cases/` (case-0N-before/after.jpg)
 - Асрян: `/specialist/asryan-mariam-araratovna/` (миграция из `malikov-aleksej-georgievich`, 301 в `inc/slug-migrations.php`)
+- Войтова: `/specialist/voytova-polina-nikolaevna/` (миграция из `karpova-elena-mihajlovna`)
+- Маркова: `/specialist/markova-kristina-pavlovna/` (миграция из `mironova-olga-viktorovna`)
+- Миграции slug: option `liderdent_specialist_slug_migrations_v2`
 
 ## Ассеты
 

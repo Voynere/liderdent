@@ -300,7 +300,19 @@ function liderdent_render_implant_faq(): void {
 }
 
 /**
+ * Canonical URL for personal-data policy (legal page).
+ */
+function liderdent_privacy_policy_url(): string {
+	$page = get_page_by_path( 'pravovaya-i-yuridicheskaya-informaciya' );
+	if ( $page ) {
+		return get_permalink( $page );
+	}
+	return home_url( '/pravovaya-i-yuridicheskaya-informaciya/' );
+}
+
+/**
  * 301 /blog/ → /category/blog/
+ * 301 /privacy/ → правовая страница (политика ПДн)
  */
 add_action( 'template_redirect', function () {
 	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
@@ -311,6 +323,10 @@ add_action( 'template_redirect', function () {
 	$path = trim( $path, '/' );
 	if ( $path === 'blog' ) {
 		wp_safe_redirect( home_url( '/category/blog/' ), 301 );
+		exit;
+	}
+	if ( $path === 'privacy' || $path === 'privacy-policy' || $path === 'politika-konfidencialnosti' ) {
+		wp_safe_redirect( liderdent_privacy_policy_url(), 301 );
 		exit;
 	}
 }, 1 );

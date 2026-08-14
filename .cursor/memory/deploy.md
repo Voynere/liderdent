@@ -16,3 +16,7 @@
 ## 2026-08-11 07:55 UTC
 
 Slug Асрян на проде: /specialist/asryan-mariam-araratovna/ = 200, старый malikov → 301. SHA f005ddb, deploy run 31470865583 зелёный.
+
+## 2026-08-14 01:46 UTC
+
+Deploy c058236 SEO/UI зелёный run 31761548369. Smoke: H1 home/doctors, sales title без slug, implant FAQ+title, Dentist/og:image, /blog/ 301, цена 35к.

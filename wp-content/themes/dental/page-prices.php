@@ -52,7 +52,7 @@
                         </button>
                     </form>
                     <div class="callback__policy">
-                        <p>Отправляя заявку, вы соглашаетесь с политикой конфиденциальности</p>
+                        <p>Отправляя заявку, вы соглашаетесь с <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">политикой обработки персональных данных</a></p>
                     </div>
                 </div>
             </div>

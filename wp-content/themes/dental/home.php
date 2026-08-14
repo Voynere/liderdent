@@ -613,7 +613,7 @@ Template Name: home
                     <div class="request__policy">
                         <input class="request__policy-input" type="checkbox" name="" id="">
                         <p class="request__policy-text">
-                            Отправляя заявку, вы соглашаетесь с политикой конфиденциальности.
+                            Отправляя заявку, вы соглашаетесь с <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">политикой обработки персональных данных</a>.
                         </p>
                     </div>
                 </form>

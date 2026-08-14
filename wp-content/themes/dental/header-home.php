@@ -336,7 +336,7 @@
                         </button>
                         <p class="popup-callback__form-privacy">
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
-                            <a href="<?php echo get_home_url(); ?>/privacy/">Политикой обработки персональных данных.</a>
+                            <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
                         <p class="visually-hidden">Заявка на обратный звонок</p>
                     </form>
@@ -361,7 +361,7 @@
                         </button>
                         <p class="popup-callback__form-privacy">
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
-                            <a href="<?php echo get_home_url(); ?>/privacy/">Политикой обработки персональных данных.</a>
+                            <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
                         <p class="visually-hidden">Узнать подробности о рассрочке</p>
                     </form>
@@ -383,7 +383,7 @@
 
                     <button type="submit">Отправить</button>
                 </form>
-                <p class="popup-content__privacy">Нажимая кнопку вы автоматически соглашаетесь с <a href="<?php echo site_url('') ?>/privacy">Политикой обработки персональных данных компании</a></p>
+                <p class="popup-content__privacy">Нажимая кнопку вы автоматически соглашаетесь с <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных компании</a></p>
             </div>
         </div> -->
         <!-- Yandex.Metrika counter -->

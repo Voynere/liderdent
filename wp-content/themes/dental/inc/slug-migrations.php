@@ -6,14 +6,17 @@
 function liderdent_specialist_slug_redirects(): array {
 	return [
 		'malikov-aleksej-georgievich' => 'asryan-mariam-araratovna',
+		'karpova-elena-mihajlovna'    => 'voytova-polina-nikolaevna',
+		'mironova-olga-viktorovna'    => 'markova-kristina-pavlovna',
 	];
 }
 
 /**
  * Rename specialist posts once (option flag), then keep redirects forever.
+ * Bump option key when adding new pairs so migration re-runs for new rows only.
  */
 function liderdent_run_specialist_slug_migrations(): void {
-	if ( get_option( 'liderdent_specialist_slug_migrations_v1' ) ) {
+	if ( get_option( 'liderdent_specialist_slug_migrations_v2' ) ) {
 		return;
 	}
 
@@ -58,7 +61,7 @@ function liderdent_run_specialist_slug_migrations(): void {
 		}
 	}
 
-	update_option( 'liderdent_specialist_slug_migrations_v1', 1, false );
+	update_option( 'liderdent_specialist_slug_migrations_v2', 1, false );
 
 	if ( $did_change ) {
 		flush_rewrite_rules( false );

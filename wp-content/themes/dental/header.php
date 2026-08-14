@@ -345,7 +345,7 @@
                         </button>
                         <p class="popup-callback__form-privacy">
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
-                            <a href="<?php echo get_home_url(); ?>/privacy/">Политикой обработки персональных данных.</a>
+                            <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
                         <p class="visually-hidden">Заявка на обратный звонок</p>
                     </form>
@@ -370,7 +370,7 @@
                         </button>
                         <p class="popup-callback__form-privacy">
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
-                            <a href="<?php echo get_home_url(); ?>/privacy/">Политикой обработки персональных данных.</a>
+                            <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
                         <p class="visually-hidden">Узнать подробности о рассрочке</p>
                     </form>
@@ -396,7 +396,7 @@
                         </button>
                         <p class="popup-callback__form-privacy">
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
-                            <a href="<?php echo get_home_url(); ?>/privacy/">Политикой обработки персональных данных.</a>
+                            <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
                         <p class="visually-hidden">Узнать подробности о рассрочке</p>
                     </form>
@@ -422,7 +422,7 @@
                         </button>
                         <p class="popup-callback__form-privacy">
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
-                            <a href="<?php echo get_home_url(); ?>/privacy/">Политикой обработки персональных данных.</a>
+                            <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
                         <p class="visually-hidden">Узнать подробности о рассрочке</p>
                     </form>
