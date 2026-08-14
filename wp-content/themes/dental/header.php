@@ -242,69 +242,7 @@
                     </div>
                 </div>
                 <div class="header-mobile-content">
-                    <div class="mobile-menu">
-                        <div class="mobile-menu__wrapper">
-                            <a class="mobile-menu__logo" href="<?php echo get_home_url(); ?>/">
-                                <span class="visually-hidden">Лидер Дент — стоматологическая клиника</span>
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Лидер Дент — стоматологическая клиника в Красноярске">
-                            </a>
-                            <nav class="mobile-menu__nav">
-                                <ul class="mobile-menu__nav-list">
-                                    <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/implantaciya/">
-                                            <span>Имплантация зубов</span>
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/protezirovanie/">
-                                            <span>Протезирование</span>
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/lechenie/">
-                                            <span>Лечение зубов</span>
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="to-open-menu" href="<?php echo get_home_url(); ?>/services/hirurgiya/">
-                                            <span>Хирургия</span>
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_down.svg">
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo get_home_url(); ?>/pravovaya-i-yuridicheskaya-informaciya/">Юридическая информация</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo esc_url( liderdent_get_sales_page_url() ); ?>">Акции</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo get_home_url(); ?>/about/">О нас</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="mobile-menu__contacts">
-                            <div class="mobile-menu__contacts-phones">
-                                <a href="tel:+73912271343">+7 (391) 227 13 43</a>
-                                <a href="tel:+73912340909">+7 (391) 234 09 09</a>
-                            </div>
-                            <button class="mobile-menu__callback header__callback open-popup-callback">
-                                Заказать звонок
-                                <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="white"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
+                    <?php get_template_part( 'template-parts/mobile', 'menu' ); ?>
                     <div class="mobile-contacts">
                         <div class="mobile-contacts__content">
                             <a href="tel:+73912271343" class="mobile-contacts__conten-phone">+7 (391) 227 13 43</a>

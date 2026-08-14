@@ -7,7 +7,14 @@ $max_url       = 'https://max.ru/u/f9LHodD0cOLEgcwoIN8sRWKYYJaLpnt0OsHcD3OcpCaKD
 <div class="messenger-widget" id="messenger-widget">
     <button type="button" class="messenger-widget__toggle" aria-expanded="false" aria-controls="messenger-widget-panel" aria-label="Связаться с клиникой">
         <span class="messenger-widget__pulse" aria-hidden="true"></span>
-        <span class="messenger-widget__icon" aria-hidden="true">💬</span>
+        <span class="messenger-widget__icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7A2.5 2.5 0 0 1 17.5 16H10l-4.2 3.15A.75.75 0 0 1 4.5 18.6V16A2.5 2.5 0 0 1 4 13.5v-7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                <circle cx="9" cy="10" r="1" fill="currentColor"/>
+                <circle cx="12" cy="10" r="1" fill="currentColor"/>
+                <circle cx="15" cy="10" r="1" fill="currentColor"/>
+            </svg>
+        </span>
         <span class="messenger-widget__badge" aria-hidden="true">1</span>
         <span class="messenger-widget__hint">Напишите нам — ответим быстро</span>
     </button>

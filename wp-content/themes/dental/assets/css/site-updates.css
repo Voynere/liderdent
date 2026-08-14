@@ -2,8 +2,9 @@
 
 .messenger-widget {
     position: fixed;
-    right: max(12px, calc((100% - 1340px) / 2 - 100px));
-    bottom: 20px;
+    /* Привязка к контенту 1340px; на 2K — у правого края колонки, без улёта в пустоту */
+    right: max(16px, env(safe-area-inset-right, 0px), min(48px, calc((100% - 1340px) / 2 + 12px)));
+    bottom: max(20px, env(safe-area-inset-bottom, 0px));
     z-index: 9999;
     font-family: inherit;
 }
@@ -201,6 +202,11 @@
     }
 }
 
+html.mobile-menu-open,
+html.mobile-menu-open body {
+    overflow: hidden;
+}
+
 .messenger-widget__title {
     margin: 0 0 10px;
     font-size: 14px;
@@ -223,6 +229,60 @@
 
 .messenger-widget__link:hover {
     background: #ececec;
+}
+
+@media (max-width: 768px) {
+    .messenger-widget {
+        right: max(12px, env(safe-area-inset-right, 0px));
+        bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    }
+
+    .messenger-widget__toggle {
+        width: 52px;
+        height: 52px;
+        font-size: 20px;
+    }
+
+    /* Подсказка сверху — не обрезается слева на узких экранах */
+    .messenger-widget__hint {
+        right: 0;
+        left: auto;
+        top: auto;
+        bottom: calc(100% + 12px);
+        transform: translateY(8px);
+        white-space: normal;
+        max-width: min(240px, calc(100vw - 80px));
+        text-align: left;
+    }
+
+    .messenger-widget__hint::after {
+        right: 18px;
+        left: auto;
+        top: auto;
+        bottom: -6px;
+        transform: none;
+        border: 6px solid transparent;
+        border-top-color: #fff;
+        border-left-color: transparent;
+    }
+
+    .messenger-widget.is-hovered .messenger-widget__hint,
+    .messenger-widget.is-attention .messenger-widget__hint {
+        transform: translateY(0);
+    }
+
+    .messenger-widget__panel {
+        right: 0;
+        left: auto;
+        min-width: min(260px, calc(100vw - 32px));
+        max-width: calc(100vw - 24px);
+    }
+}
+
+@media (min-width: 1920px) {
+    .messenger-widget {
+        right: max(24px, calc((100% - 1340px) / 2 - 72px));
+    }
 }
 
 .short-prices {
