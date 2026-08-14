@@ -93,14 +93,65 @@ function liderdent_current_service_landing_slug(): string {
 }
 
 /**
- * Price rows for landing (posts in matching category).
+ * Featured price rows shown on every service landing.
  *
- * @return array<int, array{title:string,price:string,discount:string}>
+ * @return array<int, array{title:string,price:string,discount:string,url:string,slug:string}>
+ */
+function liderdent_featured_service_price_rows(): array {
+	$rows = [];
+	foreach ( liderdent_get_services_content() as $slug => $item ) {
+		if ( empty( $item['featured_price'] ) ) {
+			continue;
+		}
+		$price = (string) ( $item['price_label'] ?? '' );
+		if ( $price === '' && ! empty( $item['price_from'] ) ) {
+			$price = preg_replace( '/[^\d]/u', '', (string) $item['price_from'] ) ?: '';
+			if ( $price !== '' && preg_match( '/от/ui', (string) $item['price_from'] ) ) {
+				$price = 'от ' . $price;
+			}
+		}
+		$rows[] = [
+			'slug'     => $slug,
+			'title'    => (string) ( $item['price_title'] ?? $item['nav_title'] ?? $item['h1'] ?? $slug ),
+			'price'    => $price,
+			'discount' => '',
+			'url'      => liderdent_service_landing_url( $slug ),
+		];
+	}
+	return $rows;
+}
+
+/**
+ * Normalize title for price-row dedupe.
+ */
+function liderdent_price_title_key( string $title ): string {
+	$title = mb_strtolower( trim( $title ) );
+	$title = preg_replace( '/\s+/u', ' ', $title ) ?? $title;
+	return rtrim( $title, " \t\n\r\0\x0B)" );
+}
+
+/**
+ * Price rows for landing: featured offers + category posts (deduped).
+ *
+ * @return array<int, array{title:string,price:string,discount:string,url?:string,slug?:string}>
  */
 function liderdent_service_landing_price_rows( string $slug ): array {
-	$term = get_term_by( 'slug', $slug, 'category' );
+	$featured = liderdent_featured_service_price_rows();
+	$seen     = [];
+	foreach ( $featured as $row ) {
+		$seen[ liderdent_price_title_key( $row['title'] ) ] = true;
+	}
+
+	// Resolve WP category: offer landings use parent slug.
+	$svc      = liderdent_get_service_content( $slug );
+	$cat_slug = $slug;
+	if ( $svc && ! empty( $svc['parent'] ) ) {
+		$cat_slug = (string) $svc['parent'];
+	}
+
+	$term = get_term_by( 'slug', $cat_slug, 'category' );
 	if ( ! $term || is_wp_error( $term ) ) {
-		return [];
+		return $featured;
 	}
 
 	$q = new WP_Query(
@@ -114,40 +165,80 @@ function liderdent_service_landing_price_rows( string $slug ): array {
 		]
 	);
 
-	$rows = [];
+	$extra = [];
 	while ( $q->have_posts() ) {
 		$q->the_post();
+		$title = get_the_title();
+		$key   = liderdent_price_title_key( $title );
+		if ( isset( $seen[ $key ] ) ) {
+			continue;
+		}
+		$skip = false;
+		foreach ( $featured as $f ) {
+			$ft = liderdent_price_title_key( $f['title'] );
+			if ( $ft !== '' && ( str_contains( $key, $ft ) || str_contains( $ft, $key ) ) ) {
+				$skip = true;
+				break;
+			}
+		}
+		if ( $skip ) {
+			continue;
+		}
 		$price = function_exists( 'get_field' ) ? (string) get_field( 'service_price' ) : '';
 		$disc  = function_exists( 'get_field' ) ? (string) get_field( 'service_discount' ) : '';
-		$rows[] = [
-			'title'    => get_the_title(),
+		$extra[] = [
+			'title'    => $title,
 			'price'    => $price,
 			'discount' => $disc,
+			'url'      => '',
 		];
+		$seen[ $key ] = true;
 	}
 	wp_reset_postdata();
-	return $rows;
+
+	return array_merge( $featured, $extra );
 }
 
 /**
- * Related landings (other service slugs).
+ * Related landings (parent/siblings for offers; main nav services otherwise).
  *
  * @return array<int, array{slug:string,title:string,url:string}>
  */
 function liderdent_service_landing_related( string $slug, int $limit = 4 ): array {
-	$out = [];
-	foreach ( liderdent_get_services_content() as $s => $item ) {
-		if ( $s === $slug ) {
-			continue;
+	$map  = liderdent_get_services_content();
+	$svc  = $map[ $slug ] ?? null;
+	$out  = [];
+	$seen = [];
+
+	$push = static function ( string $s ) use ( &$out, &$seen, $map, $limit, $slug ): void {
+		if ( $s === $slug || isset( $seen[ $s ] ) || ! isset( $map[ $s ] ) || count( $out ) >= $limit ) {
+			return;
 		}
+		$item = $map[ $s ];
 		$out[] = [
 			'slug'  => $s,
 			'title' => (string) ( $item['nav_title'] ?? $item['h1'] ?? $s ),
 			'url'   => liderdent_service_landing_url( $s ),
 		];
-		if ( count( $out ) >= $limit ) {
-			break;
+		$seen[ $s ] = true;
+	};
+
+	$parent = is_array( $svc ) ? (string) ( $svc['parent'] ?? '' ) : '';
+	if ( $parent ) {
+		$push( $parent );
+		foreach ( $map as $s => $item ) {
+			if ( (string) ( $item['parent'] ?? '' ) === $parent ) {
+				$push( $s );
+			}
 		}
 	}
+
+	foreach ( $map as $s => $item ) {
+		if ( array_key_exists( 'in_nav', $item ) && $item['in_nav'] === false ) {
+			continue;
+		}
+		$push( $s );
+	}
+
 	return $out;
 }

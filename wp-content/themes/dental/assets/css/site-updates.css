@@ -1377,6 +1377,18 @@
     font-weight: 600;
 }
 
+.svc-landing__price-link {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(210, 174, 107, 0.55);
+    text-underline-offset: 3px;
+}
+
+.svc-landing__price-link:hover {
+    color: #1a3a5c;
+    text-decoration-color: #d2ae6b;
+}
+
 .svc-landing__related {
     margin: 42px 0;
 }

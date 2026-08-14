@@ -35,6 +35,13 @@ get_header();
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
 			<span aria-hidden="true">|</span>
 			<a href="<?php echo esc_url( home_url( '/service/' ) ); ?>">Услуги</a>
+			<?php if ( ! empty( $svc['parent'] ) && liderdent_get_service_content( (string) $svc['parent'] ) ) : ?>
+				<?php $parent_svc = liderdent_get_service_content( (string) $svc['parent'] ); ?>
+				<span aria-hidden="true">|</span>
+				<a href="<?php echo esc_url( liderdent_service_landing_url( (string) $svc['parent'] ) ); ?>">
+					<?php echo esc_html( (string) ( $parent_svc['nav_title'] ?? $svc['parent'] ) ); ?>
+				</a>
+			<?php endif; ?>
 			<span aria-hidden="true">|</span>
 			<span><?php echo esc_html( $svc['nav_title'] ?? $h1 ); ?></span>
 		</nav>
@@ -121,7 +128,15 @@ get_header();
 					</div>
 					<?php foreach ( $prices as $row ) : ?>
 						<div class="page-price__line">
-							<p class="page-price__line-item form-service-title"><?php echo esc_html( $row['title'] ); ?></p>
+							<p class="page-price__line-item form-service-title">
+								<?php if ( ! empty( $row['url'] ) ) : ?>
+									<a class="svc-landing__price-link" href="<?php echo esc_url( $row['url'] ); ?>">
+										<?php echo esc_html( $row['title'] ); ?>
+									</a>
+								<?php else : ?>
+									<?php echo esc_html( $row['title'] ); ?>
+								<?php endif; ?>
+							</p>
 							<p class="page-price__line-item mobile-end">
 								<?php echo esc_html( $row['price'] !== '' ? $row['price'] . ' руб.' : 'по запросу' ); ?>
 							</p>
