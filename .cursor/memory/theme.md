@@ -12,3 +12,7 @@
 ## 2026-07-16 02:31 UTC
 
 Асрян Мариам: галерея работ ДО/ПОСЛЕ — assets/img/asryan-cases/, cases_gallery=asryan в doctors-profiles.php, интерактивный ba-compare слайдер (clip-path + range). Общий UI с Сафаровым.
+
+## 2026-08-11 08:19 UTC
+
+Мобильное выезжающее меню на главной (header-home.php): добавлен пункт Акции → /sales/. В header.php уже был. Deploy f451209 run 31472602978 зелёный.

@@ -13,7 +13,7 @@
     <section class="page-doctors">
         <div class="container">
             <div class="page-doctors__inner">
-                <h2 class="page-title page-doctors__title">НАШИ ВРАЧИ</h2>
+                <h1 class="page-title page-doctors__title">Врачи стоматологии «ЛидерДент»</h1>
                 <div class="page-doctors__content">
 
                     <?php

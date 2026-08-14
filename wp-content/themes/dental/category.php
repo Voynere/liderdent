@@ -216,6 +216,14 @@
                 </div>
             <?php endif; ?>
 
+            <?php if ( function_exists( 'liderdent_render_implant_faq' ) ) : ?>
+                <?php liderdent_render_implant_faq(); ?>
+            <?php endif; ?>
+
+            <?php if ( is_category( 'implantaciya' ) ) : ?>
+                <h2 class="page-price__subtitle">Цены и услуги по имплантации</h2>
+            <?php endif; ?>
+
             <div class="page-price__content">
 
                 <div class="page-price__line head">

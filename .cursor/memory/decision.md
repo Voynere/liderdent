@@ -20,3 +20,11 @@ Hero-видео на всех экранах; preload постера вмест�
 ## 2026-08-11 07:53 UTC
 
 Slug Асрян: миграция в теме inc/slug-migrations.php — malikov-aleksej-georgievich → asryan-mariam-araratovna + 301. Срабатывает на init после деплоя (опция liderdent_specialist_slug_migrations_v1). SSH alias mrtlider на этой машине отсутствует.
+
+## 2026-08-13 23:52 UTC
+
+2026-08-14: UI+SEO аудит прода. SEO 6/10 UI 7/10. Critical: нет H1 на / и /doctors/; /sales/ title=sales; имплантация слабый сниппет; нет DentalClinic/og:image; цены 33k vs 35k на главной. Отчёт seov/SEO-отчет-прогресс.md, canvas ui-seo-audit.
+
+## 2026-08-14 01:43 UTC
+
+2026-08-14: Внедрён SEO/UI пакет — inc/seo.php (title/desc, og:image, Dentist JSON-LD, FAQ имплантации, 301 /blog/, robots). H1 на home/doctors, hero CTA, цена импланта 35к, logo не H3, aria-labels.

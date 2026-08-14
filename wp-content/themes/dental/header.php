@@ -19,9 +19,8 @@
                 <div class="header__inner">
                     <div class="header__top">
                         <a class="header__top-logo" href="<?php echo get_home_url(); ?>/">
-                            <h3 class="visually-hidden">Лидер Дент</h3>
-                            <h3 class="visually-hidden">Стоматологическая клиника</h3>
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Логотип">
+                            <span class="visually-hidden">Лидер Дент — стоматологическая клиника</span>
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Лидер Дент — стоматологическая клиника в Красноярске">
                         </a>
                         <div class="header__top-item address">
                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/geo.svg" alt="Геолокация">
@@ -42,13 +41,13 @@
                             </svg>
                         </button>
                         <div class="header__top-mobile">
-                            <button class="header__follow-search-hidden header__follow-icon-item" id="follow-search-hidden">
+                            <button class="header__follow-search-hidden header__follow-icon-item" id="follow-search-hidden" aria-label="Открыть поиск">
                                 <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_search_hidden.svg" alt="Поиск">
                             </button>
                             <a href="tel:+73912271343" class="header__follow-phone header__follow-icon-item">
                                 <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_phone.svg" alt="Контакты">
                             </a>
-                            <button class="header__follow-menu header__follow-icon-item open-mobile-menu">
+                            <button type="button" class="header__follow-menu header__follow-icon-item open-mobile-menu" aria-label="Открыть меню">
                                 <div class="header__follow-menu-line"></div>
                                 <div class="header__follow-menu-line"></div>
                             </button>
@@ -107,9 +106,8 @@
                             <div class="header__follow-inner">
                                 <div class="header__follow-top">
                                     <a href="<?php echo get_home_url(); ?>/" class="header__follow-logo">
-                                        <h3 class="visually-hidden">ЛидерДент</h3>
-                                        <h3 class="visually-hidden">Стоматологическая клиника</h3>
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Логотип">
+                                        <span class="visually-hidden">Лидер Дент — стоматологическая клиника</span>
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Лидер Дент — стоматологическая клиника в Красноярске">
                                     </a>
                                     <ul class="header__follow-short-menu">
                                         <li>
@@ -130,16 +128,16 @@
                                         <input type="text" class="follow-search">
                                     </div>
                                     <div class="header__follow-info">
-                                        <button class="header__follow-search-hidden header__follow-icon-item" id="follow-search-hidden">
+                                        <button class="header__follow-search-hidden header__follow-icon-item" id="follow-search-hidden" aria-label="Открыть поиск">
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_search_hidden.svg" alt="Поиск">
                                         </button>
                                         <a href="tel:+73912271343" class="header__follow-phone header__follow-icon-item">
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_phone.svg" alt="Контакты">
                                         </a>
-                                        <button class="header__follow-geo header__follow-icon-item">
+                                        <button type="button" class="header__follow-geo header__follow-icon-item" aria-label="Адрес клиники">
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_geo.svg" alt="Местоположение">
                                         </button>
-                                        <button class="header__follow-menu header__follow-icon-item open-mobile-menu">
+                                        <button type="button" class="header__follow-menu header__follow-icon-item open-mobile-menu" aria-label="Открыть меню">
                                             <div class="header__follow-menu-line"></div>
                                             <div class="header__follow-menu-line"></div>
                                         </button>
@@ -247,9 +245,8 @@
                     <div class="mobile-menu">
                         <div class="mobile-menu__wrapper">
                             <a class="mobile-menu__logo" href="<?php echo get_home_url(); ?>/">
-                                <h3 class="visually-hidden">Лидер Дент</h3>
-                                <h3 class="visually-hidden">Стоматологическая клиника</h3>
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Логотип">
+                                <span class="visually-hidden">Лидер Дент — стоматологическая клиника</span>
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/logo.png" alt="Лидер Дент — стоматологическая клиника в Красноярске">
                             </a>
                             <nav class="mobile-menu__nav">
                                 <ul class="mobile-menu__nav-list">
@@ -331,7 +328,7 @@
                 <div class="popup-callback" id="popup-callback">
                     <div class="popup-callback__head">
                         <h4 class="popup-callback__head-title">Оставьте Вашу заявку</h4>
-                        <button class="popup-callback__head-close">
+                        <button type="button" class="popup-callback__head-close" aria-label="Закрыть">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
                                 <path fill="currentColor" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504L738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512L828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496L285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512L195.2 285.696a64 64 0 0 1 0-90.496"/>
                             </svg>
@@ -356,7 +353,7 @@
                 <div class="popup-callback" id="popup-credit">
                     <div class="popup-callback__head">
                         <h4 class="popup-callback__head-title">Узнать о рассрочке</h4>
-                        <button class="popup-callback__head-close">
+                        <button type="button" class="popup-callback__head-close" aria-label="Закрыть">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
                                 <path fill="currentColor" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504L738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512L828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496L285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512L195.2 285.696a64 64 0 0 1 0-90.496"/>
                             </svg>
@@ -381,7 +378,7 @@
                 <div class="popup-callback" id="popup-doctors">
                     <div class="popup-callback__head">
                         <h4 class="popup-callback__head-title">Записаться на прием</h4>
-                        <button class="popup-callback__head-close">
+                        <button type="button" class="popup-callback__head-close" aria-label="Закрыть">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
                                 <path fill="currentColor" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504L738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512L828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496L285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512L195.2 285.696a64 64 0 0 1 0-90.496"/>
                             </svg>
@@ -407,7 +404,7 @@
                 <div class="popup-callback" id="popup-service">
                     <div class="popup-callback__head">
                         <h4 class="popup-callback__head-title">Записаться на прием</h4>
-                        <button class="popup-callback__head-close">
+                        <button type="button" class="popup-callback__head-close" aria-label="Закрыть">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
                                 <path fill="currentColor" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504L738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512L828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496L285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512L195.2 285.696a64 64 0 0 1 0-90.496"/>
                             </svg>

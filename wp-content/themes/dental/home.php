@@ -28,10 +28,16 @@ Template Name: home
 
     <div class="container">
         <div class="hero__inner">
-            <p class="hero__title-top">МЫ РАДЫ ПРИВЕТСТВОВАТЬ ВАС</p>
-            <p class="hero__title-bottom">В СТОМАТОЛОГИИ «ЛидерДент»</p>
-            <p class="hero__info">Важной составляющей философии нашей стоматологии <br>является — безупречное качество работы.</p>
-            <p class="hero__info-mobile">Важной составляющей философии нашей стоматологии является — безупречное качество работы.</p>
+            <h1 class="hero__heading">
+                <span class="hero__title-top">Стоматология в Красноярске</span>
+                <span class="hero__title-bottom">«ЛидерДент»</span>
+            </h1>
+            <p class="hero__info">Лечение зубов, имплантация, протезирование и ортодонтия. <br>Запись онлайн и по телефону.</p>
+            <p class="hero__info-mobile">Лечение зубов, имплантация, протезирование и ортодонтия. Запись онлайн и по телефону.</p>
+            <div class="hero__cta">
+                <button type="button" class="btn-gold hero__cta-btn open-popup-callback">Записаться на приём</button>
+                <a class="hero__cta-phone" href="tel:+73912340909">+7 (391) 234 09 09</a>
+            </div>
         </div>
     </div>
 </section>
@@ -55,7 +61,7 @@ Template Name: home
                     <a href="<?php echo get_home_url(); ?>/category/services/implantaciya/" class="service__item first">
                         <div class="service__item-top">
                             <h3 class="service__item-title">ИМПЛАНТАЦИЯ ЗУБОВ</h3>
-                            <p class="service__item-price">ОТ 33.000 РУБ</p>
+                            <p class="service__item-price">ОТ 35.000 РУБ</p>
                             <div class="service__item-info">
                                 <p>— Предсказуемый результат.</p>
                                 <p>— Комфорт и быстрое восстановление.</p>
@@ -143,44 +149,44 @@ Template Name: home
                 </div>
                 <div class="our-centre__slider">
                     <div class="our-centre__slider-arrows">
-                        <button class="our-centre__slider-arrow prev">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg">
+                        <button type="button" class="our-centre__slider-arrow prev" aria-label="Предыдущий слайд">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg" alt="">
                         </button>
-                        <button class="our-centre__slider-arrow next">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg">
+                        <button type="button" class="our-centre__slider-arrow next" aria-label="Следующий слайд">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg" alt="">
                         </button>
                     </div>
                     <div class="swiper serviceSlider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_1.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_1.jpg" alt="Интерьер клиники ЛидерДент — рецепция" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_2.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_2.jpg" alt="Кабинет стоматологии ЛидерДент" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_3.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_3.jpg" alt="Оборудование клиники ЛидерДент" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_4.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_4.jpg" alt="Рабочее место врача ЛидерДент" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_5.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_5.jpg" alt="Стоматологический кабинет ЛидерДент" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_6.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_6.jpg" alt="Клиника ЛидерДент — пространство для пациентов" loading="lazy" decoding="async">
                             </div>
                             <!-- <div class="swiper-slide our-centre__slider-item">
                                 <img src="<?php // bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_7.jpg">
                             </div> -->
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_8.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_8.jpg" alt="Зона ожидания ЛидерДент" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_9.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_9.jpg" alt="Современный интерьер стоматологии ЛидерДент" loading="lazy" decoding="async">
                             </div>
                             <div class="swiper-slide our-centre__slider-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_10.jpg" alt="" loading="lazy" decoding="async">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/new_our_centre/our_centre_10.jpg" alt="Клиника ЛидерДент в Красноярске" loading="lazy" decoding="async">
                             </div>
                         </div>
                     </div>
@@ -385,10 +391,10 @@ Template Name: home
                     <div class="before-after__item">
                         <div class="before-after__images">
                             <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg" alt="Пример работы до лечения">
                             </div>
                             <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png" alt="Пример работы после лечения">
                             </div>
                         </div>
                         <p class="before-after__item-text">Исправление прикуса</p>
@@ -396,21 +402,10 @@ Template Name: home
                     <div class="before-after__item">
                         <div class="before-after__images">
                             <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg" alt="Пример работы до лечения">
                             </div>
                             <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png">
-                            </div>
-                        </div>
-                        <p class="before-after__item-text">Протезирование зубов</p>
-                    </div>
-                    <div class="before-after__item">
-                        <div class="before-after__images">
-                            <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg">
-                            </div>
-                            <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png" alt="Пример работы после лечения">
                             </div>
                         </div>
                         <p class="before-after__item-text">Протезирование зубов</p>
@@ -418,10 +413,21 @@ Template Name: home
                     <div class="before-after__item">
                         <div class="before-after__images">
                             <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg" alt="Пример работы до лечения">
                             </div>
                             <div class="before-after__images-item">
-                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png" alt="Пример работы после лечения">
+                            </div>
+                        </div>
+                        <p class="before-after__item-text">Протезирование зубов</p>
+                    </div>
+                    <div class="before-after__item">
+                        <div class="before-after__images">
+                            <div class="before-after__images-item">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/service_slider_img.jpg" alt="Пример работы до лечения">
+                            </div>
+                            <div class="before-after__images-item">
+                                <img src="<?php bloginfo('template_url') ?>/assets/img/doctor_2.png" alt="Пример работы после лечения">
                             </div>
                         </div>
                         <p class="before-after__item-text">Исправление прикуса</p>
@@ -433,11 +439,11 @@ Template Name: home
                         </div>
                     </div>
                     <div class="before-after__slider-arrows">
-                        <button class="before-after__slider-arrow prev">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg">
+                        <button type="button" class="before-after__slider-arrow prev" aria-label="Предыдущий кейс">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg" alt="">
                         </button>
-                        <button class="before-after__slider-arrow next">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg">
+                        <button type="button" class="before-after__slider-arrow next" aria-label="Следующий кейс">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg" alt="">
                         </button>
                     </div>
                 </div>
@@ -466,19 +472,19 @@ Template Name: home
                 </div>
                 <div class="credit__icons">
                     <div class="credit__icons-wrapper">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_vtb.png">
+                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_vtb.png" alt="">
                     </div>
                     <div class="credit__icons-wrapper">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_mkb.png">
+                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_mkb.png" alt="">
                     </div>
                     <div class="credit__icons-wrapper">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_alfa.png">
+                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_alfa.png" alt="">
                     </div>
                     <div class="credit__icons-wrapper">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_sber.png">
+                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_sber.png" alt="">
                     </div>
                     <div class="credit__icons-wrapper">
-                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_sovcombank.png">
+                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_sovcombank.png" alt="">
                     </div>
                     <div class="credit__icons-wrapper">
                         <img src="<?php bloginfo('template_url') ?>/assets/img/icons/credit_rosbank.png">
@@ -573,10 +579,10 @@ Template Name: home
                     </div>
                     <div class="promotion__slider-arrows">
                         <button class="promotion__slider-arrow prev">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg" alt="">
                         </button>
                         <button class="promotion__slider-arrow next">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg" alt="">
                         </button>
                     </div>
                 </div>

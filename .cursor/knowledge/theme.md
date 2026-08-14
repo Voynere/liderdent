@@ -34,6 +34,7 @@
 - CPT `specialist` + ACF-поля в REST API (`doctor_exp`, `doctor_spec`, `doctor_schedule`, `doctor_service`)
 - AJAX `send_popup_form` → `wp_mail` на `aliderdent@mail.ru` (типы: callback, credit, service, doctor, popup)
 - `theme_breadcrumbs()` — хлебные крошки с особой логикой для категории `services` → страница `/service/`
+- SEO: `inc/seo.php` — title/desc overrides, og:image, Dentist JSON-LD, FAQ имплантации, 301 `/blog/` → `/category/blog/`, правка robots.txt
 - SVG upload support
 - WooCommerce theme support (включён, но магазин может не использоваться)
 
