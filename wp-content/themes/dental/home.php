@@ -35,7 +35,12 @@ Template Name: home
             <p class="hero__info">Лечение зубов, имплантация, протезирование и ортодонтия. <br>Запись онлайн и по телефону.</p>
             <p class="hero__info-mobile">Лечение зубов, имплантация, протезирование и ортодонтия. Запись онлайн и по телефону.</p>
             <div class="hero__cta">
-                <button type="button" class="btn-gold hero__cta-btn open-popup-callback">Записаться на приём</button>
+                <button type="button" class="hero__cta-btn open-popup-callback">
+                    Записаться на приём
+                    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="currentColor"/>
+                    </svg>
+                </button>
                 <a class="hero__cta-phone" href="tel:+73912340909">+7 (391) 234 09 09</a>
             </div>
         </div>

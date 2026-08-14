@@ -898,6 +898,108 @@
     color: rgba(255, 255, 255, 0.9);
 }
 
+/* Hero readability + CTA */
+.hero__inner {
+    padding: 28px 36px !important;
+    background: rgba(20, 20, 20, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero__title-top {
+    color: #fff !important;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+}
+
+.hero__title-bottom {
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.4);
+}
+
+.hero__info,
+.hero__info-mobile {
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    line-height: 1.55 !important;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55);
+    opacity: 1;
+}
+
+.hero__info::before,
+.hero__info-mobile::before {
+    color: #d2ae6b;
+    text-shadow: none;
+}
+
+.hero__heading {
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.hero__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.hero__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    min-height: 52px;
+    padding: 14px 28px;
+    border: 1px solid #404040;
+    border-radius: 10px;
+    background: #404040;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero__cta-btn svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.hero__cta-btn:hover {
+    background: #fff;
+    color: #404040;
+    border-color: #fff;
+}
+
+.hero__cta-btn:hover svg {
+    transform: translateX(3px);
+}
+
+.hero__cta-phone {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 2px;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.hero__cta-phone:hover {
+    border-bottom-color: #d2ae6b;
+    color: #d2ae6b;
+}
+
 @media (max-width: 768px) {
     .hero {
         height: 150vh;
@@ -918,6 +1020,7 @@
     .hero__info-mobile {
         display: block;
         max-width: 100%;
+        font-size: 15px !important;
     }
 
     .hero .container {
@@ -925,8 +1028,28 @@
     }
 
     .hero__inner {
-        padding: 20px;
+        padding: 22px 18px !important;
         margin-top: 0;
+        min-width: min(92vw, 484px) !important;
+        width: min(92vw, 520px);
+    }
+
+    .hero__cta {
+        margin-top: 18px;
+        gap: 12px;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .hero__cta-btn {
+        width: 100%;
+        max-width: 280px;
+        gap: 12px;
+        padding: 16px 22px;
+    }
+
+    .hero__cta-phone {
+        font-size: 16px;
     }
 }
 
@@ -952,65 +1075,11 @@
     }
 
     .hero__inner {
-        padding: 15px;
+        padding: 18px 14px !important;
     }
 }
 
-/* Hero SEO H1 + CTA */
-.hero__heading {
-    margin: 0;
-    padding: 0;
-    font-weight: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-}
-
-.hero__cta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 24px;
-}
-
-.hero__cta-btn {
-    min-width: 220px;
-}
-
-.hero__cta-phone {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
-}
-
-.hero__cta-phone:hover {
-    border-bottom-color: #d2ae6b;
-    color: #d2ae6b;
-}
-
-@media (max-width: 768px) {
-    .hero__cta {
-        margin-top: 18px;
-        gap: 12px;
-    }
-
-    .hero__cta-btn {
-        min-width: 0;
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .hero__cta-phone {
-        font-size: 16px;
-    }
-}
+/* Hero SEO H1 + CTA — legacy block removed, styles above */
 
 /* Implantaciya FAQ */
 .category-faq {
@@ -1366,6 +1435,18 @@
 @media (max-width: 768px) {
     .svc-landing__hero {
         grid-template-columns: 1fr;
+    }
+
+    .svc-landing__btn {
+        width: 100%;
+        max-width: 320px;
+        gap: 12px;
+        padding: 16px 22px;
+    }
+
+    .svc-landing__cta {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .svc-landing__steps-list,
