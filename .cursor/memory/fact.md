@@ -21,3 +21,7 @@
 ## 2026-08-11 07:53 UTC
 
 Восстановлен seov/plan.md (2026-08-11): этапы врачи → акции → SEO → UX. Ближайшее: deploy slug, smoke ПроДокторов, сверка списка врачей.
+
+## 2026-08-16 14:45 UTC
+
+GitHub Voynere/liderdent private с 2026-08-15. Локальный путь /home/voynere/Projects/liderdent. Клон/push через gh HTTPS, не git@ SSH (host key / ssh-askpass).

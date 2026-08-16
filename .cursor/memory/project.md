@@ -3,7 +3,8 @@
 ## Site
 
 - **URL:** https://liderdent24.ru
-- **Repo:** Voynere/liderdent (GitHub)
+- **Repo:** Voynere/liderdent (GitHub, **private** с 2026-08-15)
+- **Локальный клон:** `/home/voynere/Projects/liderdent`
 - **Stack:** WordPress + custom theme `wp-content/themes/dental/`
 - **Клиника:** стоматология «ЛидерДент», Красноярск
 

@@ -34,6 +34,6 @@ python3 .cursor/rag/rag.py status
 ```
 
 - Доступы и CI: `docs/AGENT_ACCESS.md`
-- Handoff дня: `docs/HANDOFF_2026-08-14.md`
+- Handoff дня: `docs/HANDOFF_2026-08-17.md` (предыдущий: `docs/HANDOFF_2026-08-14.md`)
 - План работ (локально): `seov/plan.md`
 - Карта темы: `.cursor/knowledge/theme.md`

@@ -45,7 +45,14 @@ gh workflow run deploy.yml --repo Voynere/liderdent
 
 Deploy workflow выполняет `wp plugin update --all` и flush cache после rsync.
 
+## GitHub
+
+- Репозиторий **private** (`Voynere/liderdent`) с 2026-08-15.
+- Локальный клон: `/home/voynere/Projects/liderdent`.
+- На этой машине SSH к GitHub (`git@github.com:...`) может падать на host key / `ssh-askpass`. Клон и git-операции — через `gh` (HTTPS, уже авторизован).
+
 ## Локальная копия
 
 - Полный WordPress локально; в git только `wp-content/themes/dental/`, `scripts/`, `docs/`, `.github/`
 - `wp-config.php`, плагины, uploads — только локально / на сервере
+- `seov/` в gitignore: после свежего клона `seov/plan.md` нужно восстановить (бэклог в последнем HANDOFF).

@@ -52,3 +52,7 @@ Slug Асрян: миграция в теме inc/slug-migrations.php — maliko
 ## 2026-08-14 08:06 UTC
 
 Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сделано: hero, /services/+офферы, блог 15 thumbs+6 inline, mobile-menu, messenger. Бэклог: category blog cards, more inline imgs, mobile QA.
+
+## 2026-08-16 14:45 UTC
+
+2026-08-17: клон /home/voynere/Projects/liderdent через gh HTTPS (SSH git@github.com host key fail). Репо Voynere/liderdent PRIVATE. Тема без правок. Handoff docs/HANDOFF_2026-08-17.md. Завтра: category.php карточки блога, mid-article ~9, mobile QA.
