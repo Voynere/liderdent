@@ -26,7 +26,7 @@
                         <div class="contacts__info-icon">
                             <img src="<?php bloginfo( 'template_url' ); ?>/assets/img/icons/email.svg" alt="">
                         </div>
-                        <p><a href="mailto:l1der.dent@yandex.ru">l1der.dent@yandex.ru</a></p>
+                        <p><a href="mailto:<?php echo esc_attr( liderdent_nap_email() ); ?>"><?php echo esc_html( liderdent_nap_email() ); ?></a></p>
                     </div>
                 </div>
             </div>

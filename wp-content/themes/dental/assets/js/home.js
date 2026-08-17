@@ -369,6 +369,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             openPopupElement(popupEl, btn);
+            popupEl.dispatchEvent(new CustomEvent('liderdent:popup-open', { bubbles: true }));
         });
     });
 

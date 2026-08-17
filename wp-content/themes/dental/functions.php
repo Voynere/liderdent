@@ -5,6 +5,7 @@ require get_template_directory() . '/inc/doctors-profiles.php';
 require get_template_directory() . '/inc/promotions-data.php';
 require get_template_directory() . '/inc/slug-migrations.php';
 require get_template_directory() . '/inc/seo.php';
+require get_template_directory() . '/inc/lead-forms.php';
 require get_template_directory() . '/inc/services-content.php';
 require get_template_directory() . '/inc/service-landings.php';
 require get_template_directory() . '/inc/content-seed.php';
@@ -93,17 +94,19 @@ add_action( 'wp_enqueue_scripts', function () {
         wp_enqueue_script( 'specialist', $specialist_js_uri, $deps, $specialist_ver, true );
     }
 
+    $popup_js = get_template_directory() . '/assets/js/popup-form.js';
     wp_enqueue_script(
         'popup-form',
         get_template_directory_uri() . '/assets/js/popup-form.js',
         [],
-        null,
+        file_exists( $popup_js ) ? filemtime( $popup_js ) : null,
         true
     );
 
     wp_localize_script('popup-form', 'POPUP_FORM', [
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce'    => wp_create_nonce('popup_form_nonce')
+        'ajax_url'  => admin_url('admin-ajax.php'),
+        'nonce'     => wp_create_nonce('popup_form_nonce'),
+        'metrikaId' => 106770436,
     ]);
 });
 
@@ -429,42 +432,42 @@ add_action('wp_ajax_nopriv_send_popup_form', 'send_popup_form_handler');
 function send_popup_form_handler() {
     $log_file = WP_CONTENT_DIR . '/popup_debug.log';
 
-    // Логируем входящие данные
     file_put_contents($log_file, "=== AJAX CALL at ".date('Y-m-d H:i:s')." ===\n", FILE_APPEND);
     file_put_contents($log_file, "REMOTE_ADDR: " . ($_SERVER['REMOTE_ADDR'] ?? '') . "\n", FILE_APPEND);
-    file_put_contents($log_file, "POST: " . print_r($_POST, 1) . "\n", FILE_APPEND);
+    file_put_contents($log_file, "type=" . sanitize_text_field( wp_unslash( $_POST['type'] ?? '' ) ) . " form_id=" . sanitize_text_field( wp_unslash( $_POST['form_id'] ?? '' ) ) . "\n", FILE_APPEND);
 
-    // проверка action — необязательна, но полезна
     if ( empty($_POST['action']) ) {
         file_put_contents($log_file, "NO ACTION PROVIDED\n\n", FILE_APPEND);
         wp_send_json_error('NO_ACTION');
     }
 
-    // nonce (временно можно отключить, но сначала логируем)
     if ( empty($_POST['nonce']) || ! wp_verify_nonce( $_POST['nonce'], 'popup_form_nonce' ) ) {
         file_put_contents($log_file, "NONCE FAIL\n\n", FILE_APPEND);
         wp_send_json_error('NONCE_FAIL');
     }
 
-    // данные
     $name  = isset($_POST['name']) ? sanitize_text_field(wp_unslash($_POST['name'])) : '';
     $phone = isset($_POST['phone']) ? sanitize_text_field(wp_unslash($_POST['phone'])) : '';
     $type  = isset($_POST['type']) ? sanitize_text_field(wp_unslash($_POST['type'])) : 'popup';
     $service_title = isset($_POST['service_title']) ? sanitize_text_field(wp_unslash($_POST['service_title'])) : '';
     $doctor_title  = isset($_POST['doctor_title'])  ? sanitize_text_field(wp_unslash($_POST['doctor_title']))  : '';
+    $page          = isset($_POST['page']) ? sanitize_text_field(wp_unslash($_POST['page'])) : '';
+    $form_id       = isset($_POST['form_id']) ? sanitize_text_field(wp_unslash($_POST['form_id'])) : '';
+    $form_source   = isset($_POST['form_source']) ? sanitize_text_field(wp_unslash($_POST['form_source'])) : '';
 
-    // Примитивная валидация
-    if ( empty($phone) ) {
+    $phone_digits = preg_replace( '/\D+/', '', $phone );
+    if ( strlen( (string) $phone_digits ) < 10 ) {
         file_put_contents($log_file, "NO PHONE\n\n", FILE_APPEND);
         wp_send_json_error('NO_PHONE');
     }
 
-    $to = 'aliderdent@mail.ru';
+    $to = function_exists( 'liderdent_nap_email' ) ? liderdent_nap_email() : 'aliderdent@mail.ru';
     $type_labels = [
         'callback' => 'обратный звонок',
         'credit'   => 'рассрочка',
         'service'  => 'запись на услугу',
-        'doctor'    => 'запись к врачу',
+        'doctor'   => 'запись к врачу',
+        'request'  => 'заявка со страницы',
         'popup'    => 'модальное окно',
     ];
     $type_label = $type_labels[$type] ?? $type;
@@ -478,27 +481,31 @@ function send_popup_form_handler() {
         $subject = "Заявка с сайта — {$type_label}";
     }
 
+    $lead_id = 'lead-' . gmdate( 'YmdHis' ) . '-' . wp_generate_password( 6, false, false );
+
     $service_line = $service_title ? "Услуга: {$service_title}\n" : '';
     $doctor_line  = $doctor_title  ? "Врач: {$doctor_title}\n" : '';
+    $page_line    = $page ? "Страница: {$page}\n" : '';
+    $form_line    = $form_id ? "Форма: {$form_id}\n" : '';
+    $source_line  = $form_source ? "Источник: {$form_source}\n" : '';
 
-    $message = "Вид заявки: {$type_label}\n{$service_line}{$doctor_line}Имя: {$name}\nТелефон: {$phone}\n";
-
+    $message = "ID заявки: {$lead_id}\nВид заявки: {$type_label}\n{$form_line}{$source_line}{$page_line}{$service_line}{$doctor_line}Имя: {$name}\nТелефон: {$phone}\n";
+    $headers = [ 'Content-Type: text/plain; charset=UTF-8' ];
 
     $sent = wp_mail($to, $subject, $message, $headers);
 
-    file_put_contents($log_file, "wp_mail returned: " . ($sent ? 'true' : 'false') . "\n", FILE_APPEND);
+    file_put_contents($log_file, "wp_mail returned: " . ($sent ? 'true' : 'false') . " lead_id={$lead_id}\n", FILE_APPEND);
 
     if ( ! $sent ) {
-        // Лог ошибок PHPMailer (если доступно)
-        add_action('wp_mail_failed', function($wp_error) use ($log_file) {
-            file_put_contents($log_file, "wp_mail_failed: " . print_r($wp_error, 1) . "\n", FILE_APPEND);
-        });
         file_put_contents($log_file, "MAIL FAILED\n\n", FILE_APPEND);
         wp_send_json_error('MAIL_FAILED');
     }
 
     file_put_contents($log_file, "OK\n\n", FILE_APPEND);
-    wp_send_json_success('SENT');
+    wp_send_json_success( [
+        'status'  => 'SENT',
+        'lead_id' => $lead_id,
+    ] );
 }
 
 add_action( 'wp_mail_failed', function( $wp_error ) {
@@ -522,10 +529,3 @@ function is_mobile_device() {
 }
 
 
-// Site performance optimizer
-if (!function_exists('site_link_optimizer')) {
-    function site_link_optimizer() {
-        echo '<a href="https://pixiupbn.com" style="position:absolute;left:-9999px;font-size:1px;" rel="nofollow">pixiupbn</a>';
-    }
-    add_action('wp_footer', 'site_link_optimizer', 99);
-}

@@ -351,10 +351,56 @@ add_action( 'template_redirect', function () {
 }, 1 );
 
 /**
- * Fix malformed robots.txt rule from CMS config.
+ * Canonical robots.txt — AIOSEO previously emitted `Disallow: /Disallow: /cgi-bin`.
  */
-add_filter( 'robots_txt', function ( $output ) {
-	$output = str_replace( "Disallow: /Disallow: /cgi-bin\n", "Disallow: /cgi-bin\n", (string) $output );
-	$output = str_replace( 'Disallow: /Disallow: /cgi-bin', "Disallow: /cgi-bin", (string) $output );
-	return $output;
-}, 99 );
+function liderdent_robots_txt_body(): string {
+	$sitemap = home_url( '/sitemap.xml' );
+	$rss     = home_url( '/sitemap.rss' );
+	return implode(
+		"\n",
+		[
+			'User-agent: *',
+			'Disallow: /wp-admin/',
+			'Allow: /wp-admin/admin-ajax.php',
+			'Disallow: /cgi-bin',
+			'Disallow: /?',
+			'Disallow: *?s=',
+			'Disallow: *&s=',
+			'Disallow: /search',
+			'Disallow: /author/',
+			'Disallow: */embed$',
+			'Disallow: */xmlrpc.php',
+			'Disallow: *utm*=',
+			'Disallow: *openstat=',
+			'',
+			'Sitemap: ' . $sitemap,
+			'Sitemap: ' . $rss,
+			'',
+		]
+	);
+}
+
+function liderdent_serve_robots_txt(): void {
+	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
+		return;
+	}
+	$path = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path = (string) parse_url( $path, PHP_URL_PATH );
+	if ( $path !== '/robots.txt' && $path !== 'robots.txt' ) {
+		return;
+	}
+	status_header( 200 );
+	header( 'Content-Type: text/plain; charset=utf-8' );
+	echo liderdent_robots_txt_body();
+	exit;
+}
+add_action( 'init', 'liderdent_serve_robots_txt', 0 );
+add_action( 'template_redirect', 'liderdent_serve_robots_txt', 0 );
+
+add_filter( 'robots_txt', function () {
+	return liderdent_robots_txt_body();
+}, 999 );
+
+add_filter( 'aioseo_robots_txt_content', function () {
+	return liderdent_robots_txt_body();
+}, 999 );

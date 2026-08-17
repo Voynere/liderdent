@@ -103,29 +103,14 @@
         <img class="request__background" src="<?php bloginfo('template_url') ?>/assets/img/request_background.png" alt="">
         <div class="container">
             <div class="request__inner">
-                <form action="" class="request__form">
-                    <h3 class="request__title">ОСТАВЬТЕ ОНЛАЙН-ЗАЯВКУ НА ПРИЁМ</h3>
-                    <div class="request__info">
-                        <p class="request__info-text">Запишитесь на первичную консультацию имплантолога, где вы получите:</p>
-                        <p class="request__info-text">— Подберём импланты специально для вас.</p>
-                        <p class="request__info-text">— Рассчитаем 3 варианта лечения с подробной сметой.</p>
-                    </div>
-                    <div class="request__content">
-                        <input type="tel" class="request__phone" placeholder="+7 (___)___ __ __">
-                        <button class="request__submit btn-gold" type="submit">
-                            Заказать звонок
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="request__policy">
-                        <input class="request__policy-input" type="checkbox" name="" id="">
-                        <p class="request__policy-text">
-                            Отправляя заявку, вы соглашаетесь с <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">политикой обработки персональных данных</a>.
-                        </p>
-                    </div>
-                </form>
+                <?php
+                get_template_part( 'template-parts/request-form', null, [
+                    'form_id' => 'form-request-about',
+                    'source'  => 'request-about',
+                    'variant' => 'generic',
+                    'service' => 'Запись на приём',
+                ] );
+                ?>
             </div>
         </div>
     </section>

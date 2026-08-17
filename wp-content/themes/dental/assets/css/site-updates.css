@@ -1859,3 +1859,94 @@ html.mobile-menu-open body {
         font-size: 1.35rem;
     }
 }
+
+.request__content .request__submit {
+    grid-column: 1 / -1;
+}
+
+.lead-form__status {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #404040;
+}
+
+.lead-form__status--ok {
+    color: #1a5c32;
+}
+
+.lead-form__status--err {
+    color: #8a1f1f;
+}
+
+.page-404 {
+    padding: 48px 0 80px;
+}
+
+.page-404__inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.page-404__title {
+    margin: 0 0 16px;
+    font-family: var(--font-f-ysabeau, inherit);
+    font-size: 36px;
+    font-weight: 600;
+    color: #1a3a5c;
+    text-transform: none;
+}
+
+.page-404__text {
+    margin: 0 0 24px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #404040;
+}
+
+.page-404__search {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.page-404__search input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid rgba(64, 64, 64, 0.3);
+    border-radius: 10px;
+}
+
+.page-404__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-bottom: 28px;
+}
+
+.page-404__nav a {
+    color: #1e5791;
+    text-decoration: underline;
+}
+
+.page-404__cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.page-404__phone {
+    color: #404040;
+    font-size: 18px;
+}
+
+@media (max-width: 578px) {
+    .page-404__title {
+        font-size: 28px;
+    }
+
+    .page-404__search {
+        flex-direction: column;
+    }
+}

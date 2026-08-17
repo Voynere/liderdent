@@ -272,12 +272,13 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="" class="popup-callback__form">
-                        <input name="name" class="popup-callback__form-item" type="text" placeholder="Введите имя">
-                        <input name="phone"  class="popup-callback__form-item" type="text" placeholder="+7 (___) ___ __-__">
+                    <form <?php liderdent_lead_form_atts( [ 'id' => 'form-popup-callback', 'class' => 'popup-callback__form', 'type' => 'callback', 'source' => 'popup-callback' ] ); ?>>
+                        <?php liderdent_lead_hidden_fields( [ 'type' => 'callback', 'form_id' => 'form-popup-callback', 'source' => 'popup-callback' ] ); ?>
+                        <input name="name" class="popup-callback__form-item" type="text" autocomplete="name" placeholder="Введите имя" required>
+                        <input name="phone" class="popup-callback__form-item" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___ __-__" required>
                         <button class="popup-callback__form-item popup-callback__form-submit btn-gold" type="submit">
                             <span>Заказать звонок</span>
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#D2AE6B"/>
                             </svg>
                         </button>
@@ -285,7 +286,7 @@
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
                             <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
-                        <p class="visually-hidden">Заявка на обратный звонок</p>
+                        <p class="lead-form__status" role="status" aria-live="polite" hidden></p>
                     </form>
                 </div>
                 <div class="popup-callback" id="popup-credit">
@@ -297,12 +298,13 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="" class="popup-callback__form">
-                        <input name="name" class="popup-callback__form-item" type="text" placeholder="Введите имя">
-                        <input name="phone"  class="popup-callback__form-item" type="text" placeholder="+7 (___) ___ __-__">
+                    <form <?php liderdent_lead_form_atts( [ 'id' => 'form-popup-credit', 'class' => 'popup-callback__form', 'type' => 'credit', 'source' => 'popup-credit', 'service' => 'Рассрочка' ] ); ?>>
+                        <?php liderdent_lead_hidden_fields( [ 'type' => 'credit', 'form_id' => 'form-popup-credit', 'source' => 'popup-credit', 'service' => 'Рассрочка' ] ); ?>
+                        <input name="name" class="popup-callback__form-item" type="text" autocomplete="name" placeholder="Введите имя" required>
+                        <input name="phone" class="popup-callback__form-item" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___ __-__" required>
                         <button class="popup-callback__form-item popup-callback__form-submit btn-gold" type="submit">
                             <span>Заказать звонок</span>
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#D2AE6B"/>
                             </svg>
                         </button>
@@ -310,7 +312,7 @@
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
                             <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
-                        <p class="visually-hidden">Узнать подробности о рассрочке</p>
+                        <p class="lead-form__status" role="status" aria-live="polite" hidden></p>
                     </form>
                 </div>
                 <div class="popup-callback" id="popup-doctors">
@@ -322,13 +324,14 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="" class="popup-callback__form">
-                        <input name="name" class="popup-callback__form-item" type="text" placeholder="Введите имя">
-                        <input name="phone"  class="popup-callback__form-item" type="text" placeholder="+7 (___) ___ __-__">
+                    <form <?php liderdent_lead_form_atts( [ 'id' => 'form-popup-doctors', 'class' => 'popup-callback__form', 'type' => 'doctor', 'source' => 'popup-doctors' ] ); ?>>
+                        <?php liderdent_lead_hidden_fields( [ 'type' => 'doctor', 'form_id' => 'form-popup-doctors', 'source' => 'popup-doctors' ] ); ?>
+                        <input name="name" class="popup-callback__form-item" type="text" autocomplete="name" placeholder="Введите имя" required>
+                        <input name="phone" class="popup-callback__form-item" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___ __-__" required>
                         <input name="doctor_title" type="hidden" value="">
                         <button class="popup-callback__form-item popup-callback__form-submit btn-gold" type="submit">
                             <span>Заказать звонок</span>
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#D2AE6B"/>
                             </svg>
                         </button>
@@ -336,7 +339,7 @@
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
                             <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
-                        <p class="visually-hidden">Узнать подробности о рассрочке</p>
+                        <p class="lead-form__status" role="status" aria-live="polite" hidden></p>
                     </form>
                 </div>
                 <div class="popup-callback" id="popup-service">
@@ -348,13 +351,13 @@
                             </svg>
                         </button>
                     </div>
-                    <form action="" class="popup-callback__form">
-                        <input name="name" class="popup-callback__form-item" type="text" placeholder="Введите имя">
-                        <input name="phone"  class="popup-callback__form-item" type="text" placeholder="+7 (___) ___ __-__">
-                        <input name="service_title" type="hidden" value="">
+                    <form <?php liderdent_lead_form_atts( [ 'id' => 'form-popup-service', 'class' => 'popup-callback__form', 'type' => 'service', 'source' => 'popup-service' ] ); ?>>
+                        <?php liderdent_lead_hidden_fields( [ 'type' => 'service', 'form_id' => 'form-popup-service', 'source' => 'popup-service' ] ); ?>
+                        <input name="name" class="popup-callback__form-item" type="text" autocomplete="name" placeholder="Введите имя" required>
+                        <input name="phone" class="popup-callback__form-item" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___ __-__" required>
                         <button class="popup-callback__form-item popup-callback__form-submit btn-gold" type="submit">
                             <span>Заказать звонок</span>
-                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#D2AE6B"/>
                             </svg>
                         </button>
@@ -362,7 +365,7 @@
                             Нажимая на кнопку, вы автоматически соглашаетесь с 
                             <a href="<?php echo esc_url( liderdent_privacy_policy_url() ); ?>">Политикой обработки персональных данных.</a>
                         </p>
-                        <p class="visually-hidden">Узнать подробности о рассрочке</p>
+                        <p class="lead-form__status" role="status" aria-live="polite" hidden></p>
                     </form>
                 </div>
 
