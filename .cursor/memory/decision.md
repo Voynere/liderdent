@@ -68,3 +68,7 @@ Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сдел
 ## 2026-08-17 01:21 UTC
 
 Метрика и Вебмастер liderdent = аккаунт lider.mrt как МРТ Лидер. JS-цели счётчика 106770436 заведены 2026-08-17: form_open=598283148, form_start=598283149, form_submit_success=598283150, form_submit_error=598283151. Токен TOKEN_LIDER_MRT на проде в wp-content/mrt-secrets/yandex-direct.env (не в git). Повтор: gh workflow run create-metrika-goals.yml. На этой машине нет ~/.ssh/mrt_deploy.
+
+## 2026-08-17 04:22 UTC
+
+2026-08-17: страница /dms/ лечение по ДМС. Меню ДМС в шапке/футере. Страховки только СОГАЗ, Ингосстрах, АльфаСтрахование, Сберздоровье. Шаблон page-dms.php, seed liderdent_dms_page_v1. CTA попап + form-request-dms. SHA 8738760, deploy 31994185998 зелёный.
