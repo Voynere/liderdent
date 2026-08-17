@@ -56,3 +56,15 @@ Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сдел
 ## 2026-08-16 14:45 UTC
 
 2026-08-17: клон /home/voynere/Projects/liderdent через gh HTTPS (SSH git@github.com host key fail). Репо Voynere/liderdent PRIVATE. Тема без правок. Handoff docs/HANDOFF_2026-08-17.md. Завтра: category.php карточки блога, mid-article ~9, mobile QA.
+
+## 2026-08-17 00:52 UTC
+
+2026-08-17 аудит прода: SEO 7/10 UX 6.5/10. P0–P4 от 14.08 живые. Новые блокеры: request__form не шлёт заявки; 404 пустой; robots Disallow склеен (AIOSEO); NAP 3 email + часы 08 vs 09. Sitemap без /services/{slug}/, тонкие прайс-посты в индексе. Город Красноярск. Canvas site-seo-ux-plan, план seov/plan.md. Не коммитили.
+
+## 2026-08-17 01:02 UTC
+
+2026-08-17 P0: request__form → send_popup_form; 404.php; NAP SSOT aliderdent@mail.ru + 09:00–21:00; robots.txt отдаёт тема. Метрика 106770436 ecommerce dataLayer: impressions/detail/add/checkout/purchase (без PII). Цели: form_open, form_start, form_submit_success, form_submit_error. SHA bcfb9d4, deploy 31983710396 зелёный.
+
+## 2026-08-17 01:21 UTC
+
+Метрика и Вебмастер liderdent = аккаунт lider.mrt как МРТ Лидер. JS-цели счётчика 106770436 заведены 2026-08-17: form_open=598283148, form_start=598283149, form_submit_success=598283150, form_submit_error=598283151. Токен TOKEN_LIDER_MRT на проде в wp-content/mrt-secrets/yandex-direct.env (не в git). Повтор: gh workflow run create-metrika-goals.yml. На этой машине нет ~/.ssh/mrt_deploy.

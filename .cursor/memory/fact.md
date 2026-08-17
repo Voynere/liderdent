@@ -25,3 +25,11 @@
 ## 2026-08-16 14:45 UTC
 
 GitHub Voynere/liderdent private с 2026-08-15. Локальный путь /home/voynere/Projects/liderdent. Клон/push через gh HTTPS, не git@ SSH (host key / ssh-askpass).
+
+## 2026-08-17 01:13 UTC
+
+Цели Метрики 106770436 (form_open, form_start, form_submit_success, form_submit_error) кодом шлются, в API не созданы: нет OAuth metrika:write. Положить токен в seov/.env.metrika и повторить POST /management/v1/counter/106770436/goals.
+
+## 2026-08-17 01:57 UTC
+
+Topvisor liderdent24.ru: проект 31594521, 216 ключей / 28 групп, Яндекс+Google Красноярск region_key=62 (indexes 87 и 151). Сбор позиций запущен 2026-08-17, checker/go вернул projectIds [31594521], отдельного task id нет. Ключ в seov/.env.topvisor (gitignore), тот же аккаунт что lighttread/proauc. Не дублировать проект. Таблица: seov/topvisor.md
