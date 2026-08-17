@@ -36,3 +36,7 @@ Handoff 2026-08-17: код темы не деплоился (только docs/R
 ## 2026-08-17 08:34 UTC
 
 17.08 деплои Voynere/liderdent deploy.yml все зелёные: bcfb9d4 run 31983710396 (P0 формы/404/NAP/ecommerce); 3b0cd30 run 31984653283 (скрипт целей Метрики); 8738760 run 31994185998 (ДМС /dms/); e265e2d run 31994276267 (RAG ДМС). Smoke / 200. Workflow rsync только темы dental — docs/memory на WP не едут.
+
+## 2026-08-17 08:36 UTC
+
+Handoff 17.08 закоммичен: SHA 8157b3e, deploy.yml run 32011038754 зелёный. Тема без правок с 8738760. Smoke / 200.
