@@ -1,0 +1,58 @@
+name: Create Metrika goals
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'dry-run or apply'
+        required: true
+        default: 'apply'
+        type: choice
+        options:
+          - dry-run
+          - apply
+
+jobs:
+  goals:
+    name: Create JS goals on 106770436
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Upload goals script
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "scripts/create-metrika-goals.php"
+          target: "/tmp/liderdent-metrika-goals-${{ github.run_id }}"
+
+      - name: Create Metrika goals
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          command_timeout: 8m
+          script: |
+            set -euo pipefail
+            SCRIPT="/tmp/liderdent-metrika-goals-${{ github.run_id }}/scripts/create-metrika-goals.php"
+            ENV_FILE="/var/www/mrtlider/data/www/mrt-lider.ru/wp-content/mrt-secrets/yandex-direct.env"
+            MODE="${{ inputs.mode }}"
+
+            test -f "$SCRIPT"
+            test -f "$ENV_FILE"
+
+            FLAG=(--dry-run)
+            if [ "$MODE" = "apply" ]; then FLAG=(--apply); fi
+
+            echo "======== metrika goals 106770436 ========"
+            php "$SCRIPT" --env="$ENV_FILE" --counter=106770436 "${FLAG[@]}"
+
+            rm -rf "/tmp/liderdent-metrika-goals-${{ github.run_id }}"
