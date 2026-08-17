@@ -13,6 +13,7 @@
 | `page-service-landing.php` | Виртуальный лендинг `/services/{slug}/` |
 | `page-promotion.php` | Акции |
 | `page-legal-info.php` | Правовая информация |
+| `page-dms.php` | Лечение по ДМС `/dms/` |
 | `single.php` | Запись блога → `content-article` |
 | `single-specialist.php` | Карточка врача (CPT) |
 | `category.php` | Архив категории (услуги-цены / блог) |
@@ -32,7 +33,7 @@
 ## Мобильное меню
 
 - Partial: `template-parts/mobile-menu.php` (подключается из обоих header)
-- Пункты: Все услуги, 4 направления, Акции, Цены, Врачи, Статьи, О нас, Контакты, Юр.инфо
+- Пункты: Все услуги, 4 направления, Акции, Цены, ДМС, Врачи, Статьи, О нас, Контакты, Юр.инфо
 - JS в `home.js`: open/close, Escape, overlay, `aria-expanded`, lock scroll (`html.mobile-menu-open`)
 
 ## Логика в `functions.php`
@@ -44,6 +45,7 @@
 - SEO: `inc/seo.php`
 - Лендинги: `inc/service-landings.php` + реестр `inc/services-content.php`
 - Seeds: `inc/content-seed.php`
+- ДМС: `inc/dms.php` + `page-dms.php` (`/dms/`, seed `liderdent_dms_page_v1`)
 - Slug-миграции: `inc/slug-migrations.php`
 
 ## Услуги / посадочные
@@ -77,7 +79,7 @@
 
 - Услуги: `/service/` + `/services/{slug}/`
 - Врачи: `/doctors/` + `/specialist/...`
-- Цены: `/prices/` · Акции: `/sales/` · Блог: `/category/blog/`
+- Цены: `/prices/` · ДМС: `/dms/` · Акции: `/sales/` · Блог: `/category/blog/`
 - Privacy: `/privacy/` → правовая страница
 
 ## Handoff

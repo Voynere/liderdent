@@ -87,6 +87,9 @@
                                     <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
                                 </li>
                                 <li>
+                                    <a href="<?php echo esc_url( liderdent_dms_page_url() ); ?>">ДМС</a>
+                                </li>
+                                <li>
                                     <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>
                                 </li>
                                 <li>
@@ -115,6 +118,9 @@
                                         </li>
                                         <li>
                                             <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo esc_url( liderdent_dms_page_url() ); ?>">ДМС</a>
                                         </li>
                                         <li>
                                             <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>
@@ -181,6 +187,9 @@
                                             </li>
                                             <li class="follow-menu-hidden">
                                                 <a href="<?php echo get_home_url(); ?>/prices/">Цены</a>
+                                            </li>
+                                            <li class="follow-menu-hidden">
+                                                <a href="<?php echo esc_url( liderdent_dms_page_url() ); ?>">ДМС</a>
                                             </li>
                                             <li class="follow-menu-hidden">
                                                 <a href="<?php echo get_home_url(); ?>/doctors/">Наши врачи</a>

@@ -38,6 +38,9 @@
 					<a href="<?php echo esc_url( home_url( '/prices/' ) ); ?>">Цены</a>
 				</li>
 				<li>
+					<a href="<?php echo esc_url( function_exists( 'liderdent_dms_page_url' ) ? liderdent_dms_page_url() : home_url( '/dms/' ) ); ?>">ДМС</a>
+				</li>
+				<li>
 					<a href="<?php echo esc_url( home_url( '/doctors/' ) ); ?>">Наши врачи</a>
 				</li>
 				<li>

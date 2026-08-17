@@ -9,6 +9,7 @@ require get_template_directory() . '/inc/lead-forms.php';
 require get_template_directory() . '/inc/services-content.php';
 require get_template_directory() . '/inc/service-landings.php';
 require get_template_directory() . '/inc/content-seed.php';
+require get_template_directory() . '/inc/dms.php';
 
 function liderdent_needs_swiper(): bool {
 	if ( is_front_page() || is_singular( 'specialist' ) ) {
@@ -188,6 +189,7 @@ function liderdent_get_page_breadcrumb_title( $post = null ): string {
         'service' => 'Услуги',
         'doctors' => 'Наши врачи',
         'about'   => 'О нас',
+        'dms'     => 'ДМС',
     ];
 
     if ( $post && isset( $slug_titles[ $post->post_name ] ) ) {

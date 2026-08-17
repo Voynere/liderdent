@@ -21,6 +21,7 @@ get_header();
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
 				<a href="<?php echo esc_url( home_url( '/service/' ) ); ?>">Услуги</a>
 				<a href="<?php echo esc_url( home_url( '/prices/' ) ); ?>">Цены</a>
+				<a href="<?php echo esc_url( function_exists( 'liderdent_dms_page_url' ) ? liderdent_dms_page_url() : home_url( '/dms/' ) ); ?>">ДМС</a>
 				<a href="<?php echo esc_url( home_url( '/doctors/' ) ); ?>">Врачи</a>
 				<a href="<?php echo esc_url( home_url( '/contacts/' ) ); ?>">Контакты</a>
 			</nav>
