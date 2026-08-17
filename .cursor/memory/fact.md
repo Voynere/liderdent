@@ -33,3 +33,7 @@ GitHub Voynere/liderdent private с 2026-08-15. Локальный путь /hom
 ## 2026-08-17 01:57 UTC
 
 Topvisor liderdent24.ru: проект 31594521, 216 ключей / 28 групп, Яндекс+Google Красноярск region_key=62 (indexes 87 и 151). Сбор позиций запущен 2026-08-17, checker/go вернул projectIds [31594521], отдельного task id нет. Ключ в seov/.env.topvisor (gitignore), тот же аккаунт что lighttread/proauc. Не дублировать проект. Таблица: seov/topvisor.md
+
+## 2026-08-17 08:34 UTC
+
+liderdent24.ru: клиника Красноярск, ул. Мужества, 4. Счётчик Метрики 106770436, аккаунт lider.mrt (как МРТ Лидер / Вебмастер). JS-цели form_open 598283148, form_start 598283149, form_submit_success 598283150, form_submit_error 598283151. Ecommerce dataLayer без PII. Topvisor проект 31594521, 216 ключей, 28 групп, Яндекс+Google Красноярск region_key=62. ДМС /dms/: СОГАЗ, Ингосстрах, АльфаСтрахование, Сберздоровье. Локальные env gitignore: seov/.env.metrika и seov/.env.topvisor. Клон: /Volumes/dwSN850x/Projects/liderdent.

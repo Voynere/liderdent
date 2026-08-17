@@ -32,3 +32,7 @@ Deploy 18f5c4a slug Войтова/Маркова + privacy 301, run 31761853166
 ## 2026-08-16 14:45 UTC
 
 Handoff 2026-08-17: код темы не деплоился (только docs/RAG). После push проверить deploy.yml на docs-only коммит — rsync темы без изменений.
+
+## 2026-08-17 08:34 UTC
+
+17.08 деплои Voynere/liderdent deploy.yml все зелёные: bcfb9d4 run 31983710396 (P0 формы/404/NAP/ecommerce); 3b0cd30 run 31984653283 (скрипт целей Метрики); 8738760 run 31994185998 (ДМС /dms/); e265e2d run 31994276267 (RAG ДМС). Smoke / 200. Workflow rsync только темы dental — docs/memory на WP не едут.

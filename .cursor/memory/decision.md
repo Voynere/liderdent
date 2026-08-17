@@ -72,3 +72,7 @@ Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сдел
 ## 2026-08-17 04:22 UTC
 
 2026-08-17: страница /dms/ лечение по ДМС. Меню ДМС в шапке/футере. Страховки только СОГАЗ, Ингосстрах, АльфаСтрахование, Сберздоровье. Шаблон page-dms.php, seed liderdent_dms_page_v1. CTA попап + form-request-dms. SHA 8738760, deploy 31994185998 зелёный.
+
+## 2026-08-17 08:34 UTC
+
+2026-08-17 вечер: сессия закрыта. P0 на проде — .request__form → send_popup_form; 404.php; NAP aliderdent@mail.ru 09:00–21:00; robots отдаёт тема. ДМС /dms/ (СОГАЗ, Ингосстрах, АльфаСтрахование, Сберздоровье) + пункт меню. Метрика 106770436 lider.mrt, цели form_open 598283148, form_start 598283149, form_submit_success 598283150, form_submit_error 598283151, ecommerce без PII. Topvisor 31594521 сбор запущен. Handoff docs/HANDOFF_2026-08-17.md. Завтра: тонкие прайс-посты, снимок Topvisor percent=100, бэклог seov/plan.md. Head до handoff-коммита e265e2d.

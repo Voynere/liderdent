@@ -48,7 +48,7 @@ Deploy workflow выполняет `wp plugin update --all` и flush cache по�
 ## GitHub
 
 - Репозиторий **private** (`Voynere/liderdent`) с 2026-08-15.
-- Локальный клон: `/home/voynere/Projects/liderdent`.
+- Локальный клон: `/Volumes/dwSN850x/Projects/liderdent` (есть также `/home/voynere/Projects/liderdent`).
 - На этой машине SSH к GitHub (`git@github.com:...`) может падать на host key / `ssh-askpass`. Клон и git-операции — через `gh` (HTTPS, уже авторизован).
 
 ## Локальная копия
