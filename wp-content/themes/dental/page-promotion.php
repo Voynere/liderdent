@@ -13,7 +13,7 @@
     <section class="promotion promotion-page">
         <div class="container">
             <div class="promotion__inner">
-                <h1 class="page-title promotion-page__hero">АКЦИИ И СПЕЦПРЕДЛОЖЕНИЯ</h1>
+                <h1 class="page-title promotion-page__hero">Акции и спецпредложения</h1>
 
                 <?php foreach ( liderdent_get_promotions() as $promo ) :
                     $card_class = 'promotion-page__card';

@@ -12,7 +12,7 @@
     <section class="legal-info">
         <div class="container">
             <div class="legal-info__inner">
-                <h1 class="page-title legal-info__title">ПРАВОВАЯ И ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ</h1>
+                <h1 class="page-title legal-info__title">Правовая и юридическая информация</h1>
                 <div class="legal-info__content">
                     <ul class="legal-info__list">
                         <?php

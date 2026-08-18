@@ -14,7 +14,7 @@
         <div class="container">
             <div class="page-contacts__inner">
                 <div class="page-contacts__head">
-                    <h1 class="page-contacts__title">СВЯЖИТЕСЬ С НАМИ</h1>
+                    <h1 class="page-contacts__title">Контакты стоматологии «ЛидерДент»</h1>
                     <p class="page-contacts__subtitle first">МЫ ПРОКОНСУЛЬТИРУЕМ</p>
                     <p class="page-contacts__subtitle last">ПО ЛЮБОМУ ВОПРОСУ</p>
                 </div>

@@ -14,7 +14,7 @@
         <div class="container">
             <div class="page-about__inner">
                 <div class="page-about__content">
-                    <h1 class="page-about__title page-title">О НАС</h1>
+                    <h1 class="page-about__title page-title">О клинике «ЛидерДент»</h1>
                     <div class="page-about__info">
                         <div class="page-about__info-item">
                             <p class="page-about__info-text">

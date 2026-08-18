@@ -82,6 +82,7 @@
 - Цены: `/prices/` · ДМС: `/dms/` · Акции: `/sales/` · Блог: `/category/blog/`
 - Privacy: `/privacy/` → правовая страница
 - Прайс-SKU (посты дерева `services`, не блог): 301 на `/services/{slug}/` или хаб; noindex + вне sitemap
+- Лендинги в sitemap: `/services-sitemap.xml` (тема) + индекс AIOSEO + строка в robots.txt
 
 ## Handoff
 

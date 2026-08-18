@@ -13,7 +13,7 @@
     <section class="page-service">
         <div class="container">
             <div class="page-service__inner">
-                <h1 class="page-service__title page-title">НАШИ УСЛУГИ</h1>
+                <h1 class="page-service__title page-title">Услуги стоматологии в Красноярске</h1>
                 <div class="page-service__content">
                     <?php
                     // slug родительской рубрики "Услуги"

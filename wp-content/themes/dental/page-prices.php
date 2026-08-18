@@ -13,7 +13,7 @@
     <section class="about">
         <div class="container">
             <div class="about__inner">
-                <h1 class="page-title">ПРАЙС</h1>
+                <h1 class="page-title">Цены на услуги стоматологии</h1>
                 <div class="about__content">
                     <div class="about__left">
                         <?php liderdent_render_short_prices( 'page' ); ?>

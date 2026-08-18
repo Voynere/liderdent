@@ -563,11 +563,80 @@ add_filter(
 );
 
 /**
+ * Virtual service landings for sitemap (registry only, not price-SKU posts).
+ *
+ * @return string[]
+ */
+function liderdent_service_landing_sitemap_urls(): array {
+	if ( ! function_exists( 'liderdent_get_services_content' ) || ! function_exists( 'liderdent_service_landing_url' ) ) {
+		return [];
+	}
+	$urls = [];
+	foreach ( array_keys( liderdent_get_services_content() ) as $slug ) {
+		$urls[] = liderdent_service_landing_url( (string) $slug );
+	}
+	return $urls;
+}
+
+function liderdent_services_sitemap_url(): string {
+	return home_url( '/services-sitemap.xml' );
+}
+
+function liderdent_serve_services_sitemap(): void {
+	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
+		return;
+	}
+	$path = isset( $_SERVER['REQUEST_URI'] ) ? (string) wp_unslash( $_SERVER['REQUEST_URI'] ) : '';
+	$path = (string) parse_url( $path, PHP_URL_PATH );
+	if ( $path !== '/services-sitemap.xml' && $path !== 'services-sitemap.xml' ) {
+		return;
+	}
+
+	$urls = liderdent_service_landing_sitemap_urls();
+	status_header( 200 );
+	header( 'Content-Type: application/xml; charset=utf-8' );
+	echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+	echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
+	$lastmod = gmdate( 'c' );
+	foreach ( $urls as $url ) {
+		echo "\t<url>\n";
+		echo "\t\t<loc>" . esc_url( $url ) . "</loc>\n";
+		echo "\t\t<lastmod>" . esc_html( $lastmod ) . "</lastmod>\n";
+		echo "\t\t<changefreq>weekly</changefreq>\n";
+		echo "\t\t<priority>0.8</priority>\n";
+		echo "\t</url>\n";
+	}
+	echo '</urlset>';
+	exit;
+}
+add_action( 'init', 'liderdent_serve_services_sitemap', 0 );
+add_action( 'template_redirect', 'liderdent_serve_services_sitemap', 0 );
+
+add_filter(
+	'aioseo_sitemap_indexes',
+	static function ( $indexes ) {
+		$indexes = is_array( $indexes ) ? $indexes : [];
+		$urls    = liderdent_service_landing_sitemap_urls();
+		if ( ! $urls ) {
+			return $indexes;
+		}
+		$indexes[] = [
+			'loc'     => liderdent_services_sitemap_url(),
+			'lastmod' => gmdate( 'c' ),
+			'count'   => count( $urls ),
+		];
+		return $indexes;
+	},
+	20
+);
+
+/**
  * Canonical robots.txt — AIOSEO previously emitted `Disallow: /Disallow: /cgi-bin`.
  */
 function liderdent_robots_txt_body(): string {
-	$sitemap = home_url( '/sitemap.xml' );
-	$rss     = home_url( '/sitemap.rss' );
+	$sitemap          = home_url( '/sitemap.xml' );
+	$rss              = home_url( '/sitemap.rss' );
+	$services_sitemap = liderdent_services_sitemap_url();
 	return implode(
 		"\n",
 		[
@@ -587,6 +656,7 @@ function liderdent_robots_txt_body(): string {
 			'',
 			'Sitemap: ' . $sitemap,
 			'Sitemap: ' . $rss,
+			'Sitemap: ' . $services_sitemap,
 			'',
 		]
 	);
