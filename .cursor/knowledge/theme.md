@@ -81,7 +81,8 @@
 - Врачи: `/doctors/` + `/specialist/...`
 - Цены: `/prices/` · ДМС: `/dms/` · Акции: `/sales/` · Блог: `/category/blog/`
 - Privacy: `/privacy/` → правовая страница
+- Прайс-SKU (посты дерева `services`, не блог): 301 на `/services/{slug}/` или хаб; noindex + вне sitemap
 
 ## Handoff
 
-См. `docs/HANDOFF_2026-08-14.md`
+См. `docs/HANDOFF_2026-08-18.md`

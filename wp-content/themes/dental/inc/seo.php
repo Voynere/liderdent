@@ -339,6 +339,7 @@ function liderdent_privacy_policy_url(): string {
 /**
  * 301 /blog/ → /category/blog/
  * 301 /privacy/ → правовая страница (политика ПДн)
+ * 301 /specialist/ archive → /doctors/
  */
 add_action( 'template_redirect', function () {
 	if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
@@ -355,7 +356,211 @@ add_action( 'template_redirect', function () {
 		wp_safe_redirect( liderdent_privacy_policy_url(), 301 );
 		exit;
 	}
+	if ( $path === 'specialist' || is_post_type_archive( 'specialist' ) ) {
+		wp_safe_redirect( home_url( '/doctors/' ), 301 );
+		exit;
+	}
 }, 1 );
+
+/**
+ * Price-list SKU posts: rows in /category/services/* tables, not blog articles.
+ * They have no single template/H1 and pollute the index (e.g. /478-2/).
+ */
+function liderdent_is_price_sku_post( $post = null ): bool {
+	$post = get_post( $post );
+	if ( ! $post || $post->post_type !== 'post' ) {
+		return false;
+	}
+	if ( has_category( 'blog', $post ) ) {
+		return false;
+	}
+	$services = get_category_by_slug( 'services' );
+	if ( ! $services ) {
+		return false;
+	}
+	foreach ( get_the_category( $post->ID ) as $cat ) {
+		if ( (int) $cat->term_id === (int) $services->term_id ) {
+			return true;
+		}
+		if ( cat_is_ancestor_of( (int) $services->term_id, (int) $cat->term_id ) ) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * IDs of published price SKU posts (for AIOSEO / core sitemap exclude).
+ *
+ * @return int[]
+ */
+function liderdent_price_sku_post_ids(): array {
+	static $ids = null;
+	if ( is_array( $ids ) ) {
+		return $ids;
+	}
+	$ids      = [];
+	$services = get_category_by_slug( 'services' );
+	if ( ! $services ) {
+		return $ids;
+	}
+	$children = get_term_children( (int) $services->term_id, 'category' );
+	if ( is_wp_error( $children ) ) {
+		$children = [];
+	}
+	$blog = get_category_by_slug( 'blog' );
+	$q    = new WP_Query(
+		[
+			'post_type'              => 'post',
+			'post_status'            => 'publish',
+			'posts_per_page'         => -1,
+			'fields'                 => 'ids',
+			'no_found_rows'          => true,
+			'update_post_meta_cache' => false,
+			'update_post_term_cache' => false,
+			'category__in'           => array_merge( [ (int) $services->term_id ], array_map( 'intval', $children ) ),
+			'category__not_in'       => $blog ? [ (int) $blog->term_id ] : [],
+		]
+	);
+	$ids = array_map( 'intval', $q->posts );
+	return $ids;
+}
+
+/**
+ * Featured offer slugs that already have /services/{slug}/ landings.
+ *
+ * @return array<string,string> post_name => landing slug
+ */
+function liderdent_price_sku_offer_aliases(): array {
+	return [
+		'ustanovka-implantata-osstem-koreya-vklyuchaya'      => 'implantaciya-osstem-inno',
+		'ustanovka-implantata-dentium-yuzhnaya-koreya-v'     => 'implantat-dentium',
+		'ustanovka-implantata-nobel-ssha-straumann-shvejczar' => 'implantat-nobel-straumann',
+		'ustanovka-implantata-straumann-shvejczariya-vk'     => 'implantat-nobel-straumann',
+		'protezirovanie-koronkoj-iz-dioksida'                 => 'koronka-dioksid-cirkoniya',
+		'konsultacziya-vracha-hirurga'                       => 'konsultaciya-hirurga',
+		'konsultacziya-stomatologa-hirurga'                  => 'konsultaciya-hirurga',
+	];
+}
+
+function liderdent_price_sku_redirect_url( $post = null ): string {
+	$post = get_post( $post );
+	if ( ! $post ) {
+		return home_url( '/prices/' );
+	}
+
+	$aliases = liderdent_price_sku_offer_aliases();
+	$slug    = $post->post_name;
+	if ( isset( $aliases[ $slug ] ) && function_exists( 'liderdent_get_service_content' ) && liderdent_get_service_content( $aliases[ $slug ] ) ) {
+		return liderdent_service_landing_url( $aliases[ $slug ] );
+	}
+
+	$landings = function_exists( 'liderdent_get_services_content' ) ? liderdent_get_services_content() : [];
+	$cats     = get_the_category( $post->ID );
+
+	foreach ( $cats as $cat ) {
+		if ( isset( $landings[ $cat->slug ] ) ) {
+			return liderdent_service_landing_url( $cat->slug );
+		}
+	}
+	foreach ( $cats as $cat ) {
+		if ( ! $cat->parent ) {
+			continue;
+		}
+		$parent = get_term( (int) $cat->parent, 'category' );
+		if ( $parent && ! is_wp_error( $parent ) && isset( $landings[ $parent->slug ] ) ) {
+			return liderdent_service_landing_url( $parent->slug );
+		}
+	}
+
+	$services = get_category_by_slug( 'services' );
+	foreach ( $cats as $cat ) {
+		if ( ! $services || (int) $cat->term_id === (int) $services->term_id ) {
+			continue;
+		}
+		if ( cat_is_ancestor_of( (int) $services->term_id, (int) $cat->term_id ) ) {
+			$link = get_category_link( $cat );
+			if ( $link && ! is_wp_error( $link ) ) {
+				return $link;
+			}
+		}
+	}
+
+	return home_url( '/prices/' );
+}
+
+add_action(
+	'template_redirect',
+	static function () {
+		if ( is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
+			return;
+		}
+		if ( ! is_singular( 'post' ) || ! liderdent_is_price_sku_post() ) {
+			return;
+		}
+		wp_safe_redirect( liderdent_price_sku_redirect_url( get_queried_object() ), 301 );
+		exit;
+	},
+	3
+);
+
+add_filter(
+	'wp_robots',
+	static function ( array $robots ): array {
+		if ( liderdent_is_price_sku_post() || is_post_type_archive( 'specialist' ) ) {
+			$robots['noindex']  = true;
+			$robots['nofollow'] = true;
+		}
+		return $robots;
+	},
+	20
+);
+
+add_filter(
+	'aioseo_robots_meta',
+	static function ( $attributes ) {
+		if ( ! is_array( $attributes ) ) {
+			$attributes = [];
+		}
+		if ( liderdent_is_price_sku_post() || is_post_type_archive( 'specialist' ) ) {
+			unset( $attributes['index'] );
+			$attributes['noindex'] = 'noindex';
+		}
+		return $attributes;
+	},
+	20
+);
+
+add_filter(
+	'aioseo_sitemap_exclude_posts',
+	static function ( $ids, $type = '' ) {
+		unset( $type );
+		$ids = is_array( $ids ) ? $ids : [];
+		foreach ( liderdent_price_sku_post_ids() as $id ) {
+			$ids[] = $id;
+		}
+		return array_values( array_unique( array_map( 'intval', $ids ) ) );
+	},
+	20,
+	2
+);
+
+add_filter(
+	'wp_sitemaps_posts_query_args',
+	static function ( array $args, string $post_type ): array {
+		if ( $post_type !== 'post' ) {
+			return $args;
+		}
+		$exclude = liderdent_price_sku_post_ids();
+		if ( ! $exclude ) {
+			return $args;
+		}
+		$args['post__not_in'] = array_merge( (array) ( $args['post__not_in'] ?? [] ), $exclude );
+		return $args;
+	},
+	20,
+	2
+);
 
 /**
  * Canonical robots.txt — AIOSEO previously emitted `Disallow: /Disallow: /cgi-bin`.
