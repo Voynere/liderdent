@@ -1,141 +1,7 @@
 <?php get_header(); ?>
 
 <style>
-/* Стили для рубрики блога - ПРЯМО В ШАБЛОНЕ */
-.blog-category {
-    padding: 40px 0;
-    background: #f5f5f5;
-}
-
-.blog-category__inner {
-    max-width: 1340px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.blog-category__title {
-    margin-bottom: 40px;
-    color: #1A3A5C;
-    font-size: 2.5em;
-    font-weight: 600;
-}
-
-.blog-category__posts {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.blog-category__post {
-    display: flex;
-    gap: 30px;
-    padding: 25px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    transition: box-shadow 0.3s ease;
-}
-
-.blog-category__post:hover {
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-.blog-category__post-thumbnail {
-    flex: 0 0 300px;
-}
-
-.blog-category__post-thumbnail img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-    display: block;
-}
-
-.blog-category__post-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.blog-category__post-title {
-    margin: 0 0 15px 0;
-    font-size: 1.5em;
-    line-height: 1.3;
-}
-
-.blog-category__post-title a {
-    color: #1A3A5C;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.blog-category__post-title a:hover {
-    color: #1E5791;
-}
-
-.blog-category__post-excerpt {
-    margin-bottom: 20px;
-    line-height: 1.6;
-    color: #333;
-}
-
-.blog-category__post-readmore {
-    display: inline-block;
-    padding: 10px 25px;
-    background: #1E5791;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: 600;
-    align-self: flex-start;
-    transition: background 0.3s ease;
-}
-
-.blog-category__post-readmore:hover {
-    background: #0a2f4d;
-}
-
-.blog-category__pagination {
-    margin-top: 50px;
-    text-align: center;
-}
-
-.blog-category__pagination .page-numbers {
-    display: inline-block;
-    padding: 8px 13px;
-    margin: 0 3px;
-    background: #f5f9ff;
-    color: #1A3A5C;
-    text-decoration: none;
-    border-radius: 3px;
-    transition: all 0.3s ease;
-}
-
-.blog-category__pagination .page-numbers.current {
-    background: #1E5791;
-    color: white;
-}
-
-.blog-category__pagination .page-numbers:hover:not(.current) {
-    background: #d4e3ff;
-}
-
-@media (max-width: 768px) {
-    .blog-category__post {
-        flex-direction: column;
-    }
-    
-    .blog-category__post-thumbnail {
-        flex: 0 0 auto;
-        width: 100%;
-    }
-    
-    .blog-category__post-thumbnail img {
-        height: 250px;
-    }
-}
-/* Стили для описания рубрики услуг (над таблицей цен) */
+/* Описание рубрики услуг (над таблицей цен) */
 .category-description {
     margin-bottom: 40px;
     padding: 25px 30px;
@@ -285,31 +151,12 @@
 
                     <?php if ( have_posts() ) : ?>
                         <div class="blog-category__posts">
-                            <?php while ( have_posts() ) : the_post(); ?>
-                                
-                                <article class="blog-category__post">
-                                    <?php if ( has_post_thumbnail() ) : ?>
-                                        <a href="<?php the_permalink(); ?>" class="blog-category__post-thumbnail">
-                                            <?php the_post_thumbnail( 'medium' ); ?>
-                                        </a>
-                                    <?php endif; ?>
-                                    
-                                    <div class="blog-category__post-content">
-                                        <h2 class="blog-category__post-title">
-                                            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                        </h2>
-                                        
-                                        <div class="blog-category__post-excerpt">
-                                            <?php the_excerpt(); ?>
-                                        </div>
-                                        
-                                        <a href="<?php the_permalink(); ?>" class="blog-category__post-readmore">
-                                            Читать далее →
-                                        </a>
-                                    </div>
-                                </article>
-
-                            <?php endwhile; ?>
+                            <?php
+                            while ( have_posts() ) :
+                                the_post();
+                                get_template_part( 'template-parts/blog', 'card' );
+                            endwhile;
+                            ?>
                         </div>
 
                         <!-- Пагинация -->

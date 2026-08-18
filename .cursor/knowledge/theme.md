@@ -45,6 +45,7 @@
 - SEO: `inc/seo.php`
 - Лендинги: `inc/service-landings.php` + реестр `inc/services-content.php`
 - Seeds: `inc/content-seed.php`
+- Блог UI: `inc/blog-ui.php` (карточки + mid-article)
 - ДМС: `inc/dms.php` + `page-dms.php` (`/dms/`, seed `liderdent_dms_page_v1`)
 - Slug-миграции: `inc/slug-migrations.php`
 
@@ -58,10 +59,12 @@
 
 ## Блог
 
-- Архив: `/category/blog/` (301 с `/blog/`)
-- Обложки: `assets/img/blog/*` + seed `liderdent_blog_thumbs_seed_v1`
-- Mid-article: `blog-inline-*.jpg` + seed `liderdent_blog_inline_seed_v1` (маркер `article-figure--seed`)
-- Шаблон: `article-post__*` в `site-updates.css`
+- Архив: `/category/blog/` (301 с `/blog/`) — карточки `template-parts/blog-card.php`
+- Обложки: thumbnail или `liderdent_blog_thumbnail_map()` в `inc/blog-ui.php`
+- Mid-article: CTA + ссылки на лендинги (`liderdent_render_article_midblock`) после 2-го абзаца; картинки `blog-inline-*.jpg` + seed `liderdent_blog_inline_seed_v1` (маркер `article-figure--seed`)
+- Шаблон статьи: `article-post__*` в `site-updates.css`
+- Главная блог не выводит
+- Отзывы на главной: источника цитат нет (ПроДокторов только у врачей, 2ГИС — ссылка в футере)
 
 ## Врачи
 

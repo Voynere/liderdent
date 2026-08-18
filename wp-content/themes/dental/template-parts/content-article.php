@@ -6,6 +6,9 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'article-post' ); ?>>
 	<header class="article-post__header entry-header">
 		<h1 class="article-post__title entry-title"><?php the_title(); ?></h1>
+		<time class="article-post__date" datetime="<?php echo esc_attr( get_the_date( DATE_W3C ) ); ?>">
+			<?php echo esc_html( get_the_date( 'd.m.Y' ) ); ?>
+		</time>
 	</header>
 
 	<?php if ( has_post_thumbnail() ) : ?>
@@ -25,12 +28,19 @@
 
 	<div class="article-post__content entry-content">
 		<?php
+		ob_start();
 		the_content(
 			sprintf(
 				'<span class="article-post__more">%s</span>',
 				esc_html__( 'Читать далее »', 'liderdent' )
 			)
 		);
+		$html = (string) ob_get_clean();
+		if ( function_exists( 'liderdent_insert_article_midblock_html' ) ) {
+			echo liderdent_insert_article_midblock_html( $html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		} else {
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
 
 		wp_link_pages(
 			[

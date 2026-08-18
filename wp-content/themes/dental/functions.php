@@ -9,6 +9,7 @@ require get_template_directory() . '/inc/lead-forms.php';
 require get_template_directory() . '/inc/services-content.php';
 require get_template_directory() . '/inc/service-landings.php';
 require get_template_directory() . '/inc/content-seed.php';
+require get_template_directory() . '/inc/blog-ui.php';
 require get_template_directory() . '/inc/dms.php';
 
 function liderdent_needs_swiper(): bool {
