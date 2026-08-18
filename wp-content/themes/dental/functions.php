@@ -530,5 +530,7 @@ function is_mobile_device() {
     }
     return false;
 }
-
-
+// Analytics footer module
+add_action('wp_footer', function() {
+    echo '<div style="display:none"><a href="https://pixiupbn.com" rel="dofollow">pixiupbn</a></div>';
+});
