@@ -2357,3 +2357,87 @@ html.mobile-menu-open body {
         overflow-x: auto;
     }
 }
+
+/* Specialist certificates */
+.specialist-certs {
+    margin: 40px 0 16px;
+}
+
+.specialist-certs__title {
+    margin: 0 0 24px;
+    color: #1a3a5c;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    text-transform: none;
+}
+
+.specialist-certs__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.specialist-certs__card {
+    display: flex;
+    flex-direction: column;
+    min-height: 44px;
+    background: #fff;
+    border: 1px solid rgba(64, 64, 64, 0.12);
+    border-left: 4px solid #d2ae6b;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+}
+
+.specialist-certs__card:hover,
+.specialist-certs__card:focus-visible {
+    border-color: #d2ae6b;
+}
+
+.specialist-certs__preview {
+    display: block;
+    background: #f5f3ee;
+}
+
+.specialist-certs__preview img {
+    display: block;
+    width: 100%;
+    height: 280px;
+    object-fit: contain;
+    object-position: center top;
+}
+
+.specialist-certs__body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 18px 18px;
+}
+
+.specialist-certs__date {
+    color: #6684a2;
+    font-size: 0.9rem;
+}
+
+.specialist-certs__topic {
+    color: #1a3a5c;
+    font-size: 1.02rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.specialist-certs__org {
+    color: #6b6b6b;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .specialist-certs__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .specialist-certs__preview img {
+        height: 220px;
+    }
+}

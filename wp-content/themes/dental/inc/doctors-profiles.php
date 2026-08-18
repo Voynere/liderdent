@@ -89,6 +89,187 @@ function liderdent_get_doctor_profile( string $title ): ?array {
     return $profiles[ $key ] ?? null;
 }
 
+/**
+ * Certificates keyed by specialist CPT slug. Empty slug = no section.
+ *
+ * @return array<string, list<array{file:string,date:string,place:string,org:string,title:string,lecturer:string}>>
+ */
+function liderdent_doctor_certificates_map(): array {
+    $dir = 'assets/img/certs/asryan/';
+    return [
+        'asryan-mariam-araratovna' => [
+            [
+                'file'     => $dir . 'endodontics-2016.jpg',
+                'date'     => '23 октября 2016',
+                'place'    => 'Нижний Новгород',
+                'org'      => 'C.T. DENT',
+                'title'    => 'Ревизия системы корневого канала и прогноз эндодонтически леченного зуба',
+                'lecturer' => 'Мер И.Я.',
+            ],
+            [
+                'file'     => $dir . 'restoration-2016.jpg',
+                'date'     => '24 ноября 2016',
+                'place'    => 'Нижний Новгород',
+                'org'      => 'C.T. DENT',
+                'title'    => 'Восстановление зубного ряда прямыми реставрациями соблюдая баланс окклюзионных нагрузок',
+                'lecturer' => 'Бедердинов Д.Ш.',
+            ],
+        ],
+    ];
+}
+
+function liderdent_theme_file_url( string $rel ): string {
+    $rel  = ltrim( $rel, '/' );
+    $path = get_template_directory() . '/' . $rel;
+    return file_exists( $path ) ? get_template_directory_uri() . '/' . $rel : '';
+}
+
+function liderdent_acf_image_url( $img ): string {
+    if ( ! $img ) {
+        return '';
+    }
+    if ( is_numeric( $img ) ) {
+        $url = wp_get_attachment_url( (int) $img );
+        return $url ? $url : '';
+    }
+    if ( is_array( $img ) ) {
+        if ( ! empty( $img['url'] ) ) {
+            return (string) $img['url'];
+        }
+        $id = $img['ID'] ?? $img['id'] ?? 0;
+        if ( $id ) {
+            $url = wp_get_attachment_url( (int) $id );
+            return $url ? $url : '';
+        }
+    }
+    if ( is_string( $img ) && filter_var( $img, FILTER_VALIDATE_URL ) ) {
+        return $img;
+    }
+    return '';
+}
+
+/**
+ * @return list<array{url:string,date:string,place:string,org:string,title:string,lecturer:string}>
+ */
+function liderdent_get_doctor_certificates( $post = null ): array {
+    $post = get_post( $post );
+    if ( ! $post || $post->post_type !== 'specialist' ) {
+        return [];
+    }
+
+    $map   = liderdent_doctor_certificates_map();
+    $items = $map[ $post->post_name ] ?? [];
+    $out   = [];
+
+    foreach ( $items as $item ) {
+        $url = liderdent_theme_file_url( (string) ( $item['file'] ?? '' ) );
+        if ( $url === '' ) {
+            continue;
+        }
+        $out[] = [
+            'url'      => $url,
+            'date'     => (string) ( $item['date'] ?? '' ),
+            'place'    => (string) ( $item['place'] ?? '' ),
+            'org'      => (string) ( $item['org'] ?? '' ),
+            'title'    => (string) ( $item['title'] ?? '' ),
+            'lecturer' => (string) ( $item['lecturer'] ?? '' ),
+        ];
+    }
+
+    if ( $out ) {
+        return $out;
+    }
+
+    if ( ! function_exists( 'get_field' ) ) {
+        return [];
+    }
+
+    $raw = get_field( 'certificates', $post );
+    $urls = [];
+    if ( is_array( $raw ) ) {
+        foreach ( $raw as $item ) {
+            $url = liderdent_acf_image_url( $item );
+            if ( $url ) {
+                $urls[] = $url;
+            }
+        }
+    } elseif ( is_string( $raw ) ) {
+        $url = liderdent_acf_image_url( $raw );
+        if ( $url ) {
+            $urls[] = $url;
+        }
+    }
+
+    if ( ! $urls ) {
+        for ( $i = 1; $i <= 8; $i++ ) {
+            $url = liderdent_acf_image_url( get_field( 'certificates_' . $i, $post ) );
+            if ( $url ) {
+                $urls[] = $url;
+            }
+        }
+    }
+
+    foreach ( $urls as $url ) {
+        $out[] = [
+            'url'      => $url,
+            'date'     => '',
+            'place'    => '',
+            'org'      => '',
+            'title'    => 'Сертификат',
+            'lecturer' => '',
+        ];
+    }
+
+    return $out;
+}
+
+function liderdent_render_doctor_certificates( $post = null ): void {
+    $certs = liderdent_get_doctor_certificates( $post );
+    if ( ! $certs ) {
+        return;
+    }
+    $doctor = get_the_title( $post );
+    ?>
+    <section class="specialist-certs" aria-labelledby="specialist-certs-title">
+        <h2 id="specialist-certs-title" class="page-title specialist-certs__title">Сертификаты</h2>
+        <div class="specialist-certs__grid">
+            <?php foreach ( $certs as $cert ) :
+                $caption_parts = array_filter( [
+                    $cert['title'],
+                    $cert['date'] ? $cert['date'] . ( $cert['place'] ? ', ' . $cert['place'] : '' ) : '',
+                    $cert['lecturer'] ? 'Лектор: ' . $cert['lecturer'] : '',
+                ] );
+                $caption = implode( '. ', $caption_parts );
+                $alt     = $cert['title'] !== '' ? $cert['title'] : ( 'Сертификат — ' . $doctor );
+                ?>
+                <a class="specialist-certs__card"
+                   href="<?php echo esc_url( $cert['url'] ); ?>"
+                   data-fancybox="doctor-certs"
+                   data-caption="<?php echo esc_attr( $caption ); ?>">
+                    <span class="specialist-certs__preview">
+                        <img src="<?php echo esc_url( $cert['url'] ); ?>"
+                             alt="<?php echo esc_attr( $alt ); ?>"
+                             width="693"
+                             height="1024"
+                             loading="lazy"
+                             decoding="async">
+                    </span>
+                    <span class="specialist-certs__body">
+                        <?php if ( $cert['date'] ) : ?>
+                            <time class="specialist-certs__date"><?php echo esc_html( $cert['date'] ); ?></time>
+                        <?php endif; ?>
+                        <span class="specialist-certs__topic"><?php echo esc_html( $cert['title'] ); ?></span>
+                        <?php if ( $cert['org'] || $cert['place'] ) : ?>
+                            <span class="specialist-certs__org"><?php echo esc_html( trim( $cert['org'] . ( $cert['place'] ? ' · ' . $cert['place'] : '' ) ) ); ?></span>
+                        <?php endif; ?>
+                    </span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php
+}
+
 function liderdent_render_prodoctorov_widget( array $profile, string $doctor_title ): void {
     if ( empty( $profile['prodoctorov_id'] ) ) {
         return;

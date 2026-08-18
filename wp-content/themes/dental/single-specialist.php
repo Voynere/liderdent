@@ -41,28 +41,6 @@
                         if ( is_array( $doctor_spec ) ) $doctor_spec = implode( ', ', $doctor_spec );
                         if ( is_array( $doctor_exp ) )  $doctor_exp  = implode( ', ', $doctor_exp );
 
-                        // ----- получить url изображения из разных форматов ACF -----
-                        function _ss_get_image_url( $img ) {
-                            if ( ! $img ) return false;
-                            // ID
-                            if ( is_numeric( $img ) ) {
-                                $url = wp_get_attachment_url( intval( $img ) );
-                                if ( $url ) return $url;
-                            }
-                            
-                            if ( is_array( $img ) ) {
-                                if ( ! empty( $img['url'] ) ) return $img['url'];
-                                if ( ! empty( $img['ID'] ) ) return wp_get_attachment_url( $img['ID'] );
-                                if ( ! empty( $img['id'] ) ) return wp_get_attachment_url( $img['id'] );
-                            }
-                            // string (url)
-                            if ( is_string( $img ) && filter_var( $img, FILTER_VALIDATE_URL ) ) {
-                                return $img;
-                            }
-                            return false;
-                        }
-                        // -------------------------------------------------------------------
-
                         // ----- Сбор образования -----
                         $educations = array();
 
@@ -147,37 +125,6 @@
                             $doctor_spec = $profile['specialization'];
                         }
 
-                        // ----- Сбор сертификатов -----
-                        $certs = array();
-
-                        if ( function_exists( 'get_field' ) ) {
-                            // 1) попробуем поле-галерею/повторитель 'certificates'
-                            $cert_field = get_field( 'certificates', $post_id );
-                            if ( $cert_field ) {
-                                if ( is_array( $cert_field ) ) {
-                                    foreach ( $cert_field as $item ) {
-                                        $url = _ss_get_image_url( $item );
-                                        if ( $url ) $certs[] = $url;
-                                    }
-                                } elseif ( is_string( $cert_field ) && filter_var( $cert_field, FILTER_VALIDATE_URL ) ) {
-                                    $certs[] = $cert_field;
-                                }
-                            }
-
-                            // 2) если пусто — пробуем номерованные поля certificates_1..8
-                            if ( empty( $certs ) ) {
-                                for ( $i = 1; $i <= 8; $i++ ) {
-                                    $key = "certificates_{$i}";
-                                    $val = get_field( $key, $post_id );
-                                    if ( $val ) {
-                                        $url = _ss_get_image_url( $val );
-                                        if ( $url ) $certs[] = $url;
-                                    }
-                                }
-                            }
-                        }
-
-                        // -------------------------------------------------------------------
                         ?>
 
                         <div class="single-specialist__main">
@@ -247,50 +194,12 @@
                             </div>
                         </div>
 
-                        <div class="single-specialist__certificate">
-                            <div class="certificate">
-                                <h2 class="certificate__title page-title">СЕРТИФИКАТЫ</h2>
-                                <div class="certificate__wrapper">
-                                    <div class="certificate__slider swiper">
-                                        <div class="swiper-wrapper">
-                                            <?php
-                                            // Если есть сертификаты — выводим каждый в отдельном слайде
-                                            if ( ! empty( $certs ) ) :
-                                                foreach ( $certs as $c ) : ?>
-                                                    <div class="certificate__slider-item swiper-slide">
-                                                        <div class="certificate__slider-image">
-                                                            <img src="<?php echo esc_url( $c ); ?>" alt="<?php echo esc_attr( $title . ' - сертификат' ); ?>">
-                                                        </div>
-                                                    </div>
-                                                <?php endforeach;
-                                            else :
-                                                // Нет сертификатов — выводим 3 слайда-заглушки (по одной заглушке в каждом слайде)
-                                                $placeholder = get_template_directory_uri() . '/assets/img/certificate.png';
-                                                for ( $i = 0; $i < 3; $i++ ) : ?>
-                                                    <div class="certificate__slider-item swiper-slide">
-                                                        <div class="certificate__slider-image">
-                                                            <img src="<?php echo esc_url( $placeholder ); ?>" alt="<?php esc_attr_e( 'Сертификат (заглушка)', 'your-theme-textdomain' ); ?>">
-                                                        </div>
-                                                    </div>
-                                                <?php endfor;
-                                            endif;
-                                            ?>
-                                        </div>
-                                    </div>
-
-                                    <div class="certificate__slider-arrows">
-                                        <button class="certificate__slider-button prev" aria-label="Предыдущий">
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_left_slider_gold.svg" alt="">
-                                        </button>
-                                        <button class="certificate__slider-button next" aria-label="Следующий">
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg" alt="">
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <?php liderdent_render_doctor_cases( $title ); ?>
+                        <?php
+                        if ( function_exists( 'liderdent_render_doctor_certificates' ) ) {
+                            liderdent_render_doctor_certificates( $post_id );
+                        }
+                        liderdent_render_doctor_cases( $title );
+                        ?>
 
                     <?php
                     endwhile; // end loop
