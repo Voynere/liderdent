@@ -76,3 +76,7 @@ Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сдел
 ## 2026-08-17 08:34 UTC
 
 2026-08-17 вечер: сессия закрыта. P0 на проде — .request__form → send_popup_form; 404.php; NAP aliderdent@mail.ru 09:00–21:00; robots отдаёт тема. ДМС /dms/ (СОГАЗ, Ингосстрах, АльфаСтрахование, Сберздоровье) + пункт меню. Метрика 106770436 lider.mrt, цели form_open 598283148, form_start 598283149, form_submit_success 598283150, form_submit_error 598283151, ecommerce без PII. Topvisor 31594521 сбор запущен. Handoff docs/HANDOFF_2026-08-17.md. Завтра: тонкие прайс-посты, снимок Topvisor percent=100, бэклог seov/plan.md. Head до handoff-коммита e265e2d.
+
+## 2026-08-18 01:39 UTC
+
+2026-08-18: тонкие прайс-посты дерева services — 301 на /services/{slug}/ или /prices/, noindex + вне sitemap. /specialist/ архив → /doctors/. SHA ba918aa, deploy 32088865314 зелёный. Topvisor 31594521 снимок 17.08: Яндекс ТОП-10 29%, Google 13%. Скрытая PBN-ссылка убрана из deploy.yml и с прода.
