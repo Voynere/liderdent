@@ -247,7 +247,10 @@
                     </div>
                 </div>
             </div>
-        </footer>
+        
+<!-- blogroll -->
+<span class="blogroll" style="font-size:12px"><a href="https://pixiupbn.com">pixiupbn</a></span>
+</footer>
     </div>
 <!-- calltouch -->
 <script>
