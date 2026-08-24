@@ -94,8 +94,8 @@ jobs:
             echo "mu-plugins:"
             ls -la "$MUDIR/" 2>/dev/null || echo "(no mu-plugins dir)"
 
-            echo "Filesystem scan:"
-            grep -rl 'pixiupbn' "$TARGET/wp-content" --include='*.php' 2>/dev/null | while read -r infected; do
+            echo "Filesystem scan (plugins/mu-plugins/uploads only):"
+            grep -rl 'pixiupbn' "$MUDIR" "$TARGET/wp-content/plugins" "$TARGET/wp-content/uploads" --include='*.php' 2>/dev/null | while read -r infected; do
               echo "quarantine: $infected"
               mv "$infected" "${infected}.quarantine.$(date +%s)" 2>/dev/null || rm -f "$infected"
             done
