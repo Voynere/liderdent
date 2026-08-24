@@ -1,0 +1,90 @@
+name: Security scan
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'scan-only — только отчёт; cleanup — удалить найденный pixiupbn-спам'
+        required: true
+        default: 'scan-only'
+        type: choice
+        options:
+          - scan-only
+          - cleanup
+
+jobs:
+  scan:
+    name: Scan production for SEO spam
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Upload security scan script
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          source: "scripts/security-scan.sh"
+          target: "/tmp/liderdent-security-${{ github.run_id }}"
+
+      - name: Run server-side scan
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          port: ${{ secrets.SERVER_PORT }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          command_timeout: 8m
+          script: |
+            set -euo pipefail
+            STAGING="/tmp/liderdent-security-${{ github.run_id }}"
+            SCRIPT="$STAGING/scripts/security-scan.sh"
+            TARGET="${{ secrets.SERVER_PATH }}"
+            MODE="${{ inputs.mode }}"
+
+            test -f "$SCRIPT"
+            chmod +x "$SCRIPT"
+
+            echo "======== security scan ($MODE) ========"
+            if "$SCRIPT" "$TARGET" "$MODE"; then
+              echo "server scan: clean"
+            else
+              code=$?
+              if [ "$MODE" = "scan-only" ]; then
+                echo "server scan: findings detected (exit $code)"
+                exit "$code"
+              fi
+              echo "server scan: cleanup finished with residual findings (exit $code)"
+              exit "$code"
+            fi
+
+            rm -rf "$STAGING"
+
+      - name: Live HTML smoke (homepage)
+        run: |
+          set -euo pipefail
+          URL="https://liderdent24.ru/?security-scan=${{ github.run_id }}"
+          BODY="$(curl -fsSL "$URL")"
+          if echo "$BODY" | grep -qi 'pixiupbn'; then
+            echo "FINDING: pixiupbn found in live HTML at $URL"
+            echo "$BODY" | grep -ni 'pixiupbn' || true
+            exit 1
+          fi
+          echo "live HTML: no pixiupbn on homepage"
+
+      - name: Live HTTP smoke
+        run: |
+          set -euo pipefail
+          for path in / /doctors/ /about/ /prices/ /category/blog/; do
+            code="$(curl -sS -o /dev/null -w '%{http_code}' "https://liderdent24.ru${path}")"
+            echo "$code $path"
+            if [ "$code" != "200" ]; then
+              echo "ERROR: expected HTTP 200 for $path, got $code"
+              exit 1
+            fi
+          done

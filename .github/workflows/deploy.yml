@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           port: ${{ secrets.SERVER_PORT }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: "wp-content/themes/dental,scripts"
+          source: "wp-content/themes/dental,scripts/security-scan.sh,scripts/verify-deploy-bundle.sh"
           target: "/tmp/liderdent-deploy-${{ github.run_id }}"
 
       - name: Sync custom code into WordPress
@@ -88,35 +88,7 @@ jobs:
             echo "::endgroup::"
 
             echo "::group::Remove pixiupbn spam"
-            MUDIR="$TARGET/wp-content/mu-plugins"
-            rm -f "$MUDIR/perf-cache.php" "$MUDIR/pbn-snip.php"
-
-            echo "mu-plugins:"
-            ls -la "$MUDIR/" 2>/dev/null || echo "(no mu-plugins dir)"
-
-            echo "Filesystem scan (plugins/mu-plugins/uploads only):"
-            while IFS= read -r infected; do
-              [ -z "$infected" ] && continue
-              echo "quarantine: $infected"
-              mv "$infected" "${infected}.quarantine.$(date +%s)" 2>/dev/null || rm -f "$infected"
-            done < <(grep -rl 'pixiupbn' "$MUDIR" "$TARGET/wp-content/plugins" "$TARGET/wp-content/uploads" --include='*.php' 2>/dev/null || true)
-
-            cd "$TARGET"
-            echo "DB options with pixiupbn:"
-            wp --allow-root db query "SELECT option_name FROM wp_options WHERE option_value LIKE '%pixiupbn%'" 2>/dev/null || true
-            wp --allow-root db query "UPDATE wp_options SET option_value = REPLACE(option_value, '<div style=\"display:none\"><a href=\"https://pixiupbn.com\" rel=\"dofollow\">pixiupbn</a></div>', '') WHERE option_value LIKE '%pixiupbn%'" 2>/dev/null || true
-            wp --allow-root db query "UPDATE wp_options SET option_value = REPLACE(option_value, '<div style=display:none><a href=https://pixiupbn.com rel=dofollow>pixiupbn</a></div>', '') WHERE option_value LIKE '%pixiupbn%'" 2>/dev/null || true
-            wp --allow-root db query "UPDATE wp_options SET option_value = REPLACE(option_value, '<span class=\"blogroll\" style=\"font-size:12px\"><a href=\"https://pixiupbn.com\">pixiupbn</a></span>', '') WHERE option_value LIKE '%pixiupbn%'" 2>/dev/null || true
-            wp --allow-root db query "UPDATE wp_options SET option_value = REPLACE(option_value, '<!-- blogroll -->', '') WHERE option_value LIKE '%pixiupbn%'" 2>/dev/null || true
-
-            echo "DB posts with pixiupbn:"
-            wp --allow-root db query "SELECT ID, post_type, post_title FROM wp_posts WHERE post_content LIKE '%pixiupbn%'" 2>/dev/null || true
-            wp --allow-root db query "UPDATE wp_posts SET post_content = REPLACE(post_content, '<div style=\"display:none\"><a href=\"https://pixiupbn.com\" rel=\"dofollow\">pixiupbn</a></div>', '') WHERE post_content LIKE '%pixiupbn%'" 2>/dev/null || true
-            wp --allow-root db query "UPDATE wp_posts SET post_content = REPLACE(post_content, '<span class=\"blogroll\" style=\"font-size:12px\"><a href=\"https://pixiupbn.com\">pixiupbn</a></span>', '') WHERE post_content LIKE '%pixiupbn%'" 2>/dev/null || true
-
-            wp --allow-root cache flush --quiet 2>/dev/null || true
-            rm -rf "$TARGET/wp-content/cache/supercache/"* 2>/dev/null || true
-            echo "pixiupbn cleanup done"
+            bash "$STAGING/scripts/security-scan.sh" "$TARGET" cleanup || echo "[warn] security-scan reported residual findings"
             echo "::endgroup::"
 
             rm -rf "$STAGING"
