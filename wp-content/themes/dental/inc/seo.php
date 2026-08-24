@@ -272,7 +272,137 @@ add_action( 'wp_head', function () {
 		];
 		echo '<script type="application/ld+json">' . wp_json_encode( $faq, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
 	}
+
+	if ( is_singular( 'post' ) && has_category( 'blog' ) ) {
+		$article_ld = liderdent_seo_blog_article_json_ld();
+		if ( $article_ld ) {
+			echo '<script type="application/ld+json">' . wp_json_encode( $article_ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+		}
+		$crumbs = liderdent_seo_blog_breadcrumb_json_ld();
+		if ( $crumbs ) {
+			echo '<script type="application/ld+json">' . wp_json_encode( $crumbs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
+		}
+	}
 }, 30 );
+
+/**
+ * BlogPosting JSON-LD for category «blog» singles.
+ *
+ * @return array<string, mixed>|null
+ */
+function liderdent_seo_blog_article_json_ld(): ?array {
+	$post = get_post();
+	if ( ! $post ) {
+		return null;
+	}
+
+	$nap   = liderdent_seo_clinic_nap();
+	$url   = get_permalink( $post ) ?: '';
+	$image = get_the_post_thumbnail_url( $post, 'full' );
+	if ( ! $image && function_exists( 'liderdent_blog_card_image_url' ) ) {
+		$image = liderdent_blog_card_image_url( $post );
+	}
+	if ( ! $image ) {
+		$image = liderdent_seo_og_image_url();
+	}
+
+	$desc = get_the_excerpt( $post );
+	if ( $desc === '' ) {
+		$desc = wp_trim_words( wp_strip_all_tags( (string) $post->post_content ), 40, '…' );
+	}
+
+	$data = [
+		'@context'         => 'https://schema.org',
+		'@type'            => 'BlogPosting',
+		'@id'              => trailingslashit( $url ) . '#article',
+		'headline'         => get_the_title( $post ),
+		'description'      => $desc,
+		'datePublished'    => get_the_date( DATE_W3C, $post ),
+		'dateModified'     => get_the_modified_date( DATE_W3C, $post ),
+		'mainEntityOfPage' => [
+			'@type' => 'WebPage',
+			'@id'   => $url,
+		],
+		'image'            => [ $image ],
+		'author'           => [
+			'@type' => 'Organization',
+			'name'  => $nap['name'],
+			'url'   => $nap['url'],
+		],
+		'publisher'        => [
+			'@type' => 'Dentist',
+			'@id'   => trailingslashit( $nap['url'] ) . '#dentist',
+			'name'  => $nap['name'],
+			'logo'  => [
+				'@type' => 'ImageObject',
+				'url'   => get_template_directory_uri() . '/assets/img/logo.png',
+			],
+		],
+		'inLanguage'       => 'ru-RU',
+		'isPartOf'         => [
+			'@type' => 'Blog',
+			'name'  => 'Статьи ЛидерДент',
+			'url'   => home_url( '/category/blog/' ),
+		],
+	];
+
+	$about = [];
+	if ( function_exists( 'liderdent_article_related_landings' ) ) {
+		foreach ( liderdent_article_related_landings( $post ) as $link ) {
+			$about[] = [
+				'@type' => 'MedicalProcedure',
+				'name'  => $link['title'],
+				'url'   => $link['url'],
+			];
+		}
+	}
+	if ( $about ) {
+		$data['about'] = $about;
+	}
+
+	return $data;
+}
+
+/**
+ * BreadcrumbList for blog articles.
+ *
+ * @return array<string, mixed>|null
+ */
+function liderdent_seo_blog_breadcrumb_json_ld(): ?array {
+	$post = get_post();
+	if ( ! $post ) {
+		return null;
+	}
+	$url = get_permalink( $post );
+	if ( ! $url ) {
+		return null;
+	}
+
+	return [
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => [
+			[
+				'@type'    => 'ListItem',
+				'position' => 1,
+				'name'     => 'Главная',
+				'item'     => home_url( '/' ),
+			],
+			[
+				'@type'    => 'ListItem',
+				'position' => 2,
+				'name'     => 'Статьи',
+				'item'     => home_url( '/category/blog/' ),
+			],
+			[
+				'@type'    => 'ListItem',
+				'position' => 3,
+				'name'     => get_the_title( $post ),
+				'item'     => $url,
+			],
+		],
+	];
+}
 
 /**
  * @return array<int, array{q:string,a:string}>

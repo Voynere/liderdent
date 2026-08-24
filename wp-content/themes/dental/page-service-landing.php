@@ -189,6 +189,12 @@ get_header();
 			</script>
 		<?php endif; ?>
 
+		<?php
+		if ( function_exists( 'liderdent_render_service_related_articles' ) ) {
+			liderdent_render_service_related_articles( $slug );
+		}
+		?>
+
 		<?php if ( $related ) : ?>
 			<section class="svc-landing__related" aria-labelledby="svc-related-title">
 				<h2 id="svc-related-title" class="svc-landing__h2">Другие услуги</h2>

@@ -182,8 +182,174 @@ function liderdent_blog_thumbnail_map(): array {
 		'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost' => 'assets/img/blog/blog-implant-turnkey.jpg',
 		'czena-stomatologii-v-krasnoyarske-iz-chego-skladyvaetsya-stoimost-lecheniya-i-kak-sravnivat-kliniki' => 'assets/img/blog/blog-pricing.jpg',
 		'implantacziya-zubov-v-krasnoyarske-nadezhno-estetichno-nadolgo' => 'assets/img/blog/blog-implant-krasnoyarsk.jpg',
+		'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent' => 'assets/img/blog/blog-zirconia-crowns.jpg',
+		'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent' => 'assets/img/blog/blog-wisdom-tooth.jpg',
+		'nejromyshechnaya-stomatologiya-v-krasnoyarske-kogda-nuzhna' => 'assets/img/blog/blog-neuromuscular.jpg',
+		'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat' => 'assets/img/blog/blog-osstem-inno.jpg',
+		'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie' => 'assets/img/blog/blog-premium-implants.jpg',
 	];
 }
+
+/**
+ * Blog posts for service promotion (seed v2).
+ *
+ * @return array<int, array{slug:string,title:string,image:string,excerpt:string,content:string}>
+ */
+function liderdent_content_seed_posts_v2(): array {
+	return [
+		[
+			'slug'    => 'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent',
+			'title'   => 'Циркониевые коронки в Красноярске: когда выбирают диоксид циркония и как проходит протезирование в ЛидерДент',
+			'image'   => 'assets/img/blog/blog-zirconia-crowns.jpg',
+			'excerpt' => 'Разбираем плюсы коронок из диоксида циркония, этапы ортопедии и чем отличается смета «под ключ» от цены «только коронка».',
+			'content' => <<<'HTML'
+<p>Циркониевая коронка — один из самых востребованных вариантов <a href="/services/protezirovanie/">протезирования зубов</a> в Красноярске: материал прочный, биосовместимый и хорошо держит эстетику в зоне улыбки и на жевательных зубах. В «ЛидерДент» ортопед подбирает конструкцию под нагрузку и цвет соседних зубов, а не «средний вариант из каталога».</p>
+<h2>Когда цирконий уместнее керамики</h2>
+<p>Диоксид циркония чаще выбирают при высокой жевательной нагрузке, бруксизме (после стабилизации), при восстановлении моляров и когда нужна тонкая, но прочная коронка. Для фронта иногда комбинируют подходы: каркас и облицовка под задачу. Точный выбор — после осмотра и снимков; подробнее о материалах — на странице <a href="/services/koronka-dioksid-cirkoniya/">коронки из диоксида циркония</a>.</p>
+<h2>Как проходит протезирование</h2>
+<p>Сначала санация и <a href="/services/gigiena/">профессиональная гигиена</a>, затем препарирование опоры, слепки или цифровые оттиски, временная коронка и постоянная фиксация после примерки. Если зуб сильно разрушен, может понадобиться лечение каналов — см. статью <a href="/lechenie-kanalov-zuba-v-krasnoyarske-etapy-sroki-perelechivanie-i-vosstanovlenie-zuba/">лечение каналов</a>.</p>
+<h2>Сроки, цена и рассрочка</h2>
+<p>Лабораторный этап обычно занимает от нескольких дней до двух недель. Стоимость зависит от числа единиц и подготовки опор; на объёмные планы доступна рассрочка до 24 месяцев. Сравнить «цену от» без состава работ бесполезно — ориентируйтесь на смету с временными коронками и фиксацией.</p>
+<p>Запишитесь на консультацию ортопеда: оценим зуб, покажем варианты конструкций и зафиксируем план до старта.</p>
+HTML,
+		],
+		[
+			'slug'    => 'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent',
+			'title'   => 'Удаление зуба мудрости в Красноярске: когда нужно оперировать и как проходит хирургия в ЛидерДент',
+			'image'   => 'assets/img/blog/blog-wisdom-tooth.jpg',
+			'excerpt' => 'Ретенция, дистопия, воспаление «капюшона» — когда зуб мудрости удаляют, какие снимки нужны и как проходит восстановление.',
+			'content' => <<<'HTML'
+<p>«Восьмёрка» часто растёт под углом, упирается в семёрку или остаётся под слизистой. Тогда показана <a href="/services/hirurgiya/">хирургическая стоматология</a>: атравматичное удаление с сохранением кости и понятным планом восстановления. В «ЛидерДент» сложность оцениваем по КТ или прицельному снимку — без «удалим на всякий случай».</p>
+<h2>Когда удаление действительно нужно</h2>
+<p>Типичные показания: ретенция и дистопия, кариес, который нельзя вылечить, перикоронарит (воспаление капюшона), давление на соседний зуб, подготовка к ортодонтии или <a href="/services/implantaciya/">имплантации</a>. Если зуб прорезался ровно, чистится и не беспокоит — наблюдение тоже вариант; решение после <a href="/services/konsultaciya-hirurga/">консультации хирурга</a>.</p>
+<h2>Как проходит операция</h2>
+<p>Под местной анестезией хирург освобождает коронку, при необходимости аккуратно разделяет корни, накладывает швы и выдаёт памятку: холод, питание, антисептики, сроки контроля. При сильном отёке или боли вне ожидаемого сценария — звоните в клинику, не ждите «само пройдёт».</p>
+<h2>Связь с имплантацией</h2>
+<p>Если после удаления планируется имплант, важно сохранить объём кости. Иногда возможна <a href="/odnomomentnaya-implantaciya-v-krasnoyarske-liderdent/">одномоментная имплантация</a>; чаще — отсроченный протокол после заживления. 3D-снимок помогает выбрать сценарий заранее — см. <a href="/kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu/">КТ зубов</a>.</p>
+<p>Запишитесь на осмотр: разберём снимки, сроки и подготовку к дню операции.</p>
+HTML,
+		],
+		[
+			'slug'    => 'nejromyshechnaya-stomatologiya-v-krasnoyarske-kogda-nuzhna',
+			'title'   => 'Нейромышечная стоматология в Красноярске: когда нужны диагностика ВНЧС и коррекция прикуса',
+			'image'   => 'assets/img/blog/blog-neuromuscular.jpg',
+			'excerpt' => 'Щелчки сустава, утреннее напряжение мышц, стираемость зубов — как нейромышечный подход помогает подобрать стабильное положение челюсти.',
+			'content' => <<<'HTML'
+<p><a href="/services/nejromyshechnaya-stomatologiya/">Нейромышечная стоматология</a> рассматривает зубы, мышцы и височно-нижнечелюстной сустав как одну систему. Цель — снизить перегрузку и найти комфортное положение челюсти до большой <a href="/services/protezirovanie/">ортопедии</a> или параллельно с ней. Это не «лечение нерва зуба» и не замена эндодонтии.</p>
+<h2>Какие жалобы приводят на приём</h2>
+<p>Щелчки и боль в ВНЧС, утреннее напряжение жевательных мышц, головные боли, связанные с прикусом, повышенная стираемость эмали, ощущение, что «зубы не сходятся». Часто симптомы тянутся месяцами — полезно прийти со списком жалоб и сроками.</p>
+<h2>Диагностика и план</h2>
+<p>Врач собирает анамнез, осматривает, при необходимости назначает снимки и клинические тесты. Дальше возможны капы, коррекция прикуса через <a href="/services/ortodontiya/">ортодонтию</a>, этапное протезирование или комбинация. Не каждому нужна «капа навсегда» — сначала уточняем причину.</p>
+<h2>Связь с брекетами и коронками</h2>
+<p>Большая эстетика без стабильного прикуса рискует дать сколы и перегрузку. Поэтому перед объёмными коронками или мостами в «ЛидерДент» оцениваем сустав и мышцы. Если думаете об исправлении прикуса, сравните сценарии в статье <a href="/brekety-ili-elajnery-chto-vybrat-dlya-ispravleniya-prikusa-v-krasnoyarske/">брекеты или элайнеры</a>.</p>
+<p>Запишитесь на консультацию: разберём симптомы и предложим поэтапный план без лишних процедур.</p>
+HTML,
+		],
+		[
+			'slug'    => 'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
+			'title'   => 'Имплантаты Osstem и Inno в Красноярске: какую систему выбрать и что входит в установку',
+			'image'   => 'assets/img/blog/blog-osstem-inno.jpg',
+			'excerpt' => 'Сравниваем Osstem и Inno для имплантации одного зуба: диагностика на КТ, состав пакета от 35 000 ₽ и когда нужна костная подготовка.',
+			'content' => <<<'HTML'
+<p>Osstem и Inno — системы, с которыми «ЛидерДент» работает ежедневно: понятная клиническая статистика, прозрачная смета и привычный для команды протокол. Установка одного имплантата — от 35&nbsp;000&nbsp;₽; детали пакета — на лендинге <a href="/services/implantaciya-osstem-inno/">имплантация Osstem / Inno</a> и общем разделе <a href="/services/implantaciya/">имплантация зубов</a>.</p>
+<h2>Чем отличаются системы для пациента</h2>
+<p>Для пациента важнее не «бренд ради бренда», а соответствие кости, нагрузке и плану ортопедии. Хирург выбирает диаметр и длину после <a href="/services/rentgenologicheskoe-obsledovanie/">КТ</a>, оценивает плотность и объём кости. При дефиците кости сначала обсуждаем аугментацию — иначе красивый имплант «в пустоту» не стоит ставить.</p>
+<h2>Что обычно входит в стоимость</h2>
+<p>В пакет часто входят консультация, планирование, анестезия, имплантат, заглушка, формирователь десны и контроль; КТ по акции может идти в подарок. Коронка на импланте считается отдельно в рамках <a href="/services/protezirovanie/">протезирования</a>. Подробный разбор этапов — в статье <a href="/implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost/">имплантация «под ключ»</a>.</p>
+<h2>Osstem/Inno или премиум-линейка</h2>
+<p>Если нужна другая ценовая и сервисная ниша, сравните с <a href="/implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie/">Nobel, Straumann и Dentium</a>. Рассрочка до 24 месяцев доступна на согласованный план лечения.</p>
+<p>Запишитесь на консультацию имплантолога: на снимках сравним сценарии и зафиксируем смету до операции.</p>
+HTML,
+		],
+		[
+			'slug'    => 'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie',
+			'title'   => 'Имплантаты Nobel, Straumann и Dentium в Красноярске: как сравнить системы без маркетингового шума',
+			'image'   => 'assets/img/blog/blog-premium-implants.jpg',
+			'excerpt' => 'Чем отличаются Nobel/Straumann и Dentium, когда оправдана премиум-система и как читать смету имплантации в ЛидерДент.',
+			'content' => <<<'HTML'
+<p>Выбор системы имплантата влияет на бюджет, ортопедические возможности и привычный протокол клиники. В «ЛидерДент» доступны линейки <a href="/services/implantat-nobel-straumann/">Nobel и Straumann</a>, <a href="/services/implantat-dentium/">Dentium</a>, а также массовые <a href="/services/implantaciya-osstem-inno/">Osstem и Inno</a>. Решение принимает хирург после КТ — не рекламный буклет.</p>
+<h2>На что смотреть при сравнении</h2>
+<p>Объём и плотность кости, зона улыбки, сроки нагрузки, совместимость с будущей коронкой, гарантийные условия производителя и опыт команды с конкретной системой. «Самый дорогой» не всегда лучший для вашего случая: иногда оптимальнее проверенный протокол Osstem/Inno с качественной ортопедией.</p>
+<h2>Dentium и премиум-сегмент</h2>
+<p>Dentium часто выбирают как сбалансированный вариант по цене и функциональности. Nobel и Straumann востребованы при сложных эстетических задачах и когда пациент ориентирован на конкретный бренд. Сравнить пакеты удобнее на консультации со сметой «имплант + формирователь + коронка», а не по одной строке прайса.</p>
+<h2>Связка с диагностикой и гигиеной</h2>
+<p>Перед установкой нужны актуальная <a href="/kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu/">КТ</a> и здоровая десна — при воспалении сначала <a href="/services/gigiena/">гигиена</a> и пародонтологическое лечение. Общий путь лечения описан в материале <a href="/implantacziya-zubov-v-krasnoyarske-nadezhno-estetichno-nadolgo/">имплантация в Красноярске</a>.</p>
+<p>Оставьте заявку или позвоните: подберём систему под снимки и озвучим прозрачный план до старта.</p>
+HTML,
+		],
+	];
+}
+
+/**
+ * One-time seed v2: 5 service-oriented blog posts.
+ */
+function liderdent_run_content_seed_v2(): void {
+	if ( get_option( 'liderdent_content_seed_v2' ) ) {
+		return;
+	}
+	if ( ! function_exists( 'wp_insert_post' ) ) {
+		return;
+	}
+
+	if ( ! function_exists( 'wp_get_current_user' ) || ! current_user_can( 'upload_files' ) ) {
+		wp_set_current_user( 1 );
+	}
+
+	$blog    = get_category_by_slug( 'blog' );
+	$blog_id = $blog ? (int) $blog->term_id : 0;
+	$pending = false;
+
+	foreach ( liderdent_content_seed_posts_v2() as $post ) {
+		$existing = get_posts(
+			[
+				'name'           => $post['slug'],
+				'post_type'      => 'post',
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			]
+		);
+		if ( $existing ) {
+			continue;
+		}
+
+		$post_id = wp_insert_post(
+			[
+				'post_title'   => $post['title'],
+				'post_name'    => $post['slug'],
+				'post_content' => $post['content'],
+				'post_excerpt' => $post['excerpt'],
+				'post_status'  => 'publish',
+				'post_type'    => 'post',
+				'post_author'  => 1,
+			],
+			true
+		);
+		if ( is_wp_error( $post_id ) || ! $post_id ) {
+			$pending = true;
+			continue;
+		}
+
+		if ( $blog_id ) {
+			wp_set_post_categories( (int) $post_id, [ $blog_id ] );
+		}
+
+		$att = liderdent_sideload_theme_attachment( $post['image'], $post['title'] );
+		if ( $att ) {
+			set_post_thumbnail( (int) $post_id, $att );
+		} else {
+			$pending = true;
+		}
+	}
+
+	if ( ! $pending ) {
+		update_option( 'liderdent_content_seed_v2', 1, false );
+		if ( function_exists( 'wp_cache_flush' ) ) {
+			wp_cache_flush();
+		}
+	}
+}
+add_action( 'init', 'liderdent_run_content_seed_v2', 43 );
 
 /**
  * One-time: attach missing featured images to existing blog posts.

@@ -53,6 +53,12 @@
 		?>
 	</div>
 
+	<?php
+	if ( function_exists( 'liderdent_render_article_related_posts' ) ) {
+		liderdent_render_article_related_posts();
+	}
+	?>
+
 	<footer class="article-post__footer entry-footer">
 		<div class="article-post__cats cat-links">
 			<span class="article-post__meta-label"><?php esc_html_e( 'Рубрика:', 'liderdent' ); ?></span>
