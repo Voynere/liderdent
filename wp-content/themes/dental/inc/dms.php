@@ -24,7 +24,7 @@ function liderdent_dms_insurers(): array {
 		[
 			'slug' => 'yugoria',
 			'name' => 'Югория страхование',
-			'file' => 'yugoria.jpg',
+			'file' => 'yugoria.png',
 			'alt'  => 'Логотип страховой компании Югория страхование',
 		],
 		[
