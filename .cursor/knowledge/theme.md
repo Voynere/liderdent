@@ -68,10 +68,10 @@
 
 ## Врачи
 
-- 6 CPT на проде: Хмыз, Сафаров, Умраев, Асрян, Войтова, Маркова
-- Миграции: Асрян; Карпова→Войтова; Миронова→Маркова (`liderdent_specialist_slug_migrations_v2`)
+- 6 CPT на проде: Хмыз, Сафаров, Умраев, Сафарян, Войтова, Маркова
+- Миграции: Асрян→Сафарян; Карпова→Войтова; Миронова→Маркова (`liderdent_specialist_slug_migrations_v3`)
 - Кейсы ДО/ПОСЛЕ: `inc/doctors-profiles.php` + `ba-compare`
-- Сертификаты: `liderdent_doctor_certificates_map()` по slug; сейчас только `asryan-mariam-araratovna` (2 скана C.T. DENT). Пустой slug — секции нет. Lightbox Fancybox.
+- Сертификаты: `liderdent_doctor_certificates_map()` по slug; сейчас только `safaryan-mariam-araratovna` (2 скана C.T. DENT). Пустой slug — секции нет. Lightbox Fancybox.
 
 ## Ассеты
 

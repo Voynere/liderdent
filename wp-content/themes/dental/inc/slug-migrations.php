@@ -5,9 +5,16 @@
 
 function liderdent_specialist_slug_redirects(): array {
 	return [
-		'malikov-aleksej-georgievich' => 'asryan-mariam-araratovna',
+		'malikov-aleksej-georgievich' => 'safaryan-mariam-araratovna',
+		'asryan-mariam-araratovna'    => 'safaryan-mariam-araratovna',
 		'karpova-elena-mihajlovna'    => 'voytova-polina-nikolaevna',
 		'mironova-olga-viktorovna'    => 'markova-kristina-pavlovna',
+	];
+}
+
+function liderdent_specialist_title_updates(): array {
+	return [
+		'asryan-mariam-araratovna' => 'Сафарян Мариам Араратовна',
 	];
 }
 
@@ -16,11 +23,12 @@ function liderdent_specialist_slug_redirects(): array {
  * Bump option key when adding new pairs so migration re-runs for new rows only.
  */
 function liderdent_run_specialist_slug_migrations(): void {
-	if ( get_option( 'liderdent_specialist_slug_migrations_v2' ) ) {
+	if ( get_option( 'liderdent_specialist_slug_migrations_v3' ) ) {
 		return;
 	}
 
 	$did_change = false;
+	$title_updates = liderdent_specialist_title_updates();
 
 	foreach ( liderdent_specialist_slug_redirects() as $old_slug => $new_slug ) {
 		$existing_new = get_posts(
@@ -48,20 +56,22 @@ function liderdent_run_specialist_slug_migrations(): void {
 			continue;
 		}
 
-		$result = wp_update_post(
-			[
-				'ID'        => (int) $old_posts[0]->ID,
-				'post_name' => $new_slug,
-			],
-			true
-		);
+		$update = [
+			'ID'        => (int) $old_posts[0]->ID,
+			'post_name' => $new_slug,
+		];
+		if ( ! empty( $title_updates[ $old_slug ] ) ) {
+			$update['post_title'] = $title_updates[ $old_slug ];
+		}
+
+		$result = wp_update_post( $update, true );
 
 		if ( ! is_wp_error( $result ) ) {
 			$did_change = true;
 		}
 	}
 
-	update_option( 'liderdent_specialist_slug_migrations_v2', 1, false );
+	update_option( 'liderdent_specialist_slug_migrations_v3', 1, false );
 
 	if ( $did_change ) {
 		flush_rewrite_rules( false );

@@ -80,3 +80,15 @@ Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сдел
 ## 2026-08-18 01:39 UTC
 
 2026-08-18: тонкие прайс-посты дерева services — 301 на /services/{slug}/ или /prices/, noindex + вне sitemap. /specialist/ архив → /doctors/. SHA ba918aa, deploy 32088865314 зелёный. Topvisor 31594521 снимок 17.08: Яндекс ТОП-10 29%, Google 13%. Скрытая PBN-ссылка убрана из deploy.yml и с прода.
+
+## 2026-08-18 03:24 UTC
+
+18.08: карточки блога + mid-article CTA + mobile QA на проде. SHA 2cd3336, CI 32095238893 зелёный. Отзывы на главной: нет источника цитат, фейк не рисовали.
+
+## 2026-08-18 07:12 UTC
+
+Сертификаты Асрян Мариам: 2 скана C.T. DENT 2016 на /specialist/asryan-mariam-araratovna/. Реестр liderdent_doctor_certificates_map() по slug. SHA 47a3d28, CI 32110243931 зелёный.
+
+## 2026-08-24 07:31 UTC
+
+Фамилия врача Асрян→Сафарян: slug safaryan-mariam-araratovna, 301 с asryan и malikov, миграция v3 обновляет post_title. Ассеты safaryan-cases/, certs/safaryan/.

@@ -38,7 +38,7 @@ function liderdent_get_doctors_profiles(): array {
             'prodoctorov_id' => '1000891',
             'prodoctorov_slug' => '1000891-voytova',
         ],
-        'асрян мариам араратовна' => [
+        'сафарян мариам араратовна' => [
             'specialization' => 'Стоматолог-терапевт',
             'education' => [
                 'Образование: высшее медицинское',
@@ -47,7 +47,7 @@ function liderdent_get_doctors_profiles(): array {
             'bio' => 'Мариам Араратовна — стоматолог-терапевт, ценимая за внимательность, доброжелательность и умение работать как со взрослыми, так и с детьми. Отличается подробными консультациями, аккуратным лечением и способностью снизить страх перед стоматологическим приёмом.',
             'prodoctorov_id' => '961942',
             'prodoctorov_slug' => '961942-asryan',
-            'cases_gallery' => 'asryan',
+            'cases_gallery' => 'safaryan',
         ],
         'умраев тимур ахмаевич' => [
             'specialization' => 'Стоматолог-хирург, имплантолог',
@@ -95,9 +95,9 @@ function liderdent_get_doctor_profile( string $title ): ?array {
  * @return array<string, list<array{file:string,date:string,place:string,org:string,title:string,lecturer:string}>>
  */
 function liderdent_doctor_certificates_map(): array {
-    $dir = 'assets/img/certs/asryan/';
+    $dir = 'assets/img/certs/safaryan/';
     return [
-        'asryan-mariam-araratovna' => [
+        'safaryan-mariam-araratovna' => [
             [
                 'file'     => $dir . 'endodontics-2016.jpg',
                 'date'     => '23 октября 2016',
@@ -371,16 +371,16 @@ function liderdent_get_doctor_cases_catalog(): array {
                 'after'  => $uri . 'safarov-cases/case-05.jpg',
             ],
         ],
-        'asryan' => [
+        'safaryan' => [
             [
                 'title'  => 'Эстетическая реставрация жевательных зубов',
-                'before' => $uri . 'asryan-cases/case-01-before.jpg',
-                'after'  => $uri . 'asryan-cases/case-01-after.jpg',
+                'before' => $uri . 'safaryan-cases/case-01-before.jpg',
+                'after'  => $uri . 'safaryan-cases/case-01-after.jpg',
             ],
             [
                 'title'  => 'Анатомическая реставрация композитом',
-                'before' => $uri . 'asryan-cases/case-02-before.jpg',
-                'after'  => $uri . 'asryan-cases/case-02-after.jpg',
+                'before' => $uri . 'safaryan-cases/case-02-before.jpg',
+                'after'  => $uri . 'safaryan-cases/case-02-after.jpg',
             ],
         ],
     ];
