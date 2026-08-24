@@ -92,3 +92,7 @@ Handoff 2026-08-14: docs/HANDOFF_2026-08-14.md. Прод head ~0cf361c. Сдел
 ## 2026-08-24 07:31 UTC
 
 Фамилия врача Асрян→Сафарян: slug safaryan-mariam-araratovna, 301 с asryan и malikov, миграция v3 обновляет post_title. Ассеты safaryan-cases/, certs/safaryan/.
+
+## 2026-08-24 07:32 UTC
+
+ДМС /dms/: СОГАЗ, Югория страхование, Сберздоровье (убраны Ингосстрах и АльфаСтрахование). Логотип yugoria.jpg.
