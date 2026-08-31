@@ -43,6 +43,10 @@ function liderdent_article_related_landings( $post = null ): array {
 		'dentium'     => 'implantat-dentium',
 		'nobel'       => 'implantat-nobel-straumann',
 		'straumann'   => 'implantat-nobel-straumann',
+		'adenti'      => 'implantaciya',
+		'all-on'      => 'implantaciya',
+		'sinus'       => 'hirurgiya',
+		'kostn'       => 'hirurgiya',
 		'brek'        => 'ortodontiya',
 		'elajn'       => 'ortodontiya',
 		'prikus'      => 'ortodontiya',
@@ -53,9 +57,11 @@ function liderdent_article_related_landings( $post = null ): array {
 		'mikroskop'   => 'lechenie',
 		'kanal'       => 'lechenie',
 		'karies'      => 'lechenie',
+		'bolit'       => 'lechenie',
 		'kt-zubov'    => 'rentgenologicheskoe-obsledovanie',
 		'rentgen'     => 'rentgenologicheskoe-obsledovanie',
 		'tomograf'    => 'rentgenologicheskoe-obsledovanie',
+		'optg'        => 'rentgenologicheskoe-obsledovanie',
 		'koronk'      => 'protezirovanie',
 		'cirkoni'     => 'koronka-dioksid-cirkoniya',
 		'protez'      => 'protezirovanie',
@@ -64,6 +70,7 @@ function liderdent_article_related_landings( $post = null ): array {
 		'udalen'      => 'hirurgiya',
 		'nejromysh'   => 'nejromyshechnaya-stomatologiya',
 		'vnchs'       => 'nejromyshechnaya-stomatologiya',
+		'konsultac'   => 'konsultaciya-hirurga',
 	];
 
 	$slugs = [];
@@ -121,44 +128,94 @@ function liderdent_article_related_landings( $post = null ): array {
 function liderdent_article_related_slug_map(): array {
 	return [
 		'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent' => [
+			'koronka-na-implant-v-krasnoyarske',
 			'lechenie-kanalov-zuba-v-krasnoyarske-etapy-sroki-perelechivanie-i-vosstanovlenie-zuba',
-			'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost',
-			'czena-stomatologii-v-krasnoyarske-iz-chego-skladyvaetsya-stoimost-lecheniya-i-kak-sravnivat-kliniki',
+			'rassrochka-na-stomatologiyu-v-liderdent',
 		],
 		'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent' => [
 			'odnomomentnaya-implantaciya-v-krasnoyarske-liderdent',
-			'kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu',
-			'implantacziya-zubov-v-krasnoyarske-nadezhno-estetichno-nadolgo',
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+			'optg-ili-kt-zubov-v-chem-raznica',
 		],
 		'nejromyshechnaya-stomatologiya-v-krasnoyarske-kogda-nuzhna' => [
 			'brekety-ili-elajnery-chto-vybrat-dlya-ispravleniya-prikusa-v-krasnoyarske',
 			'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent',
-			'esteticheskaya-stomatologiya-v-krasnoyarske-ispravlenie-prikusa-dlya-krasivoj-ulybki-brekety-i-elajnery',
+			'skolko-nosit-brekety-sroki-lecheniya',
 		],
 		'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat' => [
 			'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie',
-			'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost',
-			'odnomomentnaya-implantaciya-v-krasnoyarske-liderdent',
+			'skolko-prizhivaetsya-implant-zuba',
+			'koronka-na-implant-v-krasnoyarske',
 		],
 		'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie' => [
 			'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
-			'implantacziya-zubov-v-krasnoyarske-nadezhno-estetichno-nadolgo',
-			'kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu',
+			'implantaciya-all-on-4-pri-polnoj-adentii-v-krasnoyarske',
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
 		],
 		'odnomomentnaya-implantaciya-v-krasnoyarske-liderdent' => [
-			'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
-			'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent',
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+			'skolko-prizhivaetsya-implant-zuba',
 			'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost',
 		],
 		'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost' => [
-			'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
-			'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent',
-			'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie',
+			'koronka-na-implant-v-krasnoyarske',
+			'implantaciya-all-on-4-pri-polnoj-adentii-v-krasnoyarske',
+			'rassrochka-na-stomatologiyu-v-liderdent',
 		],
 		'brekety-pod-klyuch-200000-chto-vhodit-v-programmu' => [
+			'skolko-nosit-brekety-sroki-lecheniya',
+			'brekety-ili-elajnery-chto-vybrat-dlya-ispravleniya-prikusa-v-krasnoyarske',
+			'rassrochka-na-stomatologiyu-v-liderdent',
+		],
+		'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske' => [
+			'skolko-prizhivaetsya-implant-zuba',
+			'odnomomentnaya-implantaciya-v-krasnoyarske-liderdent',
+			'optg-ili-kt-zubov-v-chem-raznica',
+		],
+		'implantaciya-all-on-4-pri-polnoj-adentii-v-krasnoyarske' => [
+			'koronka-na-implant-v-krasnoyarske',
+			'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost',
+			'rassrochka-na-stomatologiyu-v-liderdent',
+		],
+		'rassrochka-na-stomatologiyu-v-liderdent' => [
+			'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost',
+			'brekety-pod-klyuch-200000-chto-vhodit-v-programmu',
+			'czena-stomatologii-v-krasnoyarske-iz-chego-skladyvaetsya-stoimost-lecheniya-i-kak-sravnivat-kliniki',
+		],
+		'koronka-na-implant-v-krasnoyarske' => [
+			'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent',
+			'skolko-prizhivaetsya-implant-zuba',
+			'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
+		],
+		'lechenie-kariesa-cena-v-krasnoyarske' => [
+			'chto-delat-esli-bolit-zub',
+			'lechenie-zubov-pod-mikroskopom-v-krasnoyarske-tochnost-prognoz-pokazaniya',
+			'czena-stomatologii-v-krasnoyarske-iz-chego-skladyvaetsya-stoimost-lecheniya-i-kak-sravnivat-kliniki',
+		],
+		'chto-delat-esli-bolit-zub' => [
+			'lechenie-kariesa-cena-v-krasnoyarske',
+			'lechenie-kanalov-zuba-v-krasnoyarske-etapy-sroki-perelechivanie-i-vosstanovlenie-zuba',
+			'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent',
+		],
+		'skolko-prizhivaetsya-implant-zuba' => [
+			'mozhno-li-stavit-implant-pri-parodontite',
+			'koronka-na-implant-v-krasnoyarske',
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+		],
+		'mozhno-li-stavit-implant-pri-parodontite' => [
+			'parodontit-i-professionalnaya-gigiena-v-liderdent',
+			'skolko-prizhivaetsya-implant-zuba',
+			'vector-terapiya-v-krasnoyarske-lechenie-desen-pri-krovotochivosti-i-parodontite',
+		],
+		'skolko-nosit-brekety-sroki-lecheniya' => [
+			'brekety-pod-klyuch-200000-chto-vhodit-v-programmu',
 			'brekety-ili-elajnery-chto-vybrat-dlya-ispravleniya-prikusa-v-krasnoyarske',
 			'nejromyshechnaya-stomatologiya-v-krasnoyarske-kogda-nuzhna',
-			'professionalnaya-gigiena-v-krasnoyarske-chto-vhodit-kak-chasto-delat-i-kak-sohranit-implanty-koronki',
+		],
+		'optg-ili-kt-zubov-v-chem-raznica' => [
+			'kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu',
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+			'lechenie-kanalov-zuba-v-krasnoyarske-etapy-sroki-perelechivanie-i-vosstanovlenie-zuba',
 		],
 	];
 }
@@ -170,32 +227,63 @@ function liderdent_article_related_slug_map(): array {
  */
 function liderdent_service_blog_slug_map(): array {
 	return [
-		'protezirovanie'                   => [ 'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent' ],
-		'koronka-dioksid-cirkoniya'        => [ 'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent' ],
-		'hirurgiya'                        => [ 'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent' ],
-		'konsultaciya-hirurga'             => [ 'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent' ],
+		'protezirovanie'                   => [
+			'koronka-na-implant-v-krasnoyarske',
+			'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent',
+			'rassrochka-na-stomatologiyu-v-liderdent',
+		],
+		'koronka-dioksid-cirkoniya'        => [
+			'cirkonievye-koronki-v-krasnoyarske-protezirovanie-v-liderdent',
+			'koronka-na-implant-v-krasnoyarske',
+		],
+		'hirurgiya'                        => [
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+			'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent',
+			'chto-delat-esli-bolit-zub',
+		],
+		'konsultaciya-hirurga'             => [
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+			'udalenie-zuba-mudrosti-v-krasnoyarske-hirurgiya-liderdent',
+			'mozhno-li-stavit-implant-pri-parodontite',
+		],
 		'nejromyshechnaya-stomatologiya'   => [ 'nejromyshechnaya-stomatologiya-v-krasnoyarske-kogda-nuzhna' ],
 		'implantaciya'                     => [
-			'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
-			'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie',
-			'implantacziya-zubov-pod-klyuch-v-krasnoyarske-etapy-sroki-chto-vhodit-v-stoimost',
+			'implantaciya-all-on-4-pri-polnoj-adentii-v-krasnoyarske',
+			'sinus-lifting-i-kostnaya-plastika-v-krasnoyarske',
+			'skolko-prizhivaetsya-implant-zuba',
 		],
-		'implantaciya-osstem-inno'         => [ 'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat' ],
-		'implantat-dentium'                => [ 'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie' ],
-		'implantat-nobel-straumann'        => [ 'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie' ],
+		'implantaciya-osstem-inno'         => [
+			'implantaty-osstem-i-inno-v-krasnoyarske-kakuyu-sistemu-vybrat',
+			'koronka-na-implant-v-krasnoyarske',
+			'skolko-prizhivaetsya-implant-zuba',
+		],
+		'implantat-dentium'                => [
+			'implantaciya-all-on-4-pri-polnoj-adentii-v-krasnoyarske',
+			'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie',
+		],
+		'implantat-nobel-straumann'        => [
+			'implantaty-nobel-straumann-i-dentium-v-krasnoyarske-sravnenie',
+			'koronka-na-implant-v-krasnoyarske',
+		],
 		'ortodontiya'                      => [
+			'skolko-nosit-brekety-sroki-lecheniya',
 			'brekety-pod-klyuch-200000-chto-vhodit-v-programmu',
 			'brekety-ili-elajnery-chto-vybrat-dlya-ispravleniya-prikusa-v-krasnoyarske',
 		],
 		'gigiena'                          => [
+			'mozhno-li-stavit-implant-pri-parodontite',
 			'parodontit-i-professionalnaya-gigiena-v-liderdent',
 			'vector-terapiya-v-krasnoyarske-lechenie-desen-pri-krovotochivosti-i-parodontite',
 		],
 		'lechenie'                         => [
+			'lechenie-kariesa-cena-v-krasnoyarske',
+			'chto-delat-esli-bolit-zub',
 			'lechenie-zubov-pod-mikroskopom-v-krasnoyarske-tochnost-prognoz-pokazaniya',
-			'lechenie-kanalov-zuba-v-krasnoyarske-etapy-sroki-perelechivanie-i-vosstanovlenie-zuba',
 		],
-		'rentgenologicheskoe-obsledovanie' => [ 'kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu' ],
+		'rentgenologicheskoe-obsledovanie' => [
+			'optg-ili-kt-zubov-v-chem-raznica',
+			'kt-zubov-3d-v-krasnoyarske-kogda-nuzhno-chto-pokazyvaet-kak-pomogaet-lecheniyu',
+		],
 	];
 }
 
