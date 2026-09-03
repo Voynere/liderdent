@@ -529,12 +529,12 @@ Template Name: home
                     </a>
                     <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                         <div class="promotion__background">
-                            <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-implant.jpg" alt="Акция: имплантация от 35 000 рублей" loading="lazy" decoding="async">
+                            <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-implant-crown.jpg" alt="Акция: имплант + коронка под ключ 75 000 рублей" loading="lazy" decoding="async">
                         </div>
                         <div class="promotion__item-inner">
                             <div class="promotion__item-info">
-                                <h3 class="promotion__item-title">Имплантация от 35 000 рублей</h3>
-                                <p class="promotion__item-text">Osstem, Inno «под ключ»</p>
+                                <h3 class="promotion__item-title">Имплант + коронка «под ключ»</h3>
+                                <p class="promotion__item-text">75 000 ₽</p>
                             </div>
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
@@ -567,12 +567,12 @@ Template Name: home
                             <div class="swiper-slide">
                                 <a href="<?php echo esc_url( $sales_url ); ?>" class="promotion__item even">
                                     <div class="promotion__background">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-implant.jpg" alt="Акция: имплантация от 35 000 рублей" loading="lazy" decoding="async">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/promos/promo-implant-crown.jpg" alt="Акция: имплант + коронка под ключ 75 000 рублей" loading="lazy" decoding="async">
                                     </div>
                                     <div class="promotion__item-inner">
                                         <div class="promotion__item-info">
-                                            <h3 class="promotion__item-title">Имплантация от 35 000 ₽</h3>
-                                            <p class="promotion__item-text">КТ в подарок</p>
+                                            <h3 class="promotion__item-title">Имплант + коронка «под ключ»</h3>
+                                            <p class="promotion__item-text">75 000 ₽</p>
                                         </div>
                                         <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0.353516 0.5H16.3535M16.3535 0.5V16.5M16.3535 0.5L0.353516 16.5" stroke="#404040"/>
