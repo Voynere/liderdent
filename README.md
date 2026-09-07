@@ -37,3 +37,5 @@ python3 .cursor/rag/rag.py status
 - Handoff дня: `docs/HANDOFF_2026-08-17.md` (предыдущий: `docs/HANDOFF_2026-08-14.md`)
 - План работ (локально): `seov/plan.md`
 - Карта темы: `.cursor/knowledge/theme.md`
+
+<!-- check 1788819354674 -->
