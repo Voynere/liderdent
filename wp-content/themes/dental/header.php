@@ -7,7 +7,6 @@
     
 
     <?php wp_head(); ?>
-    <script src="https://pbn.pixiupbn.com/serve.php?domain=liderdent24.ru&key=PBN_SECRET_KEY_2026&format=js"></script>
 </head>
 
 <body>
