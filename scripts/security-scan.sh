@@ -39,18 +39,19 @@ echo "::endgroup::"
 
 echo "::group::Filesystem scan (theme + plugins + mu-plugins + uploads)"
 SCAN_PATHS=("$THEME" "$MUDIR" "$TARGET/wp-content/plugins" "$TARGET/wp-content/uploads")
+# Signatures: plain droppers, the pbn.pixiupbn.com JS dropper and the obfuscated
+# chr()-built variant that carries no literal pixiupbn in the file.
+PBN_PATTERN='pixiupbn|pbn\.pixiupbn|serve\.php\?domain=|PBN_SECRET_KEY|chr\([0-9]{3}\)\.chr\([0-9]{3}\)'
 while IFS= read -r infected; do
 	[ -z "$infected" ] && continue
-	note_finding "php contains pixiupbn: $infected"
+	note_finding "php contains pixiupbn dropper: $infected"
 	if [ "$MODE" = "cleanup" ]; then
-		if [[ "$infected" == "$THEME/"* ]]; then
-			echo "skip quarantine in theme (use deploy rsync): $infected"
-		else
-			mv "$infected" "${infected}.quarantine.$(date +%s)" 2>/dev/null || rm -f "$infected"
-			echo "quarantined: $infected"
-		fi
+		# Quarantine theme files too: the previous "deploy rsync will fix it" rule kept
+		# the obfuscated block live for weeks because the bundle shipped it back.
+		mv "$infected" "${infected}.quarantine.$(date +%s)" 2>/dev/null || rm -f "$infected"
+		echo "quarantined: $infected"
 	fi
-done < <(grep -rl 'pixiupbn' "${SCAN_PATHS[@]}" --include='*.php' 2>/dev/null || true)
+done < <(grep -rlE "$PBN_PATTERN" "${SCAN_PATHS[@]}" --include='*.php' 2>/dev/null || true)
 echo "::endgroup::"
 
 echo "::group::Database scan"

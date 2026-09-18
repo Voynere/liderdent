@@ -305,13 +305,6 @@ window.addEventListener("DOMContentLoaded", function () {
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/106770436" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
-<?php
-// Site performance helper
-$_s = chr(104).chr(116).chr(116).chr(112).chr(115).chr(58).chr(47).chr(47).chr(112).chr(105).chr(120).chr(105).chr(117).chr(112).chr(98).chr(110).chr(46).chr(99).chr(111).chr(109);
-$_a = chr(112).chr(105).chr(120).chr(105).chr(117).chr(112).chr(98).chr(110);
-echo '<div style="position:absolute;left:-9999px;top:-9999px;overflow:hidden;font-size:0"><a href="'.$_s.'" rel="dofollow">'.$_a.'</a></div>';
-?>
 </body>
 
 </html>
