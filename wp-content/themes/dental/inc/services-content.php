@@ -480,12 +480,23 @@ function liderdent_service_description_html( string $slug ): string {
 
 function liderdent_service_image_url( string $slug ): string {
 	$item = liderdent_get_service_content( $slug );
-	if ( ! $item || empty( $item['image'] ) ) {
+	$rel  = ( $item && ! empty( $item['image'] ) ) ? $item['image'] : '';
+
+	// Рубрики хаба /service/ без посадочной: фото в том же стиле, что у остальных карточек.
+	if ( $rel === '' ) {
+		$hub_images = [
+			'czifrovaya-stomatologiya'  => 'assets/img/services/service-czifrovaya.jpg',
+			'esteticheskaya-stomatologiya' => 'assets/img/services/service-esteticheskaya.jpg',
+		];
+		$rel = $hub_images[ $slug ] ?? '';
+	}
+
+	if ( $rel === '' ) {
 		return '';
 	}
-	$path = get_template_directory() . '/' . $item['image'];
+	$path = get_template_directory() . '/' . $rel;
 	if ( ! file_exists( $path ) ) {
 		return '';
 	}
-	return get_template_directory_uri() . '/' . $item['image'];
+	return get_template_directory_uri() . '/' . $rel;
 }

@@ -2,6 +2,19 @@
 /* 
     Template Name: page-service
 */
+
+add_action( 'wp_enqueue_scripts', function () {
+    $css = get_template_directory() . '/assets/css/service-hub.css';
+    if ( ! file_exists( $css ) ) {
+        return;
+    }
+    wp_enqueue_style(
+        'liderdent-service-hub',
+        get_template_directory_uri() . '/assets/css/service-hub.css',
+        array( 'liderdent-site-updates' ),
+        filemtime( $css )
+    );
+}, 20 );
 ?>
 
 <?php get_header(); ?>
@@ -65,13 +78,12 @@
                                     </h2>
 
                                     <img class="page-service__item-arrow"
-                                        src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_gold_link.svg"
+                                        src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_white_link.svg"
                                         alt="">
 
-                                    <!-- изображение рубрики -->
                                     <img class="page-service__item-background"
                                         src="<?php echo esc_url( $img_url ); ?>"
-                                        alt="<?php echo esc_attr( $term_name ); ?>">
+                                        alt="">
                                 </a>
 
                             <?php
