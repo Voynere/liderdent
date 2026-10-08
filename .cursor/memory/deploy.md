@@ -44,3 +44,7 @@ Handoff 17.08 закоммичен: SHA 8157b3e, deploy.yml run 32011038754 зе
 ## 2026-08-17 08:40 UTC
 
 Конец дня 17.08: HEAD d920290, deploy.yml run 32011352973 зелёный. Тема без правок с 8738760. Smoke / 200. Завтра: тонкие прайс-посты, снимок Topvisor 31594521, бэклог seov/plan.md.
+
+## 2026-08-24 07:50 UTC
+
+Добавлен workflow security-scan.yml (workflow_dispatch: scan-only/cleanup) + scripts/security-scan.sh. Проверяет mu-plugins, theme/plugins/uploads PHP, wp_options/posts и live HTML. Deploy вызывает тот же скрипт в cleanup.

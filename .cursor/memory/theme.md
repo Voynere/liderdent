@@ -28,3 +28,11 @@ UX: общий mobile-menu partial (Услуги/Блог/Контакты, clos
 ## 2026-08-18 01:49 UTC
 
 2026-08-18: H1 служебных без ALL CAPS (услуги/цены/о клинике/контакты/акции/юр.). Sitemap лендингов /services-sitemap.xml — 13 URL из реестра, в индексе AIOSEO и robots.txt. SHA 4151d53, deploy 32089473366 зелёный.
+
+## 2026-10-08 07:25 UTC
+
+Хаб /service/: названия разделов поверх фото (service-hub.css). Цифровая и эстетическая стоматология — фото service-czifrovaya.jpg и service-esteticheskaya.jpg, не прозрачные PNG из медиатеки.
+
+## 2026-10-08 07:30 UTC
+
+Поиск на liderdent24.ru: оверлей как у МРТ Лидер. Шапка .follow-search и кнопки поиска открывают #ld-search-overlay, AJAX liderdent_site_search. Индекс: услуги из реестра, краткий прайс, акции, врачи CPT, статьи категории blog, FAQ лендингов, разделы. Страница /?s= — search.php. Файлы: inc/site-search.php, assets/js/search.js, template-parts/search-overlay.php.
