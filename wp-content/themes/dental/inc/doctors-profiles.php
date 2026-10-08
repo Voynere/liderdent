@@ -38,7 +38,7 @@ function liderdent_get_doctors_profiles(): array {
             'prodoctorov_id' => '1000891',
             'prodoctorov_slug' => '1000891-voytova',
         ],
-        'сафарян мариам араратовна' => [
+        'асрян мариам араратовна' => [
             'specialization' => 'Стоматолог-терапевт',
             'education' => [
                 'Образование: высшее медицинское',
@@ -97,7 +97,7 @@ function liderdent_get_doctor_profile( string $title ): ?array {
 function liderdent_doctor_certificates_map(): array {
     $dir = 'assets/img/certs/safaryan/';
     return [
-        'safaryan-mariam-araratovna' => [
+        'asryan-mariam-araratovna' => [
             [
                 'file'     => $dir . 'endodontics-2016.jpg',
                 'date'     => '23 октября 2016',

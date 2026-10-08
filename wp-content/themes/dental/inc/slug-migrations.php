@@ -5,8 +5,8 @@
 
 function liderdent_specialist_slug_redirects(): array {
 	return [
-		'malikov-aleksej-georgievich' => 'safaryan-mariam-araratovna',
-		'asryan-mariam-araratovna'    => 'safaryan-mariam-araratovna',
+		'malikov-aleksej-georgievich' => 'asryan-mariam-araratovna',
+		'safaryan-mariam-araratovna'  => 'asryan-mariam-araratovna',
 		'karpova-elena-mihajlovna'    => 'voytova-polina-nikolaevna',
 		'mironova-olga-viktorovna'    => 'markova-kristina-pavlovna',
 	];
@@ -14,7 +14,7 @@ function liderdent_specialist_slug_redirects(): array {
 
 function liderdent_specialist_title_updates(): array {
 	return [
-		'asryan-mariam-araratovna' => 'Сафарян Мариам Араратовна',
+		'safaryan-mariam-araratovna' => 'Асрян Мариам Араратовна',
 	];
 }
 
@@ -23,7 +23,7 @@ function liderdent_specialist_title_updates(): array {
  * Bump option key when adding new pairs so migration re-runs for new rows only.
  */
 function liderdent_run_specialist_slug_migrations(): void {
-	if ( get_option( 'liderdent_specialist_slug_migrations_v3' ) ) {
+	if ( get_option( 'liderdent_specialist_slug_migrations_v4' ) ) {
 		return;
 	}
 
@@ -71,7 +71,7 @@ function liderdent_run_specialist_slug_migrations(): void {
 		}
 	}
 
-	update_option( 'liderdent_specialist_slug_migrations_v3', 1, false );
+	update_option( 'liderdent_specialist_slug_migrations_v4', 1, false );
 
 	if ( $did_change ) {
 		flush_rewrite_rules( false );
