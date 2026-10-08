@@ -2581,3 +2581,181 @@ html.mobile-menu-open body {
         height: 220px;
     }
 }
+
+/* --- поиск: оверлей как у МРТ Лидер --- */
+body.ld-search-open {
+    overflow: hidden;
+}
+
+form.header__follow-search {
+    margin: 0;
+}
+
+.header__follow-search .follow-search {
+    background: transparent;
+    border: none;
+    font-family: inherit;
+}
+
+.header__follow-search .follow-search::placeholder {
+    color: rgba(64, 64, 64, 0.55);
+}
+
+.ld-search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 16px;
+    padding-top: max(16px, env(safe-area-inset-top));
+}
+
+.ld-search-overlay.is-open {
+    display: flex;
+}
+
+.ld-search-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.ld-search-overlay__panel {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin-top: 8vh;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    max-height: min(80vh, 560px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ld-search-overlay__head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    padding: 12px 12px 12px 16px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.ld-search-overlay__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #1e293b;
+    font-family: inherit;
+}
+
+.ld-search-overlay__close {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #64748b;
+    line-height: 0;
+}
+
+.ld-search-overlay__close:hover {
+    color: #1a3a5c;
+}
+
+.ld-search-overlay__body {
+    padding: 12px 16px 16px;
+    overflow-y: auto;
+}
+
+.ld-search-overlay__hint,
+.ld-search-overlay__empty,
+.ld-search-page__empty {
+    color: #64748b;
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+.ld-search-group {
+    margin: 0 0 16px;
+}
+
+.ld-search-group__title {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #1a3a5c;
+}
+
+.ld-search-group__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.ld-search-group__link {
+    display: block;
+    padding: 8px 0;
+    color: #1e5791;
+    font-size: 16px;
+    line-height: 1.35;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.ld-search-group__link:hover {
+    color: #d2ae6b;
+}
+
+.ld-search-page {
+    padding: 48px 0 80px;
+}
+
+.ld-search-page__inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.ld-search-page__title {
+    margin: 0 0 20px;
+    font-size: 32px;
+    font-weight: 600;
+    color: #1a3a5c;
+}
+
+.ld-search-page__form {
+    display: flex;
+    gap: 12px;
+    margin: 0 0 28px;
+}
+
+.ld-search-page__form input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid rgba(64, 64, 64, 0.3);
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+@media (max-width: 578px) {
+    .ld-search-overlay__panel {
+        margin-top: 0;
+        max-height: min(88vh, 640px);
+    }
+
+    .ld-search-page__title {
+        font-size: 26px;
+    }
+
+    .ld-search-page__form {
+        flex-direction: column;
+    }
+}

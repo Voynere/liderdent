@@ -637,7 +637,7 @@ add_action(
 add_filter(
 	'wp_robots',
 	static function ( array $robots ): array {
-		if ( liderdent_is_price_sku_post() || is_post_type_archive( 'specialist' ) ) {
+		if ( liderdent_is_price_sku_post() || is_post_type_archive( 'specialist' ) || is_search() ) {
 			$robots['noindex']  = true;
 			$robots['nofollow'] = true;
 		}
@@ -652,7 +652,7 @@ add_filter(
 		if ( ! is_array( $attributes ) ) {
 			$attributes = [];
 		}
-		if ( liderdent_is_price_sku_post() || is_post_type_archive( 'specialist' ) ) {
+		if ( liderdent_is_price_sku_post() || is_post_type_archive( 'specialist' ) || is_search() ) {
 			unset( $attributes['index'] );
 			$attributes['noindex'] = 'noindex';
 		}

@@ -11,6 +11,7 @@ require get_template_directory() . '/inc/service-landings.php';
 require get_template_directory() . '/inc/content-seed.php';
 require get_template_directory() . '/inc/blog-ui.php';
 require get_template_directory() . '/inc/dms.php';
+require get_template_directory() . '/inc/site-search.php';
 
 function liderdent_needs_swiper(): bool {
 	if ( is_front_page() || is_singular( 'specialist' ) ) {
@@ -110,6 +111,18 @@ add_action( 'wp_enqueue_scripts', function () {
         'nonce'     => wp_create_nonce('popup_form_nonce'),
         'metrikaId' => 106770436,
     ]);
+
+    $search_js = get_template_directory() . '/assets/js/search.js';
+    wp_enqueue_script(
+        'liderdent-search',
+        get_template_directory_uri() . '/assets/js/search.js',
+        [],
+        file_exists( $search_js ) ? filemtime( $search_js ) : null,
+        true
+    );
+    wp_localize_script( 'liderdent-search', 'LIDERDENT_SEARCH', [
+        'ajax_url' => admin_url( 'admin-ajax.php' ),
+    ] );
 });
 
 add_action( 'wp_enqueue_scripts', function () {

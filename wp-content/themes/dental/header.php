@@ -41,7 +41,7 @@
                             </svg>
                         </button>
                         <div class="header__top-mobile">
-                            <button class="header__follow-search-hidden header__follow-icon-item" id="follow-search-hidden" aria-label="Открыть поиск">
+                            <button type="button" class="header__follow-search-hidden header__follow-icon-item" aria-label="Открыть поиск">
                                 <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_search_hidden.svg" alt="Поиск">
                             </button>
                             <a href="tel:+73912271343" class="header__follow-phone header__follow-icon-item">
@@ -129,12 +129,12 @@
                                             <a href="<?php echo get_home_url(); ?>/about/">О нас</a>
                                         </li>
                                     </ul>
-                                    <div class="header__follow-search">
-                                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_search.svg" alt="Поиск">
-                                        <input type="text" class="follow-search">
-                                    </div>
+                                    <form class="header__follow-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                                        <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_search.svg" alt="" aria-hidden="true">
+                                        <input type="search" name="s" class="follow-search" placeholder="Поиск по сайту" autocomplete="off" aria-label="Поиск по сайту">
+                                    </form>
                                     <div class="header__follow-info">
-                                        <button class="header__follow-search-hidden header__follow-icon-item" id="follow-search-hidden" aria-label="Открыть поиск">
+                                        <button type="button" class="header__follow-search-hidden header__follow-icon-item" aria-label="Открыть поиск">
                                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/header_follow_search_hidden.svg" alt="Поиск">
                                         </button>
                                         <a href="tel:+73912271343" class="header__follow-phone header__follow-icon-item">
@@ -207,9 +207,9 @@
                         <nav class="header-mobile-nav__content">
                             <ul class="header-mobile-nav__list">
                                 <li>
-                                    <button class="header-mobile-nav__btn">
+                                    <button type="button" class="header-mobile-nav__btn js-site-search-open">
                                         <div class="header-mobile-nav__btn-icon">
-                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/mobile_search.svg">
+                                            <img src="<?php bloginfo('template_url') ?>/assets/img/icons/mobile_search.svg" alt="">
                                         </div>
                                         <span>поиск</span>
                                     </button>
