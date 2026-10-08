@@ -304,6 +304,22 @@ function liderdent_render_prodoctorov_widget( array $profile, string $doctor_tit
             </a>
         </div>
     </div>
+    <script>
+    (function () {
+        var root = document.getElementById('pd_widget_footerd<?php echo $id; ?>');
+        if (!root) return;
+        var name = <?php echo wp_json_encode( $doctor_title ); ?>;
+        var apply = function () {
+            root.querySelectorAll('.pd_widget_title, .doctor_fio').forEach(function (el) {
+                if (el.textContent.trim() !== name) {
+                    el.textContent = name;
+                }
+            });
+        };
+        apply();
+        new MutationObserver(apply).observe(root, { childList: true, subtree: true, characterData: true });
+    })();
+    </script>
     <?php
 }
 
