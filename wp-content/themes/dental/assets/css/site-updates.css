@@ -450,8 +450,51 @@ html.mobile-menu-open body {
 }
 
 .promotion-page__all-link {
+    display: flex;
+    margin-top: 24px;
+}
+
+.promotion-page__all-link .btn-gold {
     display: inline-flex;
-    margin-top: 16px;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    min-height: 52px;
+    padding: 14px 32px;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.promotion__item-kicker {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
+.promotion__item-price {
+    display: block;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+@media (max-width: 1120px) {
+    .promotion__item-kicker {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 867px) {
+    .promotion__item-kicker {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 675px) {
+    .promotion-page__all-link .btn-gold {
+        width: 100%;
+    }
 }
 
 .single-specialist__bio {

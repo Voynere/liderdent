@@ -523,7 +523,7 @@ Template Name: home
                             </svg>
                             <div class="promotion__item-info">
                                 <h3 class="promotion__item-title">Улыбка без комплексов</h3>
-                                <p class="promotion__item-text">Брекеты «под ключ» 215 000 ₽</p>
+                                <p class="promotion__item-text"><span class="promotion__item-kicker">Брекеты «под ключ»</span><span class="promotion__item-price">215&nbsp;000&nbsp;₽</span></p>
                             </div>
                         </div>
                     </a>
@@ -542,9 +542,6 @@ Template Name: home
                         </div>
                     </a>
                 </div>
-                <p class="promotion-page__all-link">
-                    <a href="<?php echo esc_url( $sales_url ); ?>" class="btn-gold">Все акции и условия</a>
-                </p>
                 <div class="promotion__slider">
                     <div class="swiper promotionSlider">
                         <div class="swiper-wrapper">
@@ -559,7 +556,7 @@ Template Name: home
                                         </svg>
                                         <div class="promotion__item-info">
                                             <h3 class="promotion__item-title">Улыбка без комплексов</h3>
-                                            <p class="promotion__item-text">Брекеты 215 000 ₽</p>
+                                            <p class="promotion__item-text"><span class="promotion__item-kicker">Брекеты «под ключ»</span><span class="promotion__item-price">215&nbsp;000&nbsp;₽</span></p>
                                         </div>
                                     </div>
                                 </a>
@@ -590,6 +587,9 @@ Template Name: home
                             <img src="<?php bloginfo('template_url') ?>/assets/img/icons/arrow_right_slider_gold.svg" alt="">
                         </button>
                     </div>
+                </div>
+                <div class="promotion-page__all-link">
+                    <a href="<?php echo esc_url( $sales_url ); ?>" class="btn-gold">Все акции и условия</a>
                 </div>
             </div>
         </div>
