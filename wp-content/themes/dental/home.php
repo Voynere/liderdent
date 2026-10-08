@@ -523,7 +523,7 @@ Template Name: home
                             </svg>
                             <div class="promotion__item-info">
                                 <h3 class="promotion__item-title">Улыбка без комплексов</h3>
-                                <p class="promotion__item-text">Брекеты «под ключ» 200 000 ₽</p>
+                                <p class="promotion__item-text">Брекеты «под ключ» 215 000 ₽</p>
                             </div>
                         </div>
                     </a>
@@ -559,7 +559,7 @@ Template Name: home
                                         </svg>
                                         <div class="promotion__item-info">
                                             <h3 class="promotion__item-title">Улыбка без комплексов</h3>
-                                            <p class="promotion__item-text">Брекеты 200 000 ₽</p>
+                                            <p class="promotion__item-text">Брекеты 215 000 ₽</p>
                                         </div>
                                     </div>
                                 </a>
