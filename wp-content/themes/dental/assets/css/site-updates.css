@@ -497,6 +497,26 @@ html.mobile-menu-open body {
     }
 }
 
+.promotion__item.even .promotion__background {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 46%;
+    height: 100%;
+}
+
+.promotion__item.even .promotion__background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 68% center;
+}
+
+.promotion__item.even .promotion__item-info {
+    max-width: 50%;
+}
+
 .single-specialist__bio {
     margin-top: 12px;
     line-height: 1.55;
