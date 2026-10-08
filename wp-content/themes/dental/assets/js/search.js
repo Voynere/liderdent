@@ -120,7 +120,7 @@
         document.querySelectorAll('.header__follow-search-hidden, .js-site-search-open').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
-                openOverlay('');
+                window.setTimeout(function () { openOverlay(''); }, 0);
             });
         });
 
@@ -133,9 +133,12 @@
             });
             var field = form.querySelector('.follow-search');
             if (field) {
-                field.addEventListener('focus', function () {
-                    openOverlay(field.value);
-                });
+                var queueOpen = function () {
+                    window.setTimeout(function () { openOverlay(field.value); }, 0);
+                };
+                field.addEventListener('focus', queueOpen);
+                field.addEventListener('click', queueOpen);
+                field.addEventListener('input', queueOpen);
             }
         });
 
